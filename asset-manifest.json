@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/eztasterwp/static/css/main.e8996dce.css",
-    "main.js": "/eztasterwp/static/js/main.517017c6.js",
-    "static/js/453.660c18c5.chunk.js": "/eztasterwp/static/js/453.660c18c5.chunk.js",
-    "index.html": "/eztasterwp/index.html",
-    "main.e8996dce.css.map": "/eztasterwp/static/css/main.e8996dce.css.map",
-    "main.517017c6.js.map": "/eztasterwp/static/js/main.517017c6.js.map",
-    "453.660c18c5.chunk.js.map": "/eztasterwp/static/js/453.660c18c5.chunk.js.map"
+    "main.css": "/2/static/css/main.eabbaf70.css",
+    "main.js": "/2/static/js/main.c10fd044.js",
+    "static/js/453.660c18c5.chunk.js": "/2/static/js/453.660c18c5.chunk.js",
+    "index.html": "/2/index.html",
+    "main.eabbaf70.css.map": "/2/static/css/main.eabbaf70.css.map",
+    "main.c10fd044.js.map": "/2/static/js/main.c10fd044.js.map",
+    "453.660c18c5.chunk.js.map": "/2/static/js/453.660c18c5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e8996dce.css",
-    "static/js/main.517017c6.js"
+    "static/css/main.eabbaf70.css",
+    "static/js/main.c10fd044.js"
   ]
 }

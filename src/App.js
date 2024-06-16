@@ -12,30 +12,38 @@ function App() {
     }
   }, []);
 
-  const handleClick = () => {
-    setPoints(points + 1);
-    const newMessage = { id: Date.now(), text: '+1 💨' };
-    setMessages([...messages, newMessage]);
+  const handleTouch = (event) => {
+    const touches = event.touches;
+    setPoints(points + touches.length);
+    const newMessages = Array.from(touches).map(touch => ({
+      id: Date.now() + touch.identifier,
+      text: '+1 💨',
+      x: touch.clientX,
+      y: touch.clientY
+    }));
+    setMessages([...messages, ...newMessages]);
     setTimeout(() => {
-      setMessages((messages) => messages.filter((msg) => msg.id !== newMessage.id));
-    }, 2000); // Удалить сообщение через 2 секунды
+      setMessages((messages) =>
+        messages.filter((msg) => !newMessages.some((newMsg) => newMsg.id === msg.id))
+      );
+    }, 2000); // Удалить сообщения через 2 секунды
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="App" onTouchStart={handleTouch}>
+      <div className="points-display">
         <h1>Ваши очки: {points}</h1>
-        <div className="plant-container" onClick={handleClick}>
-          <img src="plant.png" alt="Марихуана" className="plant" />
-        </div>
-        <div className="messages-container">
-          {messages.map((msg) => (
-            <div key={msg.id} className="message">
-              {msg.text}
-            </div>
-          ))}
-        </div>
-      </header>
+      </div>
+      <div className="plant-container">
+        <div className="plant"></div>
+      </div>
+      <div className="messages-container">
+        {messages.map((msg) => (
+          <div key={msg.id} className="message" style={{ left: msg.x, top: msg.y }}>
+            {msg.text}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

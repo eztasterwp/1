@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
+  const [points, setPoints] = useState(0);
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -11,26 +12,25 @@ function App() {
     }
   }, []);
 
-  const handleClick = (event) => {
-    const x = event.clientX;
-    const y = event.clientY;
-
-    const newMessage = { id: Date.now(), text: 'чабба', position: { left: x + 'px', top: y + 'px' } };
+  const handleClick = () => {
+    setPoints(points + 1);
+    const newMessage = { id: Date.now(), text: '+1 💨' };
     setMessages([...messages, newMessage]);
     setTimeout(() => {
-      setMessages(messages => messages.filter(msg => msg.id !== newMessage.id));
+      setMessages((messages) => messages.filter((msg) => msg.id !== newMessage.id));
     }, 2000); // Удалить сообщение через 2 секунды
   };
 
   return (
-    <div className="App" onClick={handleClick}>
+    <div className="App">
       <header className="App-header">
-        <button className="animated-button">
-          Нажми меня
-        </button>
+        <h1>Ваши очки: {points}</h1>
+        <div className="plant-container" onClick={handleClick}>
+          <img src="plant.png" alt="Марихуана" className="plant" />
+        </div>
         <div className="messages-container">
-          {messages.map(msg => (
-            <div key={msg.id} className="message" style={{ left: msg.position.left, top: msg.position.top }}>
+          {messages.map((msg) => (
+            <div key={msg.id} className="message">
               {msg.text}
             </div>
           ))}

@@ -9,14 +9,8 @@ function App() {
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.ready();
-  
-      // Дополнительно блокируем масштабирование через JavaScript
-      tg.onScaleChanged(() => {
-        tg.setZoomLevel(1); // Устанавливаем уровень масштабирования в 1
-      });
     }
   }, []);
-  
 
   const handleTouchStart = (event) => {
     event.preventDefault(); // Предотвращение нежелательного поведения, например, масштабирования или прокрутки

@@ -12,25 +12,30 @@ function App() {
     }
   }, []);
 
-  const handleTouch = (event) => {
-    const touches = event.touches;
-    setPoints(points + touches.length);
+  const handleTouchStart = (event) => {
+    event.preventDefault(); // Предотвращение нежелательного поведения, например, масштабирования или прокрутки
+
+    const touches = event.changedTouches;
+    setPoints(prevPoints => prevPoints + touches.length);
+
     const newMessages = Array.from(touches).map(touch => ({
       id: Date.now() + touch.identifier,
       text: '+1 💨',
       x: touch.clientX,
       y: touch.clientY
     }));
-    setMessages([...messages, ...newMessages]);
+
+    setMessages(prevMessages => [...prevMessages, ...newMessages]);
+
     setTimeout(() => {
-      setMessages((messages) =>
-        messages.filter((msg) => !newMessages.some((newMsg) => newMsg.id === msg.id))
+      setMessages(prevMessages =>
+        prevMessages.filter(msg => !newMessages.some(newMsg => newMsg.id === msg.id))
       );
     }, 2000); // Удалить сообщения через 2 секунды
   };
 
   return (
-    <div className="App" onTouchStart={handleTouch}>
+    <div className="App" onTouchStart={handleTouchStart}>
       <div className="points-display">
         <h1>Ваши очки: {points}</h1>
       </div>
@@ -38,7 +43,7 @@ function App() {
         <div className="plant"></div>
       </div>
       <div className="messages-container">
-        {messages.map((msg) => (
+        {messages.map(msg => (
           <div key={msg.id} className="message" style={{ left: msg.x, top: msg.y }}>
             {msg.text}
           </div>

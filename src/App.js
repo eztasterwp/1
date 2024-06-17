@@ -96,10 +96,6 @@ function App() {
       <div className="plant-container">
         <div className="plant"></div>
       </div>
-      <div className="level-display">
-        <h2>Level {level}/10</h2>
-        <p>Coins to level up: {coinsToLevelUp}</p>
-      </div>
       <div className="buttons-container">
         <div className="button" id="exchange" onClick={handleButtonClick}>
           <i className="fas fa-exchange-alt"></i> Exchange

@@ -58,8 +58,8 @@ function App() {
 
   const handleButtonClick = (event) => {
     const rect = event.target.getBoundingClientRect();
-    const smokeX = rect.left + rect.width / 2 - 25; // Размер дыма 50x50
-    const smokeY = rect.top + rect.height / 2 - 25;
+    const smokeX = rect.left + rect.width / 2 - (window.innerWidth * 0.15);
+    const smokeY = rect.top + rect.height / 2 - (window.innerHeight * 0.15);
 
     const newSmoke = {
       id: Date.now(),
@@ -81,6 +81,7 @@ function App() {
   return (
     <div className="App" onTouchStart={handleTouchStart}>
       <div className="points-display">
+        <img src="https://image.flaticon.com/icons/png/512/616/616407.png" alt="joints icon" />
         <h1>Your joints: {points}</h1>
       </div>
       <div className="plant-container">

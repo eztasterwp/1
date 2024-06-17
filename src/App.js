@@ -15,23 +15,37 @@ function App() {
   const handleTouchStart = (event) => {
     event.preventDefault(); // Предотвращение нежелательного поведения, например, масштабирования или прокрутки
 
-    const touches = event.changedTouches;
-    setPoints(prevPoints => prevPoints + touches.length);
+    const plantElement = document.querySelector('.plant');
+    const rect = plantElement.getBoundingClientRect();
 
-    const newMessages = Array.from(touches).map(touch => ({
-      id: Date.now() + touch.identifier,
-      text: '+1 💨',
-      x: touch.clientX,
-      y: touch.clientY
-    }));
+    Array.from(event.changedTouches).forEach(touch => {
+      const touchX = touch.clientX;
+      const touchY = touch.clientY;
 
-    setMessages(prevMessages => [...prevMessages, ...newMessages]);
+      if (
+        touchX >= rect.left &&
+        touchX <= rect.right &&
+        touchY >= rect.top &&
+        touchY <= rect.bottom
+      ) {
+        setPoints(prevPoints => prevPoints + 1);
 
-    setTimeout(() => {
-      setMessages(prevMessages =>
-        prevMessages.filter(msg => !newMessages.some(newMsg => newMsg.id === msg.id))
-      );
-    }, 2000); // Удалить сообщения через 2 секунды
+        const newMessage = {
+          id: Date.now() + touch.identifier,
+          text: '+1 💨',
+          x: touchX,
+          y: touchY
+        };
+
+        setMessages(prevMessages => [...prevMessages, newMessage]);
+
+        setTimeout(() => {
+          setMessages(prevMessages =>
+            prevMessages.filter(msg => msg.id !== newMessage.id)
+          );
+        }, 2000); // Удалить сообщения через 2 секунды
+      }
+    });
   };
 
   return (

@@ -20,14 +20,10 @@ body {
 }
 
 .points-display {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(135deg, #ffd700 0%, #ffd700 50%, #ffd700 51%, #ffd700 100%);
+  background: linear-gradient(135deg, #ffd700 0%, #ffb100 50%, #ff9800 51%, #ff8000 100%);
   padding: 10px 20px;
   border-radius: 12px;
-  border: 2px solid #ffd700;
+  border: 2px solid white; /* белая обводка */
   z-index: 10;
   display: flex;
   align-items: center;
@@ -107,11 +103,9 @@ body {
 }
 
 .button {
-  flex: 1 1 20%;
-  padding: 10px 15px;
-  background: linear-gradient(135deg, #ffd700 0%, #ffd700 50%, #ffd700 51%, #ffd700 100%);
+  background: linear-gradient(135deg, #ffd700 0%, #ffb100 50%, #ff9800 51%, #ff8000 100%);
   color: white;
-  border: 2px solid #ffd700;
+  border: 2px solid white; /* белая обводка */
   border-radius: 12px;
   font-size: 12px;
   text-align: center;

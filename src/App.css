@@ -24,14 +24,15 @@ body {
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.5);
-  padding: 5px 10px;
-  border-radius: 10px;
+  padding: 3px 8px; /* уменьшил padding для уменьшения размера блока */
+  border-radius: 8px; /* уменьшил радиус скругления углов */
   z-index: 10;
-  font-size: 16px;
-  color: #00cc00; /* Более тусклый зеленый цвет текста */
-  border: 2px solid #00cc00; /* Более тусклая зеленая обводка */
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  font-size: 14px; /* немного уменьшил размер текста */
+  color: #00cc00; /* цвет текста */
+  border: 2px solid #00cc00; /* цвет обводки */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* немного уменьшил тень текста */
 }
+
 
 .plant-container {
   width: 100%;

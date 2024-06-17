@@ -25,26 +25,26 @@ body {
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.7);
-  padding: 3px 6px; /* Уменьшил padding в три раза */
-  border-radius: 3px; /* Уменьшил border-radius в три раза */
-  border: 1px solid #FFD700; /* Уменьшил толщину border в три раза */
+  padding: 6px 12px; /* Увеличил padding в два раза */
+  border-radius: 6px; /* Увеличил border-radius в два раза */
+  border: 2px solid #FFD700; /* Увеличил толщину border в два раза */
   z-index: 10;
   display: flex;
   align-items: center;
-  gap: 3px; /* Уменьшил gap в три раза */
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7); /* Уменьшил тень в три раза */
-  font-size: 6px; /* Уменьшил font-size в три раза */
+  gap: 6px; /* Увеличил gap в два раза */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Слегка увеличил тень */
+  font-size: 12px; /* Увеличил font-size в два раза */
   color: #FFD700; /* Золотой цвет текста */
 }
 
 .points-display img {
-  width: 8px; /* Уменьшил размер иконки в три раза */
-  height: 8px;
+  width: 30px; /* Увеличил размер иконки в два раза */
+  height: 30px;
 }
 
 .points-display h1 {
   margin: 0; /* Убрал отступы у заголовка */
-  font-size: 6px; /* Уменьшил font-size заголовка в три раза */
+  font-size: 12px; /* Увеличил font-size заголовка в два раза */
 }
 
 

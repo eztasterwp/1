@@ -6,6 +6,9 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [smokes, setSmokes] = useState([]);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
+  const [level, setLevel] = useState(1);
+  const [coinsPerTap, setCoinsPerTap] = useState(2);
+  const [coinsToLevelUp, setCoinsToLevelUp] = useState(100);
 
   useEffect(() => {
     const img = new Image();
@@ -36,11 +39,11 @@ function App() {
         touchY >= rect.top &&
         touchY <= rect.bottom
       ) {
-        setPoints(prevPoints => prevPoints + 1);
+        setPoints(prevPoints => prevPoints + coinsPerTap);
 
         const newMessage = {
           id: Date.now() + touch.identifier,
-          text: '+1 💨',
+          text: `+${coinsPerTap} 💨`,
           x: touchX,
           y: touchY
         };
@@ -71,7 +74,7 @@ function App() {
 
     setTimeout(() => {
       setSmokes(prevSmokes => prevSmokes.filter(smoke => smoke.id !== newSmoke.id));
-    }, 1000); // Удалить дым через 1 секунду
+    }, 1000);
   };
 
   if (!backgroundLoaded) {

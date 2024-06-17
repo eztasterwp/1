@@ -82,7 +82,7 @@ function App() {
     <div className="App" onTouchStart={handleTouchStart}>
       <div className="points-display">
         <img src="joint.png" alt="joints icon" />
-        <h1 style={{ fontSize: '24px', borderWidth: '2px' }}>Your joints: {points}</h1>
+        <h1>Your joints: {points}</h1>
       </div>
       <img
         src="settings.png"

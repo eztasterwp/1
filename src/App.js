@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
 
 function App() {
@@ -7,7 +6,6 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [smokes, setSmokes] = useState([]);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
-  const [coinsPerTap, setCoinsPerTap] = useState(2);
 
   useEffect(() => {
     const img = new Image();
@@ -38,11 +36,11 @@ function App() {
         touchY >= rect.top &&
         touchY <= rect.bottom
       ) {
-        setPoints(prevPoints => prevPoints + coinsPerTap);
+        setPoints(prevPoints => prevPoints + 1);
 
         const newMessage = {
           id: Date.now() + touch.identifier,
-          text: `+${coinsPerTap} 💨`,
+          text: '+1 💨',
           x: touchX,
           y: touchY
         };
@@ -73,7 +71,7 @@ function App() {
 
     setTimeout(() => {
       setSmokes(prevSmokes => prevSmokes.filter(smoke => smoke.id !== newSmoke.id));
-    }, 1000);
+    }, 1000); // Удалить дым через 1 секунду
   };
 
   if (!backgroundLoaded) {
@@ -81,84 +79,54 @@ function App() {
   }
 
   return (
-    <Router>
-      <div className="App" onTouchStart={handleTouchStart}>
-        <div className="points-display">
-          <img src="joint.png" alt="joints icon" />
-          <h1>Your joints: {points}</h1>
+    <div className="App" onTouchStart={handleTouchStart}>
+      <div className="points-display">
+        <img src="joint.png" alt="joints icon" />
+        <h1>Your joints: {points}</h1>
+      </div>
+      <img
+        src="settings.png"
+        alt="settings"
+        className="settings-icon"
+        style={{ position: 'absolute', top: '10px', right: '10px', width: '24px', height: '24px', cursor: 'pointer' }}
+      />
+      <div className="plant-container">
+        <div className="plant"></div>
+      </div>
+      <div className="buttons-container">
+        <div className="button" id="exchange" onClick={handleButtonClick}>
+          <i className="fas fa-exchange-alt"></i> Exchange
         </div>
-        <img
-          src="settings.png"
-          alt="settings"
-          className="settings-icon"
-          style={{ position: 'absolute', top: '10px', right: '10px', width: '24px', height: '24px', cursor: 'pointer' }}
-        />
-        <div className="plant-container">
-          <div className="plant"></div>
+        <div className="button" id="mine" onClick={handleButtonClick}>
+          <i className="fas fa-coins"></i> Mine
         </div>
-        <Route path="/" exact>
-          <Home handleButtonClick={handleButtonClick} />
-        </Route>
-        <Route path="/exchange">
-          <PlaceholderPage text="Exchange Page - Under Development" />
-        </Route>
-        <Route path="/mine">
-          <PlaceholderPage text="Mine Page - Under Development" />
-        </Route>
-        <Route path="/friends">
-          <PlaceholderPage text="Friends Page - Under Development" />
-        </Route>
-        <Route path="/earn">
-          <PlaceholderPage text="Earn Page - Under Development" />
-        </Route>
-        <div className="messages-container">
-          {messages.map(message => (
-            <div
-              key={message.id}
-              className="message"
-              style={{ top: `${message.y}px`, left: `${message.x}px` }}
-            >
-              {message.text}
-            </div>
-          ))}
+        <div className="button" id="friends" onClick={handleButtonClick}>
+          <i className="fas fa-user-friends"></i> Friends
         </div>
-        <div className="smokes-container">
-          {smokes.map(smoke => (
-            <div
-              key={smoke.id}
-              className="smoke"
-              style={{ top: `${smoke.y}px`, left: `${smoke.x}px` }}
-            ></div>
-          ))}
+        <div className="button" id="earn" onClick={handleButtonClick}>
+          <i className="fas fa-hand-holding-usd"></i> Earn
         </div>
       </div>
-    </Router>
-  );
-}
-
-function Home({ handleButtonClick }) {
-  return (
-    <div className="buttons-container">
-      <Link to="/exchange" className="button" onClick={handleButtonClick}>
-        <i className="fas fa-exchange-alt"></i> Exchange
-      </Link>
-      <Link to="/mine" className="button" onClick={handleButtonClick}>
-        <i className="fas fa-coins"></i> Mine
-      </Link>
-      <Link to="/friends" className="button" onClick={handleButtonClick}>
-        <i className="fas fa-user-friends"></i> Friends
-      </Link>
-      <Link to="/earn" className="button" onClick={handleButtonClick}>
-        <i className="fas fa-hand-holding-usd"></i> Earn
-      </Link>
-    </div>
-  );
-}
-
-function PlaceholderPage({ text }) {
-  return (
-    <div className="placeholder-page">
-      <h1>{text}</h1>
+      <div className="messages-container">
+        {messages.map(message => (
+          <div
+            key={message.id}
+            className="message"
+            style={{ top: `${message.y}px`, left: `${message.x}px` }}
+          >
+            {message.text}
+          </div>
+        ))}
+      </div>
+      <div className="smokes-container">
+        {smokes.map(smoke => (
+          <div
+            key={smoke.id}
+            className="smoke"
+            style={{ top: `${smoke.y}px`, left: `${smoke.x}px` }}
+          ></div>
+        ))}
+      </div>
     </div>
   );
 }

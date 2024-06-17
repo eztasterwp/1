@@ -24,10 +24,10 @@ body {
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%);
+  background: linear-gradient(135deg, #ffd700 0%, #ffd700 50%, #ffd700 51%, #ffd700 100%);
   padding: 10px 20px;
   border-radius: 12px;
-  border: 2px solid white;
+  border: 2px solid #ffd700;
   z-index: 10;
   display: flex;
   align-items: center;
@@ -109,9 +109,9 @@ body {
 .button {
   flex: 1 1 20%;
   padding: 10px 15px;
-  background: linear-gradient(135deg, #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%);
+  background: linear-gradient(135deg, #ffd700 0%, #ffd700 50%, #ffd700 51%, #ffd700 100%);
   color: white;
-  border: 2px solid white;
+  border: 2px solid #ffd700;
   border-radius: 12px;
   font-size: 12px;
   text-align: center;

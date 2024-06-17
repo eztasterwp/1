@@ -21,21 +21,21 @@ body {
 
 .points-display {
   position: absolute;
-  top: 10px; /* располагаем немного ниже */
+  top: 10px; /* располагаем чуть ниже */
   left: 50%;
   transform: translateX(-50%);
   background: linear-gradient(135deg, #ffd700 0%, #ffb100 50%, #ff9800 51%, #ff8000 100%);
-  padding: 10px 20px;
-  border-radius: 12px;
-  border: 2px solid white; /* белая обводка */
+  padding: 5px 10px; /* уменьшаем padding */
+  border-radius: 8px; /* уменьшаем border-radius */
+  border: 1px solid white; /* белая обводка */
   z-index: 30; /* увеличиваем z-index */
   display: flex;
   align-items: center;
-  gap: 10px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  font-size: 18px;
+  gap: 5px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  font-size: 14px; /* уменьшаем font-size */
   color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -108,11 +108,13 @@ body {
 }
 
 .button {
+  flex: 1.3 1 26%; /* увеличиваем размер в 1.3 раза */
+  padding: 15px 20px; /* увеличиваем отступы */
   background: linear-gradient(135deg, #ffd700 0%, #ffb100 50%, #ff9800 51%, #ff8000 100%);
   color: white;
   border: 2px solid white; /* белая обводка */
   border-radius: 12px;
-  font-size: 12px;
+  font-size: 16px; /* увеличиваем размер шрифта */
   text-align: center;
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;

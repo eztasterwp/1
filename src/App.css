@@ -25,21 +25,21 @@ body {
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.7);
-  padding: 5px 15px;
-  border-radius: 20px;
+  padding: 5px 10px;
+  border-radius: 10px;
   z-index: 10;
-  font-size: 18px;
+  font-size: 14px;
   color: #FFD700; /* Золотой цвет текста */
-  border: 2px solid #FFD700; /* Золотая обводка */
+  border: 1px solid #FFD700; /* Золотая обводка */
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 .points-display img {
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
 }
 
 .plant-container {
@@ -51,8 +51,8 @@ body {
 }
 
 .plant {
-  width: 220px;
-  height: 220px;
+  width: 250px; /* Увеличенный размер */
+  height: 250px; /* Увеличенный размер */
   background: url('plant.png') no-repeat center/contain;
   animation: grow 2s infinite alternate, leafEffect 5s infinite;
   user-select: none;
@@ -172,4 +172,13 @@ body {
   background: url('smoke.png') no-repeat center/contain;
   animation: smoke 1s forwards;
   pointer-events: none;
+}
+
+.settings-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }

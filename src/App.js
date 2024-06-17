@@ -81,9 +81,15 @@ function App() {
   return (
     <div className="App" onTouchStart={handleTouchStart}>
       <div className="points-display">
-        <img src="https://image.flaticon.com/icons/png/512/616/616407.png" alt="joints icon" />
-        <h1>Your joints: {points}</h1>
+        <img src="joint.png" alt="joints icon" />
+        <h1 style={{ fontSize: '24px', borderWidth: '2px' }}>Your joints: {points}</h1>
       </div>
+      <img
+        src="settings.png"
+        alt="settings"
+        className="settings-icon"
+        style={{ position: 'absolute', top: '10px', right: '10px', width: '24px', height: '24px', cursor: 'pointer' }}
+      />
       <div className="plant-container">
         <div className="plant"></div>
       </div>
@@ -98,20 +104,27 @@ function App() {
           <i className="fas fa-user-friends"></i> Friends
         </div>
         <div className="button" id="earn" onClick={handleButtonClick}>
-          <i className="fas fa-dollar-sign"></i> Earn
-        </div>
-        <div className="button" id="airdrop" onClick={handleButtonClick}>
-          <i className="fas fa-parachute-box"></i> Airdrop
+          <i className="fas fa-hand-holding-usd"></i> Earn
         </div>
       </div>
       <div className="messages-container">
-        {messages.map(msg => (
-          <div key={msg.id} className="message" style={{ left: msg.x, top: msg.y }}>
-            {msg.text}
+        {messages.map(message => (
+          <div
+            key={message.id}
+            className="message"
+            style={{ top: `${message.y}px`, left: `${message.x}px` }}
+          >
+            {message.text}
           </div>
         ))}
+      </div>
+      <div className="smokes-container">
         {smokes.map(smoke => (
-          <div key={smoke.id} className="smoke" style={{ left: smoke.x, top: smoke.y }}></div>
+          <div
+            key={smoke.id}
+            className="smoke"
+            style={{ top: `${smoke.y}px`, left: `${smoke.x}px` }}
+          ></div>
         ))}
       </div>
     </div>

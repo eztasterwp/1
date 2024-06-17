@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
 
 function App() {
@@ -96,23 +96,21 @@ function App() {
         <div className="plant-container">
           <div className="plant"></div>
         </div>
-        <Switch>
-          <Route path="/" exact>
-            <Home handleButtonClick={handleButtonClick} />
-          </Route>
-          <Route path="/exchange">
-            <PlaceholderPage text="Exchange Page - Under Development" />
-          </Route>
-          <Route path="/mine">
-            <PlaceholderPage text="Mine Page - Under Development" />
-          </Route>
-          <Route path="/friends">
-            <PlaceholderPage text="Friends Page - Under Development" />
-          </Route>
-          <Route path="/earn">
-            <PlaceholderPage text="Earn Page - Under Development" />
-          </Route>
-        </Switch>
+        <Route path="/" exact>
+          <Home handleButtonClick={handleButtonClick} />
+        </Route>
+        <Route path="/exchange">
+          <PlaceholderPage text="Exchange Page - Under Development" />
+        </Route>
+        <Route path="/mine">
+          <PlaceholderPage text="Mine Page - Under Development" />
+        </Route>
+        <Route path="/friends">
+          <PlaceholderPage text="Friends Page - Under Development" />
+        </Route>
+        <Route path="/earn">
+          <PlaceholderPage text="Earn Page - Under Development" />
+        </Route>
         <div className="messages-container">
           {messages.map(message => (
             <div

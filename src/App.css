@@ -102,14 +102,15 @@ body {
   left: 50%;
   transform: translateX(-50%);
   display: flex;
+  flex-wrap: wrap; /* позволяет кнопкам переноситься на новую строку */
   justify-content: center;
   gap: 10px;
-  width: 80%;
-  max-width: 400px; /* максимальная ширина контейнера, чтобы кнопки не вылезали за экран */
+  max-width: calc(100% - 40px); /* максимальная ширина минус отступы по краям */
+  padding: 0 20px; /* отступы по краям */
 }
 
 .button {
-  flex: 1; /* равномерное распределение между кнопками */
+  flex: 1 1 150px; /* кнопки занимают одинаковое пространство, но могут уменьшаться в зависимости от контента */
   padding: 15px 20px;
   background: linear-gradient(135deg, #ffd700 0%, #ffb100 50%, #ff9800 51%, #ff8000 100%);
   color: white;

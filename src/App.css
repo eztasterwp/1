@@ -21,7 +21,7 @@ body {
 
 .points-display {
   position: absolute;
-  top: 0; /* изменяем на 0, чтобы поднять выше */
+  top: 10px; /* располагаем немного ниже */
   left: 50%;
   transform: translateX(-50%);
   background: linear-gradient(135deg, #ffd700 0%, #ffb100 50%, #ff9800 51%, #ff8000 100%);
@@ -37,6 +37,7 @@ body {
   color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
 
 .points-display img {
   width: 32px;
@@ -107,20 +108,18 @@ body {
 }
 
 .button {
-  flex: 2 1 40%; /* увеличиваем размер в два раза */
-  padding: 20px 30px; /* увеличиваем отступы */
   background: linear-gradient(135deg, #ffd700 0%, #ffb100 50%, #ff9800 51%, #ff8000 100%);
   color: white;
   border: 2px solid white; /* белая обводка */
   border-radius: 12px;
-  font-size: 24px; /* увеличиваем размер шрифта */
+  font-size: 12px;
   text-align: center;
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   user-select: none;

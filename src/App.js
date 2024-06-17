@@ -4,8 +4,15 @@ import './App.css';
 function App() {
   const [points, setPoints] = useState(0);
   const [messages, setMessages] = useState([]);
+  const [backgroundLoaded, setBackgroundLoaded] = useState(false);
 
   useEffect(() => {
+    const img = new Image();
+    img.src = 'background.jpg';
+    img.onload = () => {
+      setBackgroundLoaded(true);
+    };
+
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.ready();
@@ -13,7 +20,7 @@ function App() {
   }, []);
 
   const handleTouchStart = (event) => {
-    event.preventDefault(); // Предотвращение нежелательного поведения, например, масштабирования или прокрутки
+    event.preventDefault();
 
     const plantElement = document.querySelector('.plant');
     const rect = plantElement.getBoundingClientRect();
@@ -43,15 +50,19 @@ function App() {
           setMessages(prevMessages =>
             prevMessages.filter(msg => msg.id !== newMessage.id)
           );
-        }, 2000); // Удалить сообщения через 2 секунды
+        }, 2000);
       }
     });
   };
 
+  if (!backgroundLoaded) {
+    return null; // Лучше всего показать loader или что-то подобное, пока фон не загрузится
+  }
+
   return (
     <div className="App" onTouchStart={handleTouchStart}>
       <div className="points-display">
-        <h1>Ваши очки: {points}</h1>
+        <h1>Your joints: {points}</h1>
       </div>
       <div className="plant-container">
         <div className="plant"></div>

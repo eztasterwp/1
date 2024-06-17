@@ -27,8 +27,9 @@ body {
   background: rgba(0, 0, 0, 0.7);
   padding: 5px 10px;
   border-radius: 10px;
+  border-width: 2px; /* Уменьшаем размер обводки */
   z-index: 10;
-  font-size: 14px;
+  font-size: 8px;
   color: #FFD700; /* Золотой цвет текста */
   border: 1px solid #FFD700; /* Золотая обводка */
   display: flex;

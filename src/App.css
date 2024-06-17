@@ -20,17 +20,17 @@ body {
 
 .points-display {
   position: absolute;
-  top: 10px;
+  top: 5px; /* уменьшил отступ сверху */
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.5);
-  padding: 3px 8px; /* уменьшил padding для уменьшения размера блока */
-  border-radius: 8px; /* уменьшил радиус скругления углов */
+  padding: 2px 5px; /* уменьшил padding еще больше */
+  border-radius: 5px; /* дополнительно уменьшил радиус скругления углов */
   z-index: 10;
-  font-size: 14px; /* немного уменьшил размер текста */
+  font-size: 12px; /* дополнительно уменьшил размер текста */
   color: #00cc00; /* цвет текста */
-  border: 2px solid #00cc00; /* цвет обводки */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* немного уменьшил тень текста */
+  border: 1px solid #00cc00; /* уменьшил толщину обводки */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* уменьшил тень текста */
 }
 
 

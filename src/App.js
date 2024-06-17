@@ -57,11 +57,11 @@ function App() {
         <div className="plant"></div>
       </div>
       <div className="buttons-container">
-        <div className="button" id="exchange"></div>
-        <div className="button" id="mine"></div>
-        <div className="button" id="friends"></div>
-        <div className="button" id="earn"></div>
-        <div className="button" id="airdrop"></div>
+        <div className="button" id="exchange">Exchange</div>
+        <div className="button" id="mine">Mine</div>
+        <div className="button" id="friends">Friends</div>
+        <div className="button" id="earn">Earn</div>
+        <div className="button" id="airdrop">Airdrop</div>
       </div>
       <div className="messages-container">
         {messages.map(msg => (

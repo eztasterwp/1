@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
-  const [points, setPoints] = useState(0);
+  const [points, setPoints] = useState(6084);
   const [messages, setMessages] = useState([]);
   const [smokes, setSmokes] = useState([]);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
+  const [level, setLevel] = useState(2);
+  const [coinsPerTap, setCoinsPerTap] = useState(2);
+  const [coinsToLevelUp, setCoinsToLevelUp] = useState(25000);
 
   useEffect(() => {
     const img = new Image();
@@ -36,11 +39,11 @@ function App() {
         touchY >= rect.top &&
         touchY <= rect.bottom
       ) {
-        setPoints(prevPoints => prevPoints + 1);
+        setPoints(prevPoints => prevPoints + coinsPerTap);
 
         const newMessage = {
           id: Date.now() + touch.identifier,
-          text: '+1 💨',
+          text: `+${coinsPerTap} 💨`,
           x: touchX,
           y: touchY
         };
@@ -71,7 +74,7 @@ function App() {
 
     setTimeout(() => {
       setSmokes(prevSmokes => prevSmokes.filter(smoke => smoke.id !== newSmoke.id));
-    }, 1000); // Удалить дым через 1 секунду
+    }, 1000);
   };
 
   if (!backgroundLoaded) {
@@ -92,6 +95,10 @@ function App() {
       />
       <div className="plant-container">
         <div className="plant"></div>
+      </div>
+      <div className="level-display">
+        <h2>Level {level}/10</h2>
+        <p>Coins to level up: {coinsToLevelUp}</p>
       </div>
       <div className="buttons-container">
         <div className="button" id="exchange" onClick={handleButtonClick}>

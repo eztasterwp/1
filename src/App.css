@@ -25,33 +25,26 @@ body {
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.7);
-  padding: 6px 12px; /* Увеличил padding в два раза */
-  border-radius: 6px; /* Увеличил border-radius в два раза */
-  border: 2px solid #FFD700; /* Увеличил толщину border в два раза */
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 2px solid #FFD700;
   z-index: 10;
   display: flex;
   align-items: center;
-  gap: 6px; /* Увеличил gap в два раза */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Слегка увеличил тень */
-  font-size: 12px; /* Увеличил font-size в два раза */
-  color: #FFD700; /* Золотой цвет текста */
+  gap: 6px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  font-size: 12px;
+  color: #FFD700;
 }
 
 .points-display img {
-  width: 30px; /* Увеличил размер иконки в два раза */
+  width: 30px;
   height: 30px;
 }
 
 .points-display h1 {
-  margin: 0; /* Убрал отступы у заголовка */
-  font-size: 12px; /* Увеличил font-size заголовка в два раза */
-}
-
-
-
-.points-display img {
-  width: 18px;
-  height: 18px;
+  margin: 0;
+  font-size: 12px;
 }
 
 .plant-container {
@@ -63,8 +56,8 @@ body {
 }
 
 .plant {
-  width: 250px; /* Увеличенный размер */
-  height: 250px; /* Увеличенный размер */
+  width: 250px;
+  height: 250px;
   background: url('plant.png') no-repeat center/contain;
   animation: grow 2s infinite alternate, leafEffect 5s infinite;
   user-select: none;
@@ -86,6 +79,18 @@ body {
   50% {
     filter: hue-rotate(45deg);
   }
+}
+
+.level-display {
+  position: absolute;
+  bottom: 80px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 6px;
+  border: 2px solid #FFD700;
+  z-index: 10;
+  color: #FFD700;
+  text-align: center;
 }
 
 .buttons-container {
@@ -173,14 +178,14 @@ body {
   }
   100% {
     opacity: 0;
-    transform: translateY(-30vh); /* Дым выходит на треть экрана */
+    transform: translateY(-30vh);
   }
 }
 
 .smoke {
   position: absolute;
-  width: 30vw; /* Размер дыма на треть ширины экрана */
-  height: 30vh; /* Пропорциональная высота */
+  width: 30vw;
+  height: 30vh;
   background: url('smoke.png') no-repeat center/contain;
   animation: smoke 1s forwards;
   pointer-events: none;

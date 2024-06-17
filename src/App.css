@@ -104,7 +104,8 @@ body {
   display: flex;
   justify-content: center;
   gap: 10px;
-  max-width: 80%; /* Максимальная ширина контейнера */
+  max-width: 100%; /* Максимальная ширина контейнера */
+  overflow-x: hidden; /* Скрыть содержимое, выходящее за пределы по горизонтали */
 }
 
 .button {
@@ -124,6 +125,8 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   user-select: none;
+  max-width: calc(25% - 20px); /* Максимальная ширина кнопки */
+  flex: 1 1 auto; /* Равномерное распределение между кнопками */
 }
 
 .button:hover {

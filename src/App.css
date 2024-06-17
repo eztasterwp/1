@@ -1,6 +1,8 @@
 body {
   margin: 0;
-  overflow: hidden; /* Предотвращение прокрутки страницы */
+  overflow: hidden;
+  background: url('background.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
 
 .App {
@@ -15,22 +17,22 @@ body {
   background-color: #282c34;
   color: white;
   font-family: 'Arial', sans-serif;
-  user-select: none; /* Предотвращение выделения элементов */
+  user-select: none;
 }
 
 .points-display {
   position: absolute;
-  top: 5px; /* уменьшил отступ сверху */
+  top: 5px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.5);
-  padding: 2px 5px; /* уменьшил padding еще больше */
-  border-radius: 5px; /* дополнительно уменьшил радиус скругления углов */
+  padding: 2px 5px;
+  border-radius: 5px;
   z-index: 10;
-  font-size: 12px; /* дополнительно уменьшил размер текста */
-  color: #00cc00; /* цвет текста */
-  border: 1px solid #00cc00; /* уменьшил толщину обводки */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* уменьшил тень текста */
+  font-size: 12px;
+  color: #00cc00;
+  border: 1px solid #00cc00;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 

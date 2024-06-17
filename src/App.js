@@ -4,6 +4,7 @@ import './App.css';
 function App() {
   const [points, setPoints] = useState(0);
   const [messages, setMessages] = useState([]);
+  const [smokes, setSmokes] = useState([]);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
 
   useEffect(() => {
@@ -55,6 +56,24 @@ function App() {
     });
   };
 
+  const handleButtonClick = (event) => {
+    const rect = event.target.getBoundingClientRect();
+    const smokeX = rect.left + rect.width / 2 - 25; // Размер дыма 50x50
+    const smokeY = rect.top + rect.height / 2 - 25;
+
+    const newSmoke = {
+      id: Date.now(),
+      x: smokeX,
+      y: smokeY
+    };
+
+    setSmokes(prevSmokes => [...prevSmokes, newSmoke]);
+
+    setTimeout(() => {
+      setSmokes(prevSmokes => prevSmokes.filter(smoke => smoke.id !== newSmoke.id));
+    }, 1000); // Удалить дым через 1 секунду
+  };
+
   if (!backgroundLoaded) {
     return null;
   }
@@ -68,19 +87,19 @@ function App() {
         <div className="plant"></div>
       </div>
       <div className="buttons-container">
-        <div className="button" id="exchange">
+        <div className="button" id="exchange" onClick={handleButtonClick}>
           <i className="fas fa-exchange-alt"></i> Exchange
         </div>
-        <div className="button" id="mine">
+        <div className="button" id="mine" onClick={handleButtonClick}>
           <i className="fas fa-coins"></i> Mine
         </div>
-        <div className="button" id="friends">
+        <div className="button" id="friends" onClick={handleButtonClick}>
           <i className="fas fa-user-friends"></i> Friends
         </div>
-        <div className="button" id="earn">
+        <div className="button" id="earn" onClick={handleButtonClick}>
           <i className="fas fa-dollar-sign"></i> Earn
         </div>
-        <div className="button" id="airdrop">
+        <div className="button" id="airdrop" onClick={handleButtonClick}>
           <i className="fas fa-parachute-box"></i> Airdrop
         </div>
       </div>
@@ -89,6 +108,9 @@ function App() {
           <div key={msg.id} className="message" style={{ left: msg.x, top: msg.y }}>
             {msg.text}
           </div>
+        ))}
+        {smokes.map(smoke => (
+          <div key={smoke.id} className="smoke" style={{ left: smoke.x, top: smoke.y }}></div>
         ))}
       </div>
     </div>

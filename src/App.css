@@ -102,21 +102,18 @@ body {
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  flex-wrap: wrap; /* позволяет кнопкам переноситься на новую строку */
   justify-content: center;
   gap: 10px;
-  max-width: calc(100% - 40px); /* максимальная ширина минус отступы по краям */
-  padding: 0 20px; /* отступы по краям */
+  max-width: 80%; /* Максимальная ширина контейнера */
 }
 
 .button {
-  flex: 1 1 150px; /* кнопки занимают одинаковое пространство, но могут уменьшаться в зависимости от контента */
-  padding: 15px 20px;
+  padding: 10px 15px; /* Уменьшаем отступы */
   background: linear-gradient(135deg, #ffd700 0%, #ffb100 50%, #ff9800 51%, #ff8000 100%);
   color: white;
-  border: 2px solid white;
+  border: 2px solid white; /* Белая обводка */
   border-radius: 12px;
-  font-size: 16px;
+  font-size: 14px; /* Уменьшаем размер шрифта */
   text-align: center;
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -138,6 +135,7 @@ body {
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
+
 
 
 .button i {

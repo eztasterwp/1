@@ -56,6 +56,13 @@ function App() {
       <div className="plant-container">
         <div className="plant"></div>
       </div>
+      <div className="buttons-container">
+        <div className="button" id="exchange"></div>
+        <div className="button" id="mine"></div>
+        <div className="button" id="friends"></div>
+        <div className="button" id="earn"></div>
+        <div className="button" id="airdrop"></div>
+      </div>
       <div className="messages-container">
         {messages.map(msg => (
           <div key={msg.id} className="message" style={{ left: msg.x, top: msg.y }}>

@@ -21,30 +21,48 @@ body {
 
 .points-display {
   position: absolute;
-  top: 10px;
+  top: 20px; /* Увеличил отступ сверху */
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.7);
-  padding: 6px 12px;
-  border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 8px 16px; /* Увеличил padding для более комфортного восприятия */
+  border-radius: 20px; /* Увеличил border-radius для более мягкого внешнего вида */
   border: 2px solid #FFD700;
   z-index: 10;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px; /* Увеличил gap для большего пространства между элементами */
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-  font-size: 12px;
+  font-size: 16px; /* Увеличил font-size для лучшей читаемости */
   color: #FFD700;
 }
 
 .points-display img {
-  width: 30px;
-  height: 30px;
+  width: 32px; /* Увеличил размер иконки */
+  height: 32px;
 }
 
 .points-display h1 {
   margin: 0;
-  font-size: 12px;
+  font-size: 18px; /* Увеличил размер текста заголовка */
+}
+
+.points-display p {
+  margin: 0; /* Убрал отступы у абзацев, если они будут добавлены */
+}
+
+.points-display .level {
+  margin-left: auto; /* Поместил элемент "Level 2/10" в правый угол */
+  font-size: 14px; /* Уменьшил размер текста уровня */
+}
+
+.settings-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px; /* Увеличил отступ от правого края */
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }
 
 .plant-container {

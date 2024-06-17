@@ -56,7 +56,7 @@ function App() {
   };
 
   if (!backgroundLoaded) {
-    return null; // Лучше всего показать loader или что-то подобное, пока фон не загрузится
+    return null;
   }
 
   return (
@@ -68,11 +68,21 @@ function App() {
         <div className="plant"></div>
       </div>
       <div className="buttons-container">
-        <div className="button" id="exchange">Exchange</div>
-        <div className="button" id="mine">Mine</div>
-        <div className="button" id="friends">Friends</div>
-        <div className="button" id="earn">Earn</div>
-        <div className="button" id="airdrop">Airdrop</div>
+        <div className="button" id="exchange">
+          <i className="fas fa-exchange-alt"></i> Exchange
+        </div>
+        <div className="button" id="mine">
+          <i className="fas fa-coins"></i> Mine
+        </div>
+        <div className="button" id="friends">
+          <i className="fas fa-user-friends"></i> Friends
+        </div>
+        <div className="button" id="earn">
+          <i className="fas fa-dollar-sign"></i> Earn
+        </div>
+        <div className="button" id="airdrop">
+          <i className="fas fa-parachute-box"></i> Airdrop
+        </div>
       </div>
       <div className="messages-container">
         {messages.map(msg => (

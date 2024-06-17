@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
-  const [points, setPoints] = useState(6084);
+  const [points, setPoints] = useState(0);
   const [messages, setMessages] = useState([]);
   const [smokes, setSmokes] = useState([]);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
-  const [level, setLevel] = useState(2);
+  const [level, setLevel] = useState(1);
   const [coinsPerTap, setCoinsPerTap] = useState(2);
-  const [coinsToLevelUp, setCoinsToLevelUp] = useState(25000);
+  const [coinsToLevelUp, setCoinsToLevelUp] = useState(100);
 
   useEffect(() => {
     const img = new Image();

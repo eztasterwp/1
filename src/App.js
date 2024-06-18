@@ -27,7 +27,7 @@ function App() {
     }
 
     const preventSwipe = (e) => {
-      if (e.touches.length > 1) {
+      if (e.touches.length > 1 || e.changedTouches[0].clientY > window.innerHeight - 100) {
         e.preventDefault();
       }
     };

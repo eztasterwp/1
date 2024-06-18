@@ -26,7 +26,7 @@ body {
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   z-index: 30;
   background: rgba(0, 0, 0, 0.7);
   padding: 10px;
@@ -47,8 +47,8 @@ body {
 }
 
 .coin {
-  width: 24px; /* Уменьшаем размер иконки */
-  height: 24px; /* Уменьшаем размер иконки */
+  width: 40px; /* Размер иконки */
+  height: 40px; /* Размер иконки */
 }
 
 .coin-display h1 {
@@ -148,7 +148,7 @@ body {
   font-size: 12px;
   cursor: pointer;
   padding: 10px 0;
-  transition: color 0.3s, background-color 0.3s;
+  transition: color 0.3s, background-color 0.3s, transform 0.3s;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -197,9 +197,4 @@ body {
     opacity: 0;
     transform: translateY(-100px); /* Увеличиваем высоту полета */
   }
-}
-
-/* Удаляем анимацию smoke */
-.smoke {
-  display: none;
 }

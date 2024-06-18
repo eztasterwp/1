@@ -6,7 +6,6 @@ import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faCo
 function App() {
   const [points, setPoints] = useState(0);
   const [messages, setMessages] = useState([]);
-  const [smokes, setSmokes] = useState([]);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
   const [level, setLevel] = useState(1);
   const [coinsPerTap, setCoinsPerTap] = useState(2);
@@ -80,6 +79,13 @@ function App() {
     setActiveButton(buttonId);
   };
 
+  const formatPoints = (points) => {
+    if (points >= 1000000) {
+      return (points / 1000000).toFixed(1) + 'M';
+    }
+    return points.toString();
+  };
+
   if (!backgroundLoaded) {
     return null;
   }
@@ -89,11 +95,11 @@ function App() {
       <div className="header">
         <img src="avatar.png" alt="avatar" className="avatar" />
         <div className="coin-display">
-          <img src="coin.png" alt="coin" className="coin" />
-          <h1>{points}</h1>
+          <img src="avatar.png" alt="coin" className="coin" />
+          <h1>{formatPoints(points)}</h1>
         </div>
         <div className="level-display">
-          <div className="level-text">Grower {level}/10</div>
+          <div className="level-text">Newbie {level}/10</div>
           <div className="level-bar-container">
             <div className="level-bar" style={{ width: `${(level / 10) * 100}%` }}></div>
           </div>
@@ -138,15 +144,6 @@ function App() {
           >
             {message.text}
           </div>
-        ))}
-      </div>
-      <div className="smokes-container">
-        {smokes.map(smoke => (
-          <div
-            key={smoke.id}
-            className="smoke"
-            style={{ top: `${smoke.y}px`, left: `${smoke.x}px` }}
-          ></div>
         ))}
       </div>
     </div>

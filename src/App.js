@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     const img = new Image();
-    img.src = 'background.jpg';
+    img.src = 'background.png';
     img.onload = () => {
       setBackgroundLoaded(true);
     };
@@ -91,7 +91,7 @@ function App() {
         src="settings.png"
         alt="settings"
         className="settings-icon"
-        style={{ position: 'absolute', top: '10px', right: '10px', width: '24px', height: '24px', cursor: 'pointer' }}
+        style={{ position: 'absolute', top: '10px', right: '10px', width: '30px', height: '30px', cursor: 'pointer' }}
       />
       <div className="plant-container">
         <div className="plant"></div>

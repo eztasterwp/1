@@ -34,44 +34,40 @@ body {
   align-items: center;
 }
 
-.header-row {
+.header-top {
   display: flex;
   justify-content: space-between;
   width: 100%;
   align-items: center;
+  margin-bottom: 10px;
 }
 
-.header-col {
+.header-bottom {
   display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
-.header .avatar {
+.header .avatar, .header .coin {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   border: 2px solid #fff;
 }
 
-.header .username {
-  margin-left: 10px;
+.header .username, .header .bybit {
   font-size: 16px;
 }
 
-.coin-container {
+.header .coin-display {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
 }
 
-.coin {
-  width: 60px; /* Увеличиваем размер иконки */
-  height: 60px; /* Увеличиваем размер иконки */
-}
-
-.coin-display h1 {
-  margin: 0;
-  font-size: 24px;
+.header .coin-display h1 {
+  margin: 5px 0 0 0;
+  font-size: 32px;
   color: #FFD700;
 }
 
@@ -79,7 +75,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
+  width: 100%;
 }
 
 .header .level-bar-container {
@@ -94,6 +90,12 @@ body {
   height: 100%;
   background-color: #FFD700;
   border-radius: 5px;
+}
+
+.header .level-text {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #fff;
 }
 
 .settings-icon {

@@ -86,9 +86,18 @@ function App() {
 
   return (
     <div className="App" onTouchStart={handleTouchStart}>
-      <div className="points-display">
-        <img src="joint.png" alt="joints icon" />
-        <h1>Your joints: {points}</h1>
+      <div className="header">
+        <img src="avatar.png" alt="avatar" className="avatar" />
+        <div className="coin-display">
+          <img src="coin.png" alt="coin" className="coin" />
+          <h1>{points}</h1>
+        </div>
+        <div className="level-display">
+          <div className="level-text">Grower {level}/10</div>
+          <div className="level-bar-container">
+            <div className="level-bar" style={{ width: `${(level / 10) * 100}%` }}></div>
+          </div>
+        </div>
       </div>
       <img
         src="settings.png"

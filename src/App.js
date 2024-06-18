@@ -29,19 +29,25 @@ function App() {
     }
 
     const preventSwipe = (e) => {
-      if (e.touches.length > 1 || e.changedTouches[0].clientY > window.innerHeight - 100) {
+      if (e.touches.length === 1) {
+        e.preventDefault();
+      }
+    };
+
+    const preventCloseSwipe = (e) => {
+      if (e.changedTouches[0].clientY > window.innerHeight - 50) {
         e.preventDefault();
       }
     };
 
     document.addEventListener('touchstart', preventSwipe, { passive: false });
     document.addEventListener('touchmove', preventSwipe, { passive: false });
-    document.addEventListener('touchend', preventSwipe, { passive: false });
+    document.addEventListener('touchend', preventCloseSwipe, { passive: false });
 
     return () => {
       document.removeEventListener('touchstart', preventSwipe);
       document.removeEventListener('touchmove', preventSwipe);
-      document.removeEventListener('touchend', preventSwipe);
+      document.removeEventListener('touchend', preventCloseSwipe);
     };
   }, []);
 
@@ -114,18 +120,12 @@ function App() {
     event.preventDefault();
   };
 
-  const preventSingleSwipe = (event) => {
-    if (event.touches.length === 1) {
-      event.preventDefault();
-    }
-  };
-
   if (!backgroundLoaded) {
     return null;
   }
 
   return (
-    <div className="App" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onTouchMove={preventSingleSwipe}>
+    <div className="App" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onTouchMove={(e) => e.preventDefault()}>
       <div className="header">
         <div className="header-top">
           <div className="header-col" style={{ display: 'flex', alignItems: 'center' }}>

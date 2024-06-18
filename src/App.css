@@ -13,7 +13,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url('background1.jpg') no-repeat center center fixed;
+  background: url('background.png') no-repeat center center fixed;
   background-size: cover;
   color: white;
   user-select: none;
@@ -130,7 +130,7 @@ body {
   width: 250px;
   height: 250px;
   background: url('planter.png') no-repeat center/contain;
-  box-shadow: 0 0 20px 10px rgba(144, 238, 144, 0.6); /* Светло-зеленое свечение */
+  filter: drop-shadow(0 0 20px rgba(0, 0, 255, 0.6)); /* Синее свечение по контуру */
   animation: grow 2s infinite alternate, leafEffect 5s infinite;
   user-select: none;
 }

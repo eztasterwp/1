@@ -24,7 +24,7 @@ body {
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 90%;
+  width: 95%;
   z-index: 30;
   background: rgba(0, 0, 0, 0.8);
   padding: 10px;

@@ -142,11 +142,7 @@ function App() {
         </div>
       </div>
       <div className="plant-container">
-        <div className="plant">
-          <div className="smoke"></div>
-          <div className="smoke" style={{ animationDelay: '0.5s' }}></div>
-          <div className="smoke" style={{ animationDelay: '1s' }}></div>
-        </div>
+        <div className="plant"></div>
       </div>
       <div className="buttons-container">
         <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>

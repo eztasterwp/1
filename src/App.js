@@ -11,6 +11,7 @@ function App() {
   const [coinsPerTap, setCoinsPerTap] = useState(2);
   const [coinsToLevelUp, setCoinsToLevelUp] = useState(100);
   const [activeButton, setActiveButton] = useState('exchange');
+  const [username, setUsername] = useState('User');
 
   useEffect(() => {
     const img = new Image();
@@ -22,6 +23,7 @@ function App() {
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.ready();
+      setUsername(tg.initDataUnsafe.user ? tg.initDataUnsafe.user.username : 'User');
     }
 
     const preventSwipe = (e) => {
@@ -96,7 +98,7 @@ function App() {
         <div className="header-top">
           <div className="header-col">
             <img src="avatar.png" alt="avatar" className="avatar" />
-            <span className="username">User</span>
+            <span className="username">{username}</span>
           </div>
           <div className="header-col">
             <span className="bybit">Bybit</span>

@@ -57,7 +57,7 @@ function App() {
           setMessages(prevMessages =>
             prevMessages.filter(msg => msg.id !== newMessage.id)
           );
-        }, 2000);
+        }, 1000); // Уменьшено до 1 секунды для быстрой анимации
       }
     });
   };

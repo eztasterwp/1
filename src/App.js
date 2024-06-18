@@ -57,7 +57,15 @@ function App() {
         touchY >= rect.top &&
         touchY <= rect.bottom
       ) {
-        setPoints(prevPoints => prevPoints + coinsPerTap);
+        setPoints(prevPoints => {
+          const newPoints = prevPoints + coinsPerTap;
+          if (newPoints >= coinsToLevelUp) {
+            setLevel(prevLevel => prevLevel + 1);
+            setPoints(newPoints - coinsToLevelUp);
+          } else {
+            return newPoints;
+          }
+        });
 
         const newMessage = {
           id: Date.now() + touch.identifier,
@@ -88,6 +96,10 @@ function App() {
     return points.toString();
   };
 
+  const calculateLevelProgress = () => {
+    return (points / coinsToLevelUp) * 100;
+  };
+
   if (!backgroundLoaded) {
     return null;
   }
@@ -111,7 +123,7 @@ function App() {
           </div>
           <div className="level-display">
             <div className="level-bar-container">
-              <div className="level-bar" style={{ width: `${(level / 10) * 100}%` }}></div>
+              <div className="level-bar" style={{ width: `${calculateLevelProgress()}%` }}></div>
             </div>
             <div className="level-text">Grower {level}/10</div>
           </div>

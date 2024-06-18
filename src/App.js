@@ -93,13 +93,13 @@ function App() {
   return (
     <div className="App" onTouchStart={handleTouchStart}>
       <div className="header">
-        <img src="avatar.png" alt="avatar" className="avatar" />
+        <img src="avatar.jpg" alt="avatar" className="avatar" />
         <div className="coin-display">
-          <img src="avatar.png" alt="coin" className="coin" />
+          <img src="avatar.jpg" alt="coin" className="coin" />
           <h1>{formatPoints(points)}</h1>
         </div>
         <div className="level-display">
-          <div className="level-text">Newbie {level}/10</div>
+          <div className="level-text">Grower {level}/10</div>
           <div className="level-bar-container">
             <div className="level-bar" style={{ width: `${(level / 10) * 100}%` }}></div>
           </div>

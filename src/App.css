@@ -26,7 +26,7 @@ body {
   transform: translateX(-50%);
   width: 95%;
   z-index: 30;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(255, 255, 255, 0.1); /* Сделали светлее */
   padding: 10px; /* Вернули padding */
   border-radius: 10px;
   display: flex;
@@ -52,17 +52,15 @@ body {
 }
 
 .header .avatar, .header .coin {
-  width: 40px;
-  height: 40px;
+  width: 80px; /* Увеличили размер */
+  height: 80px; /* Увеличили размер */
   border-radius: 50%;
   border: 2px solid #fff;
-  margin-right: 10px; /* Добавили отступ */
 }
 
 .header .username {
   font-size: 16px;
-  position: relative;
-  top: -5px; /* Смещаем немного вверх */
+  margin-left: 10px; /* Добавили отступ */
 }
 
 .header .bybit {
@@ -94,11 +92,12 @@ body {
   background-color: #444;
   border-radius: 5px;
   margin-top: 5px;
+  background: linear-gradient(90deg, #FFD700, #FFA500); /* Градиентная линия */
 }
 
 .header .level-bar {
   height: 100%;
-  background-color: #FFD700;
+  background: linear-gradient(90deg, #FFD700, #FFA500); /* Градиентная линия */
   border-radius: 5px;
 }
 
@@ -115,6 +114,7 @@ body {
   width: 32px;
   height: 32px;
   cursor: pointer;
+  z-index: 40; /* Переместили выше */
 }
 
 .plant-container {

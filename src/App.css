@@ -59,7 +59,7 @@ body {
 
 .plant-container {
   position: absolute;
-  bottom: 35%;
+  bottom: 20%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -100,10 +100,10 @@ body {
   display: flex;
   justify-content: space-around;
   width: 90%;
-  background-color: #333;
+  background-color: #444;
   padding: 10px 0;
   border-radius: 20px;
-  border: 1px solid #444;
+  border: 1px solid #555;
   box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -114,20 +114,27 @@ body {
   font-size: 12px;
   cursor: pointer;
   padding: 10px 0;
-  transition: color 0.3s;
+  transition: color 0.3s, background-color 0.3s;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 10px;
+  margin: 0 5px;
 }
 
 .button.active {
   color: white;
+  background-color: #FFD700; /* Золотой цвет для активной кнопки */
 }
 
 .button i, .button svg {
   display: block;
   margin: 0 auto 5px;
   font-size: 24px;
+}
+
+.button:hover {
+  background-color: #555;
 }
 
 .messages-container {

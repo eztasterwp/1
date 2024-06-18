@@ -89,7 +89,7 @@ function App() {
       <div className="header">
         <img src="avatar.png" alt="avatar" className="avatar" />
         <div className="coin-display">
-          <img src="avatar.png" alt="coin" className="coin" />
+          <img src="coin.png" alt="coin" className="coin" />
           <h1>{points}</h1>
         </div>
         <div className="level-display">
@@ -99,9 +99,11 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="settings-icon">
-        <FontAwesomeIcon icon={faCogs} />
-      </div>
+      <img
+        src="settings.png"
+        alt="settings"
+        className="settings-icon"
+      />
       <div className="plant-container">
         <div className="plant"></div>
       </div>

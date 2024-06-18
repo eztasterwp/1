@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExchangeAlt, faPickaxe, faUserFriends, faHandHoldingUsd, faCoins } from '@fortawesome/free-solid-svg-icons';
+import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [points, setPoints] = useState(0);
@@ -107,7 +107,7 @@ function App() {
           Exchange
         </div>
         <div className={`button ${activeButton === 'mine' ? 'active' : ''}`} id="mine" onClick={(e) => handleButtonClick(e, 'mine')}>
-          <FontAwesomeIcon icon={faPickaxe} />
+          <FontAwesomeIcon icon={faHammer} />
           Mine
         </div>
         <div className={`button ${activeButton === 'friends' ? 'active' : ''}`} id="friends" onClick={(e) => handleButtonClick(e, 'friends')}>

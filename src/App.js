@@ -99,7 +99,7 @@ function App() {
             <span className="username">User</span>
           </div>
           <div className="header-col coin-display">
-            <img src="coin.png" alt="coin" className="coin" />
+            <img src="avatar.png" alt="coin" className="coin" />
             <h1>{formatPoints(points)}</h1>
           </div>
         </div>

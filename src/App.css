@@ -13,7 +13,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url('background.png') no-repeat center center fixed;
+  background: url('background.jpg') no-repeat center center fixed;
   background-size: cover;
   color: white;
   user-select: none;

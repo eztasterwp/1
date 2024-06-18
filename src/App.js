@@ -24,6 +24,20 @@ function App() {
       const tg = window.Telegram.WebApp;
       tg.ready();
     }
+
+    const preventSwipe = (e) => {
+      if (e.touches.length > 1) {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener('touchstart', preventSwipe, { passive: false });
+    document.addEventListener('touchmove', preventSwipe, { passive: false });
+
+    return () => {
+      document.removeEventListener('touchstart', preventSwipe);
+      document.removeEventListener('touchmove', preventSwipe);
+    };
   }, []);
 
   const handleTouchStart = (event) => {

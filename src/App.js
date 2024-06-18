@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faCogs } from '@fortawesome/free-solid-svg-icons';
+import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faCogs, faUser, faDollarSign } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [points, setPoints] = useState(0);
@@ -87,9 +87,9 @@ function App() {
   return (
     <div className="App" onTouchStart={handleTouchStart}>
       <div className="header">
-        <img src="avatar.png" alt="avatar" className="avatar" />
+        <FontAwesomeIcon icon={faUser} className="avatar" />
         <div className="coin-display">
-          <img src="coin.png" alt="coin" className="coin" />
+          <FontAwesomeIcon icon={faDollarSign} className="coin" />
           <h1>{points}</h1>
         </div>
         <div className="level-display">
@@ -99,9 +99,11 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="settings-icon">
-        <FontAwesomeIcon icon={faCogs} />
-      </div>
+      <img
+        src="settings.png"
+        alt="settings"
+        className="settings-icon"
+      />
       <div className="plant-container">
         <div className="plant"></div>
       </div>

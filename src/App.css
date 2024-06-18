@@ -71,8 +71,8 @@ body {
 }
 
 .plant {
-  width: 250px;
-  height: 250px;
+  width: 150px;
+  height: 150px;
   background: url('plant.png') no-repeat center/contain;
   animation: grow 2s infinite alternate, leafEffect 5s infinite;
   user-select: none;

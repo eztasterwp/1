@@ -119,7 +119,7 @@ body {
 
 .plant-container {
   position: absolute;
-  bottom: 15%; /* Опустили ниже */
+  bottom: 20%; /* Опустили ниже */
   width: 100%;
   display: flex;
   justify-content: center;
@@ -136,13 +136,13 @@ body {
 
 @media (max-width: 768px) {
   .plant-container {
-    bottom: 10%;
+    bottom: 18%;
   }
 }
 
 @media (max-width: 480px) {
   .plant-container {
-    bottom: 5%;
+    bottom: 15%;
   }
 }
 

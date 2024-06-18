@@ -80,7 +80,6 @@ function App() {
         src="settings.png"
         alt="settings"
         className="settings-icon"
-        style={{ position: 'absolute', top: '10px', right: '10px', width: '30px', height: '30px', cursor: 'pointer' }}
       />
       <div className="plant-container">
         <div className="plant"></div>

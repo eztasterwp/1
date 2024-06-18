@@ -12,6 +12,7 @@ function App() {
   const [coinsToLevelUp, setCoinsToLevelUp] = useState(50); // Уменьшил для тестирования
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
+  const [levelUpNotification, setLevelUpNotification] = useState('');
 
   useEffect(() => {
     const img = new Image();
@@ -23,6 +24,7 @@ function App() {
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.ready();
+      tg.expand(); // Разворачивание приложения на полный экран
       setUsername(tg.initDataUnsafe.user ? tg.initDataUnsafe.user.username : 'User');
     }
 
@@ -32,20 +34,14 @@ function App() {
       }
     };
 
-    const preventCloseSwipe = (e) => {
-      if (e.changedTouches[0].clientY > window.innerHeight - 50) {
-        e.preventDefault();
-      }
-    };
-
     document.addEventListener('touchstart', preventSwipe, { passive: false });
     document.addEventListener('touchmove', preventSwipe, { passive: false });
-    document.addEventListener('touchend', preventCloseSwipe, { passive: false });
+    document.addEventListener('touchend', preventSwipe, { passive: false });
 
     return () => {
       document.removeEventListener('touchstart', preventSwipe);
       document.removeEventListener('touchmove', preventSwipe);
-      document.removeEventListener('touchend', preventCloseSwipe);
+      document.removeEventListener('touchend', preventSwipe);
     };
   }, []);
 
@@ -68,7 +64,12 @@ function App() {
         setPoints(prevPoints => {
           const newPoints = prevPoints + coinsPerTap;
           if (newPoints >= coinsToLevelUp) {
-            setLevel(prevLevel => prevLevel + 1);
+            setLevel(prevLevel => {
+              const newLevel = prevLevel + 1;
+              setLevelUpNotification(`Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`);
+              setTimeout(() => setLevelUpNotification(''), 3000); // Уведомление исчезает через 3 секунды
+              return newLevel;
+            });
             return newPoints - coinsToLevelUp; // Исправлено
           } else {
             return newPoints;
@@ -113,12 +114,18 @@ function App() {
     event.preventDefault();
   };
 
+  const preventSingleSwipe = (event) => {
+    if (event.touches.length === 1) {
+      event.preventDefault();
+    }
+  };
+
   if (!backgroundLoaded) {
     return null;
   }
 
   return (
-    <div className="App" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+    <div className="App" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onTouchMove={preventSingleSwipe}>
       <div className="header">
         <div className="header-top">
           <div className="header-col" style={{ display: 'flex', alignItems: 'center' }}>
@@ -178,6 +185,11 @@ function App() {
           </div>
         ))}
       </div>
+      {levelUpNotification && (
+        <div className="level-up-notification">
+          {levelUpNotification}
+        </div>
+      )}
     </div>
   );
 }

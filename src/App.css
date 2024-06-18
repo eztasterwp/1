@@ -119,7 +119,7 @@ body {
 
 .plant-container {
   position: absolute;
-  bottom: 22%; /* Подняли на 7 пикселей */
+  bottom: 25%; /* Опустили на 4 пикселя */
   width: 100%;
   display: flex;
   justify-content: center;
@@ -130,19 +130,20 @@ body {
   width: 250px;
   height: 250px;
   background: url('planter.png') no-repeat center/contain;
+  box-shadow: 0 0 20px 10px rgba(144, 238, 144, 0.6); /* Светло-зеленое свечение */
   animation: grow 2s infinite alternate, leafEffect 5s infinite;
   user-select: none;
 }
 
 @media (max-width: 768px) {
   .plant-container {
-    bottom: 20%;
+    bottom: 23%;
   }
 }
 
 @media (max-width: 480px) {
   .plant-container {
-    bottom: 17%;
+    bottom: 20%;
   }
 }
 
@@ -234,5 +235,35 @@ body {
   100% {
     opacity: 0;
     transform: translateY(-100px);
+  }
+}
+
+.level-up-notification {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 20px;
+  text-align: center;
+  z-index: 50;
+  animation: fadeInOut 3s forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

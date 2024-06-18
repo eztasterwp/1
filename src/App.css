@@ -58,18 +58,18 @@ body {
   font-size: 16px;
 }
 
-.header .coin-display {
+.coin-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
 }
 
-.header .coin {
-  width: 40px; /* Размер иконки */
-  height: 40px; /* Размер иконки */
+.coin {
+  width: 60px; /* Увеличиваем размер иконки */
+  height: 60px; /* Увеличиваем размер иконки */
 }
 
-.header .coin-display h1 {
+.coin-display h1 {
   margin: 0;
   font-size: 24px;
   color: #FFD700;

@@ -103,20 +103,16 @@ function App() {
           </div>
         </div>
         <div className="header-row">
-          <div className="header-col">
-            <div className="coin-display">
-              <img src="avatar.png" alt="coin" className="coin" />
-              <h1>{formatPoints(points)}</h1>
-            </div>
+          <div className="header-col coin-container">
+            <img src="avatar.png" alt="coin" className="coin" />
+            <h1>{formatPoints(points)}</h1>
           </div>
-          <div className="header-col">
-            <div className="level-display">
-              <div className="level-bar-container">
-                <div className="level-bar" style={{ width: `${(level / 10) * 100}%` }}></div>
-              </div>
-              <div className="level-text">Grower {level}/10</div>
-            </div>
+        </div>
+        <div className="level-display">
+          <div className="level-bar-container">
+            <div className="level-bar" style={{ width: `${(level / 10) * 100}%` }}></div>
           </div>
+          <div className="level-text">Grower {level}/10</div>
         </div>
       </div>
       <img

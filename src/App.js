@@ -143,6 +143,9 @@ function App() {
       </div>
       <div className="plant-container">
         <div className="plant"></div>
+        <div className="smoke" style={{ top: '-40px', left: '20px' }}></div>
+        <div className="smoke" style={{ top: '-60px', left: '50px' }}></div>
+        <div className="smoke" style={{ top: '-80px', left: '80px' }}></div>
       </div>
       <div className="buttons-container">
         <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>

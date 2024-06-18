@@ -27,11 +27,12 @@ body {
   width: 95%;
   z-index: 30;
   background: rgba(0, 0, 0, 0.8);
-  padding: 20px 10px; /* Slightly increase padding */
+  padding: 10px; /* Вернули padding */
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 0; /* Добавили это */
 }
 
 .header-top {
@@ -46,6 +47,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  top: -20px; /* Подняли всю нижнюю часть */
 }
 
 .header .avatar, .header .coin {

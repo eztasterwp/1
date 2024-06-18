@@ -9,7 +9,7 @@ function App() {
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
   const [level, setLevel] = useState(1);
   const [coinsPerTap, setCoinsPerTap] = useState(2);
-  const [coinsToLevelUp, setCoinsToLevelUp] = useState(100);
+  const [coinsToLevelUp, setCoinsToLevelUp] = useState(50); // Уменьшил для тестирования
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
 
@@ -61,7 +61,7 @@ function App() {
           const newPoints = prevPoints + coinsPerTap;
           if (newPoints >= coinsToLevelUp) {
             setLevel(prevLevel => prevLevel + 1);
-            setPoints(newPoints - coinsToLevelUp);
+            return newPoints - coinsToLevelUp; // Исправлено
           } else {
             return newPoints;
           }
@@ -118,7 +118,7 @@ function App() {
         </div>
         <div className="header-bottom">
           <div className="coin-display">
-            <img src="avatar.png" alt="coin" className="coin" />
+            <img src="coin.png" alt="coin" className="coin" />
             <h1>{formatPoints(points)}</h1>
           </div>
           <div className="level-display">

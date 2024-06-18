@@ -130,7 +130,7 @@ body {
   width: 250px;
   height: 250px;
   background: url('planter.png') no-repeat center/contain;
-  filter: drop-shadow(0 0 20px rgba(0, 0, 255, 0.6)); /* Синее свечение по контуру */
+  filter: drop-shadow(0 0 30px rgba(0, 0, 255, 1)) drop-shadow(0 0 60px rgba(0, 0, 255, 0.7)) drop-shadow(0 0 90px rgba(0, 0, 255, 0.5)); /* Яркое синее свечение */
   animation: grow 2s infinite alternate, leafEffect 5s infinite;
   user-select: none;
 }

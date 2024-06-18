@@ -29,25 +29,17 @@ function App() {
     }
 
     const preventSwipe = (e) => {
-      if (e.touches.length === 1) {
-        e.preventDefault();
-      }
-    };
-
-    const preventCloseSwipe = (e) => {
-      if (e.changedTouches[0].clientY > window.innerHeight - 50) {
-        e.preventDefault();
-      }
+      e.preventDefault();
     };
 
     document.addEventListener('touchstart', preventSwipe, { passive: false });
     document.addEventListener('touchmove', preventSwipe, { passive: false });
-    document.addEventListener('touchend', preventCloseSwipe, { passive: false });
+    document.addEventListener('touchend', preventSwipe, { passive: false });
 
     return () => {
       document.removeEventListener('touchstart', preventSwipe);
       document.removeEventListener('touchmove', preventSwipe);
-      document.removeEventListener('touchend', preventCloseSwipe);
+      document.removeEventListener('touchend', preventSwipe);
     };
   }, []);
 

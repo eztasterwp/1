@@ -32,12 +32,20 @@ function App() {
       }
     };
 
+    const preventCloseSwipe = (e) => {
+      if (e.changedTouches[0].clientY > window.innerHeight - 50) {
+        e.preventDefault();
+      }
+    };
+
     document.addEventListener('touchstart', preventSwipe, { passive: false });
     document.addEventListener('touchmove', preventSwipe, { passive: false });
+    document.addEventListener('touchend', preventCloseSwipe, { passive: false });
 
     return () => {
       document.removeEventListener('touchstart', preventSwipe);
       document.removeEventListener('touchmove', preventSwipe);
+      document.removeEventListener('touchend', preventCloseSwipe);
     };
   }, []);
 

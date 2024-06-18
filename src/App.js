@@ -108,7 +108,7 @@ function App() {
     <div className="App" onTouchStart={handleTouchStart}>
       <div className="header">
         <div className="header-top">
-          <div className="header-col">
+          <div className="header-col" style={{ display: 'flex', alignItems: 'center' }}>
             <img src="avatar.png" alt="avatar" className="avatar" />
             <span className="username">{username}</span>
           </div>

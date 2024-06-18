@@ -62,24 +62,8 @@ function App() {
     });
   };
 
-  const handleButtonClick = (event, buttonId) => {
+  const handleButtonClick = (buttonId) => {
     setActiveButton(buttonId);
-
-    const rect = event.target.getBoundingClientRect();
-    const smokeX = rect.left + rect.width / 2 - (window.innerWidth * 0.15);
-    const smokeY = rect.top + rect.height / 2 - (window.innerHeight * 0.15);
-
-    const newSmoke = {
-      id: Date.now(),
-      x: smokeX,
-      y: smokeY
-    };
-
-    setSmokes(prevSmokes => [...prevSmokes, newSmoke]);
-
-    setTimeout(() => {
-      setSmokes(prevSmokes => prevSmokes.filter(smoke => smoke.id !== newSmoke.id));
-    }, 1000);
   };
 
   if (!backgroundLoaded) {
@@ -102,23 +86,23 @@ function App() {
         <div className="plant"></div>
       </div>
       <div className="buttons-container">
-        <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={(e) => handleButtonClick(e, 'exchange')}>
+        <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>
           <FontAwesomeIcon icon={faExchangeAlt} />
           Exchange
         </div>
-        <div className={`button ${activeButton === 'mine' ? 'active' : ''}`} id="mine" onClick={(e) => handleButtonClick(e, 'mine')}>
+        <div className={`button ${activeButton === 'mine' ? 'active' : ''}`} id="mine" onClick={() => handleButtonClick('mine')}>
           <FontAwesomeIcon icon={faHammer} />
           Mine
         </div>
-        <div className={`button ${activeButton === 'friends' ? 'active' : ''}`} id="friends" onClick={(e) => handleButtonClick(e, 'friends')}>
+        <div className={`button ${activeButton === 'friends' ? 'active' : ''}`} id="friends" onClick={() => handleButtonClick('friends')}>
           <FontAwesomeIcon icon={faUserFriends} />
           Friends
         </div>
-        <div className={`button ${activeButton === 'earn' ? 'active' : ''}`} id="earn" onClick={(e) => handleButtonClick(e, 'earn')}>
+        <div className={`button ${activeButton === 'earn' ? 'active' : ''}`} id="earn" onClick={() => handleButtonClick('earn')}>
           <FontAwesomeIcon icon={faHandHoldingUsd} />
           Earn
         </div>
-        <div className={`button ${activeButton === 'airdrop' ? 'active' : ''}`} id="airdrop" onClick={(e) => handleButtonClick(e, 'airdrop')}>
+        <div className={`button ${activeButton === 'airdrop' ? 'active' : ''}`} id="airdrop" onClick={() => handleButtonClick('airdrop')}>
           <FontAwesomeIcon icon={faCoins} />
           Airdrop
         </div>

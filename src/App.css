@@ -94,49 +94,43 @@ body {
 
 .buttons-container {
   position: fixed;
-  bottom: 20px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  justify-content: center;
-  gap: 10px;
-  max-width: 100%;
-  overflow-x: hidden;
+  justify-content: space-around;
+  width: 100%;
+  background-color: #333;
+  padding: 10px 0;
+  border-top: 1px solid #444;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.5);
 }
 
 .button {
-  padding: 10px 15px;
-  background: linear-gradient(135deg, #006400 0%, #008000 50%, #004d00 100%);
-  color: white;
-  border: 2px solid white;
-  border-radius: 12px;
-  font-size: 14px;
+  flex: 1;
   text-align: center;
+  color: #888;
+  font-size: 12px;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  user-select: none;
-  max-width: calc(25% - 20px);
-  flex: 1 1 auto;
+  padding: 10px 0;
+  transition: color 0.3s;
 }
 
-.button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+.button.active {
+  color: white;
 }
 
-.button:active {
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+.button img {
+  display: block;
+  margin: 0 auto 5px;
+  width: 24px;
+  height: 24px;
 }
 
 .button i {
-  font-size: 14px;
+  display: block;
+  margin: 0 auto 5px;
+  font-size: 24px;
 }
 
 .messages-container {

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExchangeAlt, faPickaxe, faUserFriends, faHandHoldingUsd, faCoins } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [points, setPoints] = useState(0);
@@ -9,6 +11,7 @@ function App() {
   const [level, setLevel] = useState(1);
   const [coinsPerTap, setCoinsPerTap] = useState(2);
   const [coinsToLevelUp, setCoinsToLevelUp] = useState(100);
+  const [activeButton, setActiveButton] = useState('exchange');
 
   useEffect(() => {
     const img = new Image();
@@ -59,7 +62,9 @@ function App() {
     });
   };
 
-  const handleButtonClick = (event) => {
+  const handleButtonClick = (event, buttonId) => {
+    setActiveButton(buttonId);
+
     const rect = event.target.getBoundingClientRect();
     const smokeX = rect.left + rect.width / 2 - (window.innerWidth * 0.15);
     const smokeY = rect.top + rect.height / 2 - (window.innerHeight * 0.15);
@@ -97,17 +102,25 @@ function App() {
         <div className="plant"></div>
       </div>
       <div className="buttons-container">
-        <div className="button" id="exchange" onClick={handleButtonClick}>
-          <i className="fas fa-exchange-alt"></i> Exchange
+        <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={(e) => handleButtonClick(e, 'exchange')}>
+          <FontAwesomeIcon icon={faExchangeAlt} />
+          Exchange
         </div>
-        <div className="button" id="mine" onClick={handleButtonClick}>
-          <i className="fas fa-coins"></i> Mine
+        <div className={`button ${activeButton === 'mine' ? 'active' : ''}`} id="mine" onClick={(e) => handleButtonClick(e, 'mine')}>
+          <FontAwesomeIcon icon={faPickaxe} />
+          Mine
         </div>
-        <div className="button" id="friends" onClick={handleButtonClick}>
-          <i className="fas fa-user-friends"></i> Friends
+        <div className={`button ${activeButton === 'friends' ? 'active' : ''}`} id="friends" onClick={(e) => handleButtonClick(e, 'friends')}>
+          <FontAwesomeIcon icon={faUserFriends} />
+          Friends
         </div>
-        <div className="button" id="earn" onClick={handleButtonClick}>
-          <i className="fas fa-hand-holding-usd"></i> Earn
+        <div className={`button ${activeButton === 'earn' ? 'active' : ''}`} id="earn" onClick={(e) => handleButtonClick(e, 'earn')}>
+          <FontAwesomeIcon icon={faHandHoldingUsd} />
+          Earn
+        </div>
+        <div className={`button ${activeButton === 'airdrop' ? 'active' : ''}`} id="airdrop" onClick={(e) => handleButtonClick(e, 'airdrop')}>
+          <FontAwesomeIcon icon={faCoins} />
+          Airdrop
         </div>
       </div>
       <div className="messages-container">

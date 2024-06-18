@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faCogs } from '@fortawesome/free-solid-svg-icons';
+import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [points, setPoints] = useState(0);
@@ -113,7 +113,7 @@ function App() {
             <span className="username">{username}</span>
           </div>
           <div className="header-col">
-            <span className="bybit">Bybit</span>
+            <FontAwesomeIcon icon={faEllipsisH} className="settings-icon" />
           </div>
         </div>
         <div className="header-bottom">
@@ -129,11 +129,6 @@ function App() {
           </div>
         </div>
       </div>
-      <img
-        src="settings.png"
-        alt="settings"
-        className="settings-icon"
-      />
       <div className="plant-container">
         <div className="plant"></div>
       </div>

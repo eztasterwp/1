@@ -65,7 +65,7 @@ body {
 
 .plant-container {
   position: absolute;
-  bottom: 25%; /* Поднимаем растение выше */
+  bottom: 20%; /* Опускаем растение ниже */
   width: 100%;
   display: flex;
   justify-content: center;
@@ -157,7 +157,7 @@ body {
   position: absolute;
   color: yellow;
   font-size: 32px; /* Увеличиваем размер текста */
-  animation: flyUp 2s forwards; /* Увеличиваем продолжительность анимации */
+  animation: flyUp 1s forwards; /* Ускоряем анимацию */
 }
 
 @keyframes flyUp {

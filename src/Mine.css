@@ -1,6 +1,8 @@
 .mine-container {
     padding: 20px;
     color: white;
+    overflow-y: auto; /* Добавим прокрутку */
+    height: calc(100vh - 150px); /* Высота контейнера с учетом верхнего и нижнего отступа */
   }
   
   .tabs {

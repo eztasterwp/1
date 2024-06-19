@@ -189,6 +189,10 @@ function App() {
           </div>
         )}
       </div>
+      <div className="stats-display">
+        <span>Level: {level}</span>
+        <span>Points: {points}</span>
+      </div>
       {renderContent()}
       <div className="buttons-container">
         <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>

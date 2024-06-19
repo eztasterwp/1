@@ -297,3 +297,22 @@ body {
 .modal-content button:hover {
   background: #777;
 }
+
+.stats-display {
+  position: absolute;
+  top: 10px; /* Позиционируем ближе к верхнему краю */
+  right: 10px; /* Позиционируем ближе к правому краю */
+  background: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+  padding: 5px 10px; /* Отступы внутри блока */
+  border-radius: 5px; /* Скругленные углы */
+  color: white; /* Цвет текста */
+  font-size: 12px; /* Размер шрифта */
+  z-index: 10; /* Убедимся, что элемент находится поверх других */
+  display: flex; /* Используем флексбокс для выравнивания элементов */
+  flex-direction: column; /* Размещаем элементы вертикально */
+  align-items: flex-end; /* Выравниваем текст по правому краю */
+}
+
+.stats-display span {
+  margin-bottom: 5px; /* Добавим немного пространства между элементами */
+}

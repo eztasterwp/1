@@ -13,7 +13,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url('background.png') no-repeat center center fixed;
+  background: url('background1.jpg') no-repeat center center fixed;
   background-size: cover;
   color: white;
   user-select: none;
@@ -64,7 +64,8 @@ body {
 }
 
 .header .username {
-  font-size: 16px;
+  font-size: 16px; /* Увеличиваем размер шрифта */
+  font-weight: bold; /* Добавляем жирность шрифта */
   margin-left: 10px;
 }
 
@@ -103,7 +104,8 @@ body {
 
 .header .level-text {
   margin-top: 5px;
-  font-size: 14px;
+  font-size: 16px; /* Увеличиваем размер шрифта на 2 пикселя */
+  font-weight: bold; /* Добавляем жирность шрифта */
   color: #fff;
 }
 
@@ -129,12 +131,11 @@ body {
 .plant {
   width: 250px;
   height: 250px;
-  background: url('planter.png') no-repeat center/contain;
+  background: url('coin.png') no-repeat center/contain;
   filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.8)); /* Плотное свечение */
   animation: grow 2s infinite alternate, leafEffect 5s infinite;
   user-select: none;
   position: relative;
-  outline: 10px solid rgba(0, 255, 0, 0.6); /* Обрамление по контуру */
   border-radius: 50%; /* Применим скругление для контура */
 }
 
@@ -175,7 +176,8 @@ body {
   flex: 1;
   text-align: center;
   color: #888;
-  font-size: 12px;
+  font-size: 14px; /* Увеличиваем размер шрифта */
+  font-weight: bold; /* Добавляем жирность шрифта */
   cursor: pointer;
   padding: 10px 0;
   transition: color 0.3s, background-color 0.3s, transform 0.3s;
@@ -215,7 +217,8 @@ body {
   position: absolute;
   color: yellow;
   font-size: 32px;
-  animation: flyUp 1s forwards;
+  font-weight: bold;
+  animation: flyUp 3s forwards; /* Увеличиваем время анимации до 3 секунд */
 }
 
 @keyframes flyUp {
@@ -225,7 +228,7 @@ body {
   }
   100% {
     opacity: 0;
-    transform: translateY(-100px);
+    transform: translateY(-200px); /* Увеличиваем высоту полета */
   }
 }
 
@@ -238,7 +241,8 @@ body {
   color: white;
   padding: 20px;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 24px; /* Увеличиваем размер шрифта */
+  font-weight: bold; /* Добавляем жирность шрифта */
   text-align: center;
   z-index: 50;
   animation: fadeInOut 3s forwards;

@@ -13,82 +13,62 @@ function Mine() {
       <div className="quests">
         <div className="quest">
           <div className="quest-header">
-            <div className="quest-title">Fan tokens</div>
-            <div className="quest-profit">Profit per hour <span>+950</span></div>
+            <div className="quest-title">Купить воду</div>
+            <div className="quest-profit">Profit per hour <span>+100</span></div>
           </div>
           <div className="quest-level">lvl 0</div>
           <div className="quest-cost">
-            <span>10K</span>
+            <span>10</span>
           </div>
         </div>
         <div className="quest">
           <div className="quest-header">
-            <div className="quest-title">Staking</div>
+            <div className="quest-title">Купить удобрения</div>
+            <div className="quest-profit">Profit per hour <span>+200</span></div>
+          </div>
+          <div className="quest-level">lvl 0</div>
+          <div className="quest-cost">
+            <span>20</span>
+          </div>
+        </div>
+        <div className="quest">
+          <div className="quest-header">
+            <div className="quest-title">Купить семена</div>
+            <div className="quest-profit">Profit per hour <span>+300</span></div>
+          </div>
+          <div className="quest-level">lvl 0</div>
+          <div className="quest-cost">
+            <span>30</span>
+          </div>
+        </div>
+        <div className="quest">
+          <div className="quest-header">
+            <div className="quest-title">Купить землю</div>
+            <div className="quest-profit">Profit per hour <span>+400</span></div>
+          </div>
+          <div className="quest-level">lvl 0</div>
+          <div className="quest-cost">
+            <span>40</span>
+          </div>
+        </div>
+        <div className="quest">
+          <div className="quest-header">
+            <div className="quest-title">Заплатить налоги</div>
+            <div className="quest-profit">Profit per hour <span>+500</span></div>
+          </div>
+          <div className="quest-level">lvl 0</div>
+          <div className="quest-cost">
+            <span>50</span>
+          </div>
+        </div>
+        <div className="quest">
+          <div className="quest-header">
+            <div className="quest-title">Отправить товар в CoffeShop</div>
             <div className="quest-profit">Profit per hour <span>+600</span></div>
           </div>
           <div className="quest-level">lvl 0</div>
           <div className="quest-cost">
-            <span>KYC lvl 7</span>
-          </div>
-        </div>
-        <div className="quest">
-          <div className="quest-header">
-            <div className="quest-title">BTC pairs</div>
-            <div className="quest-profit">Profit per hour <span>+40</span></div>
-          </div>
-          <div className="quest-level">lvl 0</div>
-          <div className="quest-cost">
-            <span>250</span>
-          </div>
-        </div>
-        <div className="quest">
-          <div className="quest-header">
-            <div className="quest-title">ETH pairs</div>
-            <div className="quest-profit">Profit per hour <span>+40</span></div>
-          </div>
-          <div className="quest-level">lvl 1</div>
-          <div className="quest-cost">
-            <span>331</span>
-          </div>
-        </div>
-        <div className="quest">
-          <div className="quest-header">
-            <div className="quest-title">Top 10 cmc pairs</div>
-            <div className="quest-profit">Profit per hour <span>+80</span></div>
-          </div>
-          <div className="quest-level">lvl 0</div>
-          <div className="quest-cost">
-            <span>1K</span>
-          </div>
-        </div>
-        <div className="quest">
-          <div className="quest-header">
-            <div className="quest-title">GameFi tokens</div>
-            <div className="quest-profit">Profit per hour <span>+70</span></div>
-          </div>
-          <div className="quest-level">lvl 0</div>
-          <div className="quest-cost">
-            <span>HamsterTube lvl 4</span>
-          </div>
-        </div>
-        <div className="quest">
-          <div className="quest-header">
-            <div className="quest-title">Defi2.0 tokens</div>
-            <div className="quest-profit">Profit per hour <span>+40</span></div>
-          </div>
-          <div className="quest-level">lvl 0</div>
-          <div className="quest-cost">
-            <span>CEO lvl 2</span>
-          </div>
-        </div>
-        <div className="quest">
-          <div className="quest-header">
-            <div className="quest-title">SocialFi tokens</div>
-            <div className="quest-profit">Profit per hour <span>+50</span></div>
-          </div>
-          <div className="quest-level">lvl 0</div>
-          <div className="quest-cost">
-            <span>GameFi tokens lvl 11</span>
+            <span>60</span>
           </div>
         </div>
       </div>

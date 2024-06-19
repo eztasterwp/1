@@ -25,13 +25,20 @@
     color: #FFD700;
   }
   
+  .quests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  
   .quest {
     background: #222;
     border-radius: 10px;
     padding: 10px;
-    margin-bottom: 10px;
+    width: 45%; /* Две карточки в ряд */
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
     transition: background 0.3s;
   }
@@ -43,11 +50,14 @@
   .quest-header {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
   }
   
   .quest-title {
     font-size: 16px;
     font-weight: bold;
+    text-align: center;
   }
   
   .quest-profit {
@@ -61,16 +71,14 @@
   .quest-level, .quest-cost {
     font-size: 14px;
     text-align: center;
-  }
-  
-  .quest-level {
-    flex: 0 0 50px;
-  }
-  
-  .quest-cost {
-    flex: 0 0 80px;
+    margin-top: 5px;
     background: #333;
     border-radius: 5px;
     padding: 5px;
+    width: 80%;
+  }
+  
+  .quest-level {
+    margin-bottom: 5px;
   }
   

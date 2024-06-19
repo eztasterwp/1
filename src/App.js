@@ -1,12 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import Mine from './Mine';
-import Friends from './Friends';
-import Earn from './Earn';
-import Airdrop from './Airdrop';
 
 function App() {
   const [points, setPoints] = useState(0);
@@ -18,8 +15,6 @@ function App() {
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
   const [levelUpNotification, setLevelUpNotification] = useState('');
-  const plantRef = useRef(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const img = new Image();
@@ -53,59 +48,56 @@ function App() {
   const handleTouchStart = (event) => {
     event.preventDefault();
 
-    const plantElement = plantRef.current;
-    if (!plantElement) {
-      console.error('Plant element not found');
-      return;
+    const plantElement = document.querySelector('.plant');
+    if (plantElement) {
+      const rect = plantElement.getBoundingClientRect();
+
+      Array.from(event.changedTouches).forEach(touch => {
+        const touchX = touch.clientX;
+        const touchY = touch.clientY;
+
+        if (
+          touchX >= rect.left &&
+          touchX <= rect.right &&
+          touchY >= rect.top &&
+          touchY <= rect.bottom
+        ) {
+          setPoints(prevPoints => {
+            const newPoints = prevPoints + coinsPerTap;
+            if (newPoints >= coinsToLevelUp) {
+              setLevel(prevLevel => {
+                const newLevel = prevLevel + 1;
+                setLevelUpNotification(`Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`);
+                setTimeout(() => setLevelUpNotification(''), 3000); // Уведомление исчезает через 3 секунды
+                return newLevel;
+              });
+              return newPoints - coinsToLevelUp; // Исправлено
+            } else {
+              return newPoints;
+            }
+          });
+
+          const newMessage = {
+            id: Date.now() + touch.identifier,
+            text: `+${coinsPerTap} 💨`,
+            x: touchX,
+            y: touchY
+          };
+
+          setMessages(prevMessages => [...prevMessages, newMessage]);
+
+          setTimeout(() => {
+            setMessages(prevMessages =>
+              prevMessages.filter(msg => msg.id !== newMessage.id)
+            );
+          }, 3000); // Ускоряем анимацию до 3 секунды
+        }
+      });
     }
-    const rect = plantElement.getBoundingClientRect();
-
-    Array.from(event.changedTouches).forEach(touch => {
-      const touchX = touch.clientX;
-      const touchY = touch.clientY;
-
-      if (
-        touchX >= rect.left &&
-        touchX <= rect.right &&
-        touchY >= rect.top &&
-        touchY <= rect.bottom
-      ) {
-        setPoints(prevPoints => {
-          const newPoints = prevPoints + coinsPerTap;
-          if (newPoints >= coinsToLevelUp) {
-            setLevel(prevLevel => {
-              const newLevel = prevLevel + 1;
-              setLevelUpNotification(`Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`);
-              setTimeout(() => setLevelUpNotification(''), 3000); // Уведомление исчезает через 3 секунды
-              return newLevel;
-            });
-            return newPoints - coinsToLevelUp; // Исправлено
-          } else {
-            return newPoints;
-          }
-        });
-
-        const newMessage = {
-          id: Date.now() + touch.identifier,
-          text: `+${coinsPerTap} 💨`,
-          x: touchX,
-          y: touchY
-        };
-
-        setMessages(prevMessages => [...prevMessages, newMessage]);
-
-        setTimeout(() => {
-          setMessages(prevMessages =>
-            prevMessages.filter(msg => msg.id !== newMessage.id)
-          );
-        }, 1000); // Ускоряем анимацию до 1 секунды
-      }
-    });
   };
 
   const handleButtonClick = (buttonId) => {
     setActiveButton(buttonId);
-    navigate(`/${buttonId}`);
   };
 
   const formatPoints = (points) => {
@@ -155,18 +147,9 @@ function App() {
           </div>
         </div>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <div className="plant-container">
-                <div className="plant" ref={plantRef}></div>
-              </div>
-            }
-          />
+          <Route path="/" element={<div className="plant-container"><div className="plant"></div></div>} />
           <Route path="/mine" element={<Mine />} />
-          <Route path="/friends" element={<Friends />} />
-          <Route path="/earn" element={<Earn />} />
-          <Route path="/airdrop" element={<Airdrop />} />
+          {/* Добавьте другие маршруты здесь */}
         </Routes>
         <div className="buttons-container">
           <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>

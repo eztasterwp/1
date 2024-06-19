@@ -18,7 +18,6 @@ function App() {
   const [coinsToLevelUp, setCoinsToLevelUp] = useState(calculateCoinsToLevelUp(1));
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
-  const [levelUpNotification, setLevelUpNotification] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [currentQuest, setCurrentQuest] = useState({});
   const [notifications, setNotifications] = useState([]);
@@ -90,9 +89,7 @@ function App() {
             setLevel(prevLevel => {
               const newLevel = prevLevel + 1;
               setCoinsToLevelUp(calculateCoinsToLevelUp(newLevel));
-              setLevelUpNotification(`Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`);
-              setTimeout(() => setLevelUpNotification(''), 3000); // Уведомление исчезает через 3 секунды
-              setNotifications(prevNotifications => [...prevNotifications, `Level up! You are now level ${newLevel}`]);
+              setNotifications(prevNotifications => [...prevNotifications, `Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`]);
               return newLevel;
             });
             return newPoints - coinsToLevelUp; // Исправлено
@@ -246,11 +243,6 @@ function App() {
           </div>
         ))}
       </div>
-      {levelUpNotification && (
-        <div className="level-up-notification">
-          {levelUpNotification}
-        </div>
-      )}
       {showModal && (
         <div className="modal">
           <div className="modal-content">

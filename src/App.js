@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useEffect, useState, useRef } from 'react';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
@@ -18,6 +18,8 @@ function App() {
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
   const [levelUpNotification, setLevelUpNotification] = useState('');
+  const plantRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const img = new Image();
@@ -34,9 +36,7 @@ function App() {
     }
 
     const preventSwipe = (e) => {
-      if (e.touches.length === 1) {
-        e.preventDefault();
-      }
+      e.preventDefault();
     };
 
     document.addEventListener('touchstart', preventSwipe, { passive: false });
@@ -53,8 +53,9 @@ function App() {
   const handleTouchStart = (event) => {
     event.preventDefault();
 
-    const plantElement = document.querySelector('.plant');
+    const plantElement = plantRef.current;
     if (!plantElement) {
+      console.error('Plant element not found');
       return;
     }
     const rect = plantElement.getBoundingClientRect();
@@ -104,6 +105,7 @@ function App() {
 
   const handleButtonClick = (buttonId) => {
     setActiveButton(buttonId);
+    navigate(`/${buttonId}`);
   };
 
   const formatPoints = (points) => {
@@ -157,7 +159,7 @@ function App() {
             path="/"
             element={
               <div className="plant-container">
-                <div className="plant"></div>
+                <div className="plant" ref={plantRef}></div>
               </div>
             }
           />

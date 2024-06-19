@@ -3,17 +3,17 @@ import './Quests.css';
 
 function Quests() {
   const [quests, setQuests] = useState([
-    { id: 1, name: 'Удобрения', level: 0, cost: 10, profit: 50, maxLevel: 10 },
-    { id: 2, name: 'Семена', level: 0, cost: 15, profit: 70, maxLevel: 10 },
-    { id: 3, name: 'Земля', level: 0, cost: 20, profit: 90, maxLevel: 10 },
-    { id: 4, name: 'Вода', level: 0, cost: 25, profit: 110, maxLevel: 10 },
-    { id: 5, name: 'Лампы', level: 0, cost: 30, profit: 130, maxLevel: 10 },
+    { id: 1, name: 'Удобрения', level: 0, maxLevel: 10, cost: 10, profit: 50 },
+    { id: 2, name: 'Семена', level: 0, maxLevel: 10, cost: 20, profit: 40 },
+    { id: 3, name: 'Земля', level: 0, maxLevel: 10, cost: 15, profit: 30 },
+    { id: 4, name: 'Вода', level: 0, maxLevel: 10, cost: 5, profit: 20 },
+    { id: 5, name: 'Лампы', level: 0, maxLevel: 10, cost: 25, profit: 60 }
   ]);
 
-  const upgradeQuest = (questId) => {
+  const upgradeQuest = (id) => {
     setQuests(prevQuests =>
       prevQuests.map(quest =>
-        quest.id === questId && quest.level < quest.maxLevel
+        quest.id === id && quest.level < quest.maxLevel
           ? { ...quest, level: quest.level + 1 }
           : quest
       )

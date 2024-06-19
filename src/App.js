@@ -8,11 +8,12 @@ import Earn from './Earn';
 import Airdrop from './Airdrop';
 
 function App() {
-  const [points, setPoints] = useState(100); // начальные очки для тестирования
+  const [points, setPoints] = useState(100); // текущие доступные очки
+  const [totalPoints, setTotalPoints] = useState(100); // общее количество заработанных очков
   const [messages, setMessages] = useState([]);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
   const [level, setLevel] = useState(1);
-  const [coinsPerTap, setCoinsPerTap] = useState(2);
+  const [coinsPerTap, setCoinsPerTap] = useState(300);
   const [coinsToLevelUp, setCoinsToLevelUp] = useState(calculateCoinsToLevelUp(1));
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
@@ -81,6 +82,8 @@ function App() {
       ) {
         setPoints(prevPoints => {
           const newPoints = prevPoints + coinsPerTap;
+          setTotalPoints(prevTotalPoints => prevTotalPoints + coinsPerTap);
+
           if (newPoints >= coinsToLevelUp) {
             setLevel(prevLevel => {
               const newLevel = prevLevel + 1;
@@ -133,7 +136,9 @@ function App() {
 
   const formatPoints = (points) => {
     if (points >= 1000000) {
-      return (points / 1000000).toFixed(1) + 'M';
+      return (points / 1000000).toFixed(2) + 'M';
+    } else if (points >= 10000) {
+      return (points / 1000).toFixed(2) + 'k';
     }
     return points.toString();
   };
@@ -196,7 +201,8 @@ function App() {
       </div>
       <div className="stats-display">
         <span>Level: {level}</span>
-        <span>Points: {points}</span>
+        <span>Points: {formatPoints(points)}</span>
+        <span>Total Points: {formatPoints(totalPoints)}</span>
       </div>
       {renderContent()}
       <div className="buttons-container">

@@ -1,15 +1,11 @@
-.mine-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.mine-container {
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.8); /* Темный фон */
+    color: white;
   }
   
   .tabs {
     display: flex;
     justify-content: space-around;
-    width: 100%;
     margin-bottom: 20px;
   }
   
@@ -17,56 +13,64 @@
     flex: 1;
     text-align: center;
     padding: 10px;
-    cursor: pointer;
-    background-color: #333;
-    color: #fff;
+    background: #333;
+    border-radius: 10px;
     margin: 0 5px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
   }
   
   .tab.active {
-    background-color: #666;
-  }
-  
-  .quests {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+    background: #555;
+    color: #FFD700;
   }
   
   .quest {
+    background: #222;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
-    background-color: #444;
-    color: #fff;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    align-items: center;
+    transition: background 0.3s;
   }
   
-  .quest-info {
-    flex: 1;
+  .quest:hover {
+    background: #333;
   }
   
-  .quest-actions {
+  .quest-header {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
   }
   
-  .quest button {
-    background-color: #666;
-    color: #fff;
-    border: none;
-    padding: 10px;
+  .quest-title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .quest-profit {
+    font-size: 14px;
+  }
+  
+  .quest-profit span {
+    color: #FFD700;
+  }
+  
+  .quest-level, .quest-cost {
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .quest-level {
+    flex: 0 0 50px;
+  }
+  
+  .quest-cost {
+    flex: 0 0 80px;
+    background: #333;
     border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .quest button:hover {
-    background-color: #888;
+    padding: 5px;
   }
   

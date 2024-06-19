@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
-import Mine from './Mine'; // Импортируем компонент Mine
+import Mine from './Mine';
+import Friends from './Friends';
+import Earn from './Earn';
+import Airdrop from './Airdrop';
 
 function App() {
   const [points, setPoints] = useState(0);
@@ -30,23 +33,28 @@ function App() {
     }
 
     const preventSwipe = (e) => {
+      if (e.touches.length === 1) {
+        e.preventDefault();
+      }
+    };
+
+    const allowSwipeOnMenu = (e) => {
+      if (e.target.closest('.buttons-container')) {
+        return; // Разрешаем свайп на меню
+      }
       e.preventDefault();
     };
 
-    document.addEventListener('touchstart', preventSwipe, { passive: false });
-    document.addEventListener('touchmove', preventSwipe, { passive: false });
-    document.addEventListener('touchend', preventSwipe, { passive: false });
+    document.addEventListener('touchstart', allowSwipeOnMenu, { passive: false });
+    document.addEventListener('touchmove', allowSwipeOnMenu, { passive: false });
 
     return () => {
-      document.removeEventListener('touchstart', preventSwipe);
-      document.removeEventListener('touchmove', preventSwipe);
-      document.removeEventListener('touchend', preventSwipe);
+      document.removeEventListener('touchstart', allowSwipeOnMenu);
+      document.removeEventListener('touchmove', allowSwipeOnMenu);
     };
   }, []);
 
   const handleTouchStart = (event) => {
-    event.preventDefault();
-
     const plantElement = document.querySelector('.plant');
     const rect = plantElement.getBoundingClientRect();
 
@@ -108,11 +116,6 @@ function App() {
     return (points / coinsToLevelUp) * 100;
   };
 
-  const handleTouchEnd = (event) => {
-    // Эта функция остановит длительное нажатие и заставит событие "отпустить" пальцы
-    event.preventDefault();
-  };
-
   const renderContent = () => {
     switch (activeButton) {
       case 'exchange':
@@ -123,7 +126,12 @@ function App() {
         );
       case 'mine':
         return <Mine />;
-      // Добавьте сюда другие случаи для Friends, Earn и Airdrop, если нужно
+      case 'friends':
+        return <Friends />;
+      case 'earn':
+        return <Earn />;
+      case 'airdrop':
+        return <Airdrop />;
       default:
         return null;
     }
@@ -134,7 +142,7 @@ function App() {
   }
 
   return (
-    <div className="App" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onTouchMove={(e) => e.preventDefault()}>
+    <div className="App" onTouchStart={handleTouchStart}>
       <div className="header">
         <div className="header-top">
           <div className="header-col" style={{ display: 'flex', alignItems: 'center' }}>
@@ -145,20 +153,18 @@ function App() {
             <FontAwesomeIcon icon={faEllipsisH} className="settings-icon" />
           </div>
         </div>
-        {activeButton === 'exchange' && (
-          <div className="header-bottom">
-            <div className="coin-display">
-              <img src="coin.png" alt="coin" className="coin" />
-              <h1>{formatPoints(points)}</h1>
-            </div>
-            <div className="level-display">
-              <div className="level-bar-container">
-                <div className="level-bar" style={{ width: `${calculateLevelProgress()}%` }}></div>
-              </div>
-              <div className="level-text">Grower {level}/10</div>
-            </div>
+        <div className="header-bottom">
+          <div className="coin-display">
+            <img src="coin.png" alt="coin" className="coin" />
+            <h1>{formatPoints(points)}</h1>
           </div>
-        )}
+          <div className="level-display">
+            <div className="level-bar-container">
+              <div className="level-bar" style={{ width: `${calculateLevelProgress()}%` }}></div>
+            </div>
+            <div className="level-text">Grower {level}/10</div>
+          </div>
+        </div>
       </div>
       {renderContent()}
       <div className="buttons-container">

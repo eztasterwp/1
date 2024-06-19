@@ -13,7 +13,7 @@ function App() {
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
   const [level, setLevel] = useState(1);
   const [coinsPerTap, setCoinsPerTap] = useState(2);
-  const [coinsToLevelUp, setCoinsToLevelUp] = useState(50); // Уменьшил для тестирования
+  const [coinsToLevelUp, setCoinsToLevelUp] = useState(calculateCoinsToLevelUp(1));
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
   const [levelUpNotification, setLevelUpNotification] = useState('');
@@ -61,6 +61,10 @@ function App() {
     };
   }, [activeButton]);
 
+  function calculateCoinsToLevelUp(currentLevel) {
+    return 500 + 2000 * (currentLevel - 1);
+  }
+
   const handleTouchStart = (event) => {
     const plantElement = document.querySelector('.plant');
     const rect = plantElement.getBoundingClientRect();
@@ -80,6 +84,7 @@ function App() {
           if (newPoints >= coinsToLevelUp) {
             setLevel(prevLevel => {
               const newLevel = prevLevel + 1;
+              setCoinsToLevelUp(calculateCoinsToLevelUp(newLevel));
               setLevelUpNotification(`Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`);
               setTimeout(() => setLevelUpNotification(''), 3000); // Уведомление исчезает через 3 секунды
               return newLevel;
@@ -184,7 +189,7 @@ function App() {
               <div className="level-bar-container">
                 <div className="level-bar" style={{ width: `${calculateLevelProgress()}%` }}></div>
               </div>
-              <div className="level-text">Grower {level}/10</div>
+              <div className="level-text">Grower {level}/100000</div>
             </div>
           </div>
         )}

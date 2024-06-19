@@ -23,7 +23,7 @@ body {
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-5px); /* Приподнимаем чуть выше */
   width: 95%;
   z-index: 30;
   background: rgba(0, 0, 0, 0.7);
@@ -64,8 +64,8 @@ body {
 }
 
 .header .username {
-  font-size: 16px; /* Увеличиваем размер шрифта */
-  font-weight: bold; /* Добавляем жирность шрифта */
+  font-size: 16px;
+  font-weight: bold;
   margin-left: 10px;
 }
 
@@ -104,8 +104,8 @@ body {
 
 .header .level-text {
   margin-top: 5px;
-  font-size: 16px; /* Увеличиваем размер шрифта на 2 пикселя */
-  font-weight: bold; /* Добавляем жирность шрифта */
+  font-size: 16px;
+  font-weight: bold;
   color: #fff;
 }
 
@@ -166,7 +166,7 @@ body {
   justify-content: space-around;
   width: 90%;
   background-color: #444;
-  padding: 5px 0;
+  padding: 3px 0; /* Уменьшаем вертикальный размер */
   border-radius: 20px;
   border: 1px solid #555;
   box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.5);
@@ -176,10 +176,10 @@ body {
   flex: 1;
   text-align: center;
   color: #888;
-  font-size: 14px; /* Увеличиваем размер шрифта */
-  font-weight: bold; /* Добавляем жирность шрифта */
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
-  padding: 10px 0;
+  padding: 8px 0; /* Уменьшаем вертикальный размер */
   transition: color 0.3s, background-color 0.3s, transform 0.3s;
   display: flex;
   flex-direction: column;
@@ -234,31 +234,42 @@ body {
 
 .level-up-notification {
   position: absolute;
-  top: 50%;
+  bottom: 10px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 20px;
+  padding: 10px 20px;
   border-radius: 10px;
-  font-size: 24px; /* Увеличиваем размер шрифта */
-  font-weight: bold; /* Добавляем жирность шрифта */
-  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
   z-index: 50;
-  animation: fadeInOut 3s forwards;
+  animation: fadeInUp 3s forwards; /* Анимация уведомления */
 }
 
-@keyframes fadeInOut {
+@keyframes fadeInUp {
   0% {
     opacity: 0;
+    transform: translateY(50px);
   }
   20% {
     opacity: 1;
+    transform: translateY(0);
   }
   80% {
     opacity: 1;
+    transform: translateY(0);
   }
   100% {
     opacity: 0;
+    transform: translateY(-50px);
   }
+}
+
+.level-up-notification .icon {
+  margin-right: 10px;
+  font-size: 18px;
+  color: #00FF00;
 }

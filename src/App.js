@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [points, setPoints] = useState(0);
@@ -179,6 +179,7 @@ function App() {
       </div>
       {levelUpNotification && (
         <div className="level-up-notification">
+          <FontAwesomeIcon icon={faCheckCircle} className="icon" />
           {levelUpNotification}
         </div>
       )}

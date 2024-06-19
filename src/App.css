@@ -66,6 +66,7 @@ body {
 .header .username {
   font-size: 16px;
   margin-left: 10px;
+  font-weight: bold; /* Сделано жирным */
 }
 
 .header .coin-display {
@@ -103,7 +104,8 @@ body {
 
 .header .level-text {
   margin-top: 5px;
-  font-size: 14px;
+  font-size: 16px; /* Увеличен шрифт */
+  font-weight: bold; /* Сделано жирным */
   color: #fff;
 }
 
@@ -214,7 +216,7 @@ body {
   position: absolute;
   color: yellow;
   font-size: 32px;
-  animation: flyUp 1s forwards;
+  animation: flyUp 3s forwards; /* Увеличено время анимации */
 }
 
 @keyframes flyUp {
@@ -224,23 +226,28 @@ body {
   }
   100% {
     opacity: 0;
-    transform: translateY(-100px);
+    transform: translateY(-300px); /* Увеличена высота анимации */
   }
 }
 
 .level-up-notification {
   position: absolute;
-  top: 50%;
+  top: 10px; /* Положение уведомления вверху экрана */
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
-  font-size: 20px;
-  text-align: center;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
   z-index: 50;
   animation: fadeInOut 3s forwards;
+}
+
+.level-up-notification svg {
+  margin-right: 10px;
 }
 
 @keyframes fadeInOut {

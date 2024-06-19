@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
-import QuestPage from './QuestPage';
 
-function MainPage() {
+function App() {
   const [points, setPoints] = useState(0);
   const [messages, setMessages] = useState([]);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
@@ -15,7 +14,6 @@ function MainPage() {
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
   const [levelUpNotification, setLevelUpNotification] = useState('');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const img = new Image();
@@ -90,18 +88,13 @@ function MainPage() {
           setMessages(prevMessages =>
             prevMessages.filter(msg => msg.id !== newMessage.id)
           );
-        }, 1000); // Ускоряем анимацию до 1 секунды
+        }, 3000); // Ускоряем анимацию до 3 секунды
       }
     });
   };
 
   const handleButtonClick = (buttonId) => {
     setActiveButton(buttonId);
-    if (buttonId === 'mine') {
-      navigate('/mine');
-    } else {
-      navigate('/');
-    }
   };
 
   const formatPoints = (points) => {
@@ -125,85 +118,129 @@ function MainPage() {
   }
 
   return (
-    <div className="App" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onTouchMove={(e) => e.preventDefault()}>
-      <div className="header">
-        <div className="header-top">
-          <div className="header-col" style={{ display: 'flex', alignItems: 'center' }}>
-            <img src="avatar.png" alt="avatar" className="avatar" />
-            <span className="username">{username}</span>
-          </div>
-          <div className="header-col">
-            <FontAwesomeIcon icon={faEllipsisH} className="settings-icon" />
-          </div>
-        </div>
-        <div className="header-bottom">
-          <div className="coin-display">
-            <img src="coin.png" alt="coin" className="coin" />
-            <h1>{formatPoints(points)}</h1>
-          </div>
-          <div className="level-display">
-            <div className="level-bar-container">
-              <div className="level-bar" style={{ width: `${calculateLevelProgress()}%` }}></div>
-            </div>
-            <div className="level-text">Grower {level}/10</div>
-          </div>
-        </div>
-      </div>
-      <div className="plant-container">
-        <div className="plant"></div>
-      </div>
-      <div className="buttons-container">
-        <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>
-          <FontAwesomeIcon icon={faExchangeAlt} />
-          Exchange
-        </div>
-        <div className={`button ${activeButton === 'mine' ? 'active' : ''}`} id="mine" onClick={() => handleButtonClick('mine')}>
-          <FontAwesomeIcon icon={faHammer} />
-          Mine
-        </div>
-        <div className={`button ${activeButton === 'friends' ? 'active' : ''}`} id="friends" onClick={() => handleButtonClick('friends')}>
-          <FontAwesomeIcon icon={faUserFriends} />
-          Friends
-        </div>
-        <div className={`button ${activeButton === 'earn' ? 'active' : ''}`} id="earn" onClick={() => handleButtonClick('earn')}>
-          <FontAwesomeIcon icon={faHandHoldingUsd} />
-          Earn
-        </div>
-        <div className={`button ${activeButton === 'airdrop' ? 'active' : ''}`} id="airdrop" onClick={() => handleButtonClick('airdrop')}>
-          <FontAwesomeIcon icon={faCoins} />
-          Airdrop
-        </div>
-      </div>
-      <div className="messages-container">
-        {messages.map(message => (
-          <div
-            key={message.id}
-            className="message"
-            style={{ top: `${message.y}px`, left: `${message.x}px` }}
-          >
-            {message.text}
-          </div>
-        ))}
-      </div>
-      {levelUpNotification && (
-        <div className="level-up-notification">
-          <FontAwesomeIcon icon={faCheckCircle} className="notification-icon" />
-          {levelUpNotification}
-        </div>
-      )}
-    </div>
-  );
-}
-
-function AppWrapper() {
-  return (
     <Router>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/mine" element={<QuestPage />} />
-      </Routes>
+      <div className="App" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onTouchMove={(e) => e.preventDefault()}>
+        <div className="header">
+          <div className="header-top">
+            <div className="header-col" style={{ display: 'flex', alignItems: 'center' }}>
+              <img src="avatar.png" alt="avatar" className="avatar" />
+              <span className="username">{username}</span>
+            </div>
+            <div className="header-col">
+              <FontAwesomeIcon icon={faEllipsisH} className="settings-icon" />
+            </div>
+          </div>
+          <div className="header-bottom">
+            <div className="coin-display">
+              <img src="coin.png" alt="coin" className="coin" />
+              <h1>{formatPoints(points)}</h1>
+            </div>
+            <div className="level-display">
+              <div className="level-bar-container">
+                <div className="level-bar" style={{ width: `${calculateLevelProgress()}%` }}></div>
+              </div>
+              <div className="level-text">Grower {level}/10</div>
+            </div>
+          </div>
+        </div>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/mine" element={<MinePage />} />
+        </Routes>
+        <div className="buttons-container">
+          <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>
+            <FontAwesomeIcon icon={faExchangeAlt} />
+            Exchange
+          </div>
+          <div className={`button ${activeButton === 'mine' ? 'active' : ''}`} id="mine" onClick={() => handleButtonClick('mine')}>
+            <FontAwesomeIcon icon={faHammer} />
+            Mine
+          </div>
+          <div className={`button ${activeButton === 'friends' ? 'active' : ''}`} id="friends" onClick={() => handleButtonClick('friends')}>
+            <FontAwesomeIcon icon={faUserFriends} />
+            Friends
+          </div>
+          <div className={`button ${activeButton === 'earn' ? 'active' : ''}`} id="earn" onClick={() => handleButtonClick('earn')}>
+            <FontAwesomeIcon icon={faHandHoldingUsd} />
+            Earn
+          </div>
+          <div className={`button ${activeButton === 'airdrop' ? 'active' : ''}`} id="airdrop" onClick={() => handleButtonClick('airdrop')}>
+            <FontAwesomeIcon icon={faCoins} />
+            Airdrop
+          </div>
+        </div>
+        <div className="messages-container">
+          {messages.map(message => (
+            <div
+              key={message.id}
+              className="message"
+              style={{ top: `${message.y}px`, left: `${message.x}px` }}
+            >
+              {message.text}
+            </div>
+          ))}
+        </div>
+        {levelUpNotification && (
+          <div className="level-up-notification">
+            <FontAwesomeIcon icon={faCheckCircle} style={{ color: 'green', marginRight: '5px' }} />
+            {levelUpNotification}
+          </div>
+        )}
+      </div>
     </Router>
   );
 }
 
-export default AppWrapper;
+const MainPage = () => (
+  <div className="plant-container">
+    <div className="plant"></div>
+  </div>
+);
+
+const MinePage = () => (
+  <div className="mine-page">
+    <h1>Mine</h1>
+    <div className="quest">
+      <div className="quest-icon">🧪</div>
+      <div className="quest-details">
+        <h2>Fertilizers</h2>
+        <p>Level up to increase your profit per hour.</p>
+      </div>
+      <div className="quest-level">1/10</div>
+    </div>
+    <div className="quest">
+      <div className="quest-icon">🌱</div>
+      <div className="quest-details">
+        <h2>Seeds</h2>
+        <p>Level up to increase your profit per hour.</p>
+      </div>
+      <div className="quest-level">1/10</div>
+    </div>
+    <div className="quest">
+      <div className="quest-icon">🌍</div>
+      <div className="quest-details">
+        <h2>Soil</h2>
+        <p>Level up to increase your profit per hour.</p>
+      </div>
+      <div className="quest-level">1/10</div>
+    </div>
+    <div className="quest">
+      <div className="quest-icon">💧</div>
+      <div className="quest-details">
+        <h2>Water</h2>
+        <p>Level up to increase your profit per hour.</p>
+      </div>
+      <div className="quest-level">1/10</div>
+    </div>
+    <div className="quest">
+      <div className="quest-icon">💡</div>
+      <div className="quest-details">
+        <h2>Lamps</h2>
+        <p>Level up to increase your profit per hour.</p>
+      </div>
+      <div className="quest-level">1/10</div>
+    </div>
+  </div>
+);
+
+export default App;

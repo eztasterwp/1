@@ -66,6 +66,7 @@ body {
 .header .username {
   font-size: 16px;
   margin-left: 10px;
+  font-weight: bold;
 }
 
 .header .coin-display {
@@ -103,9 +104,9 @@ body {
 
 .header .level-text {
   margin-top: 5px;
-  font-size: 14px;
+  font-size: 16px; /* Увеличен шрифт */
+  font-weight: bold; /* Жирный шрифт */
   color: #fff;
-  font-weight: bold;
 }
 
 .settings-icon {
@@ -225,46 +226,73 @@ body {
   }
   100% {
     opacity: 0;
-    transform: translateY(-200px); /* Увеличена высота анимации */
+    transform: translateY(-100px);
   }
 }
 
 .level-up-notification {
-  position: absolute;
-  top: 10px; /* Верхняя часть экрана */
+  position: fixed;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 12px; /* Размер шрифта как на скриншоте */
   text-align: center;
   z-index: 50;
-  animation: fadeInOut 3s forwards;
   display: flex;
   align-items: center;
+  animation: slideDown 3s forwards;
 }
 
-.level-up-notification .icon {
-  margin-right: 5px;
-}
-
-@keyframes fadeInOut {
+@keyframes slideDown {
   0% {
+    transform: translateY(-100%);
     opacity: 0;
-    transform: translateY(-20px);
   }
-  10% {
-    opacity: 1;
+  20% {
     transform: translateY(0);
+    opacity: 1;
   }
-  90% {
-    opacity: 1;
+  80% {
     transform: translateY(0);
+    opacity: 1;
   }
   100% {
+    transform: translateY(-100%);
     opacity: 0;
-    transform: translateY(-20px);
   }
+}
+
+.mine-page {
+  padding: 20px;
+  color: black;
+  background-color: white;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.quest {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.quest-icon {
+  font-size: 24px;
+}
+
+.quest-details {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.quest-level {
+  font-weight: bold;
 }

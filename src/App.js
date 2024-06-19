@@ -8,7 +8,7 @@ import Earn from './Earn';
 import Airdrop from './Airdrop';
 
 function App() {
-  const [points, setPoints] = useState(0);
+  const [points, setPoints] = useState(100); // начальные очки для тестирования
   const [messages, setMessages] = useState([]);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
   const [level, setLevel] = useState(1);
@@ -17,7 +17,9 @@ function App() {
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
   const [levelUpNotification, setLevelUpNotification] = useState('');
-
+  const [showModal, setShowModal] = useState(false);
+  const [currentQuest, setCurrentQuest] = useState({});
+  
   useEffect(() => {
     const img = new Image();
     img.src = 'background.png';
@@ -110,6 +112,20 @@ function App() {
     setActiveButton(buttonId);
   };
 
+  const handleQuestClick = (questTitle, questCost) => {
+    setCurrentQuest({ title: questTitle, cost: questCost });
+    setShowModal(true);
+  };
+
+  const handleConfirmPurchase = () => {
+    if (points >= currentQuest.cost) {
+      setPoints(points - currentQuest.cost);
+      setShowModal(false);
+    } else {
+      alert('Недостаточно очков для выполнения квеста.');
+    }
+  };
+
   const formatPoints = (points) => {
     if (points >= 1000000) {
       return (points / 1000000).toFixed(1) + 'M';
@@ -130,7 +146,7 @@ function App() {
           </div>
         );
       case 'mine':
-        return <Mine />;
+        return <Mine onQuestClick={handleQuestClick} />;
       case 'friends':
         return <Friends />;
       case 'earn':
@@ -158,7 +174,7 @@ function App() {
             <FontAwesomeIcon icon={faEllipsisH} className="settings-icon" />
           </div>
         </div>
-        {activeButton !== 'mine' && (
+        {activeButton === 'exchange' && (
           <div className="header-bottom">
             <div className="coin-display">
               <img src="coin.png" alt="coin" className="coin" />
@@ -210,6 +226,15 @@ function App() {
       {levelUpNotification && (
         <div className="level-up-notification">
           {levelUpNotification}
+        </div>
+      )}
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <p>Купить {currentQuest.title} за {currentQuest.cost} очков?</p>
+            <button onClick={handleConfirmPurchase}>Да</button>
+            <button onClick={() => setShowModal(false)}>Нет</button>
+          </div>
         </div>
       )}
     </div>

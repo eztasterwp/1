@@ -1,59 +1,76 @@
-.mine {
+.mine-container {
     padding: 20px;
     color: white;
   }
   
-  .mine-header {
+  .tabs {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-bottom: 20px;
   }
   
-  .mine-tabs {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .mine-tab {
+  .tab {
+    flex: 1;
+    text-align: center;
     padding: 10px;
-    background-color: #333;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .mine-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .quest {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #444;
-    padding: 10px;
+    background: #333;
     border-radius: 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
   }
   
-  .quest-title {
-    font-size: 18px;
-  }
-  
-  .quest-progress {
-    font-size: 16px;
-  }
-  
-  .quest-reward {
-    font-size: 14px;
+  .tab.active {
+    background: #555;
     color: #FFD700;
   }
   
-  .quest-button {
+  .quest {
+    background: #222;
+    border-radius: 10px;
     padding: 10px;
-    background-color: #FFD700;
-    border: none;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s;
+  }
+  
+  .quest:hover {
+    background: #333;
+  }
+  
+  .quest-header {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .quest-title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .quest-profit {
+    font-size: 14px;
+  }
+  
+  .quest-profit span {
+    color: #FFD700;
+  }
+  
+  .quest-level, .quest-cost {
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .quest-level {
+    flex: 0 0 50px;
+  }
+  
+  .quest-cost {
+    flex: 0 0 80px;
+    background: #333;
     border-radius: 5px;
-    cursor: pointer;
+    padding: 5px;
   }
   

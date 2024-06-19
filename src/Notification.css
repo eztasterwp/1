@@ -24,6 +24,10 @@
     margin-right: 10px;
   }
   
+  .notification-text {
+    font-size: 14px; /* Установим меньший размер шрифта */
+  }
+  
   .notification-close {
     color: white;
     margin-left: 10px;

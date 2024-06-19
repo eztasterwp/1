@@ -21,7 +21,7 @@ body {
 
 .header {
   position: absolute;
-  top: -5px; /* Подняли чуть выше */
+  top: 5px; /* Adjusted to move slightly up */
   left: 50%;
   transform: translateX(-50%);
   width: 95%;
@@ -65,8 +65,8 @@ body {
 
 .header .username {
   font-size: 16px;
-  font-weight: bold;
   margin-left: 10px;
+  font-weight: bold; /* Bold username */
 }
 
 .header .coin-display {
@@ -104,9 +104,9 @@ body {
 
 .header .level-text {
   margin-top: 5px;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 16px; /* Increased font size */
   color: #fff;
+  font-weight: bold; /* Bold level text */
 }
 
 .settings-icon {
@@ -132,7 +132,7 @@ body {
   width: 250px;
   height: 250px;
   background: url('coin.png') no-repeat center/contain;
-  filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.8)); /* Плотное свечение */
+  filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.8)); /* Pлотное свечение */
   animation: grow 2s infinite alternate, leafEffect 5s infinite;
   user-select: none;
   position: relative;
@@ -166,7 +166,7 @@ body {
   justify-content: space-around;
   width: 90%;
   background-color: #444;
-  padding: 3px 0; /* Уменьшаем вертикальный размер */
+  padding: 5px 0;
   border-radius: 20px;
   border: 1px solid #555;
   box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.5);
@@ -176,10 +176,9 @@ body {
   flex: 1;
   text-align: center;
   color: #888;
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 12px;
   cursor: pointer;
-  padding: 8px 0; /* Уменьшаем вертикальный размер */
+  padding: 10px 0;
   transition: color 0.3s, background-color 0.3s, transform 0.3s;
   display: flex;
   flex-direction: column;
@@ -217,8 +216,7 @@ body {
   position: absolute;
   color: yellow;
   font-size: 32px;
-  font-weight: bold;
-  animation: flyUp 3s forwards; /* Увеличиваем время анимации до 3 секунд */
+  animation: flyUp 3s forwards; /* Updated animation duration */
 }
 
 @keyframes flyUp {
@@ -228,48 +226,45 @@ body {
   }
   100% {
     opacity: 0;
-    transform: translateY(-200px); /* Увеличиваем высоту полета */
+    transform: translateY(-150px); /* Increased translation */
   }
 }
 
 .level-up-notification {
   position: absolute;
-  top: 0;
+  top: 20px; /* Position at the top */
   left: 50%;
-  transform: translateX(-50%) translateY(-100%); /* Начальная позиция за пределами экрана */
+  transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 10px 20px;
+  padding: 10px;
   border-radius: 10px;
-  font-size: 14px; /* Маленький шрифт */
-  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  z-index: 50;
   display: flex;
   align-items: center;
-  z-index: 50;
-  animation: slideDown 3s forwards; /* Анимация уведомления */
-}
-
-@keyframes slideDown {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-100%);
-  }
-  20% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-  80% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-100%);
-  }
+  justify-content: center;
+  gap: 10px;
+  animation: fadeInOut 3s forwards;
 }
 
 .level-up-notification .icon {
-  margin-right: 10px;
-  font-size: 18px;
-  color: #00FF00;
+  color: green;
+  font-size: 20px;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

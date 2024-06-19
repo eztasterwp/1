@@ -64,7 +64,7 @@ function App() {
           if (newPoints >= coinsToLevelUp) {
             setLevel(prevLevel => {
               const newLevel = prevLevel + 1;
-              setLevelUpNotification(`Congratulations, you have reached level ${newLevel}`);
+              setLevelUpNotification(`Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`);
               setTimeout(() => setLevelUpNotification(''), 3000); // Уведомление исчезает через 3 секунды
               return newLevel;
             });
@@ -87,7 +87,7 @@ function App() {
           setMessages(prevMessages =>
             prevMessages.filter(msg => msg.id !== newMessage.id)
           );
-        }, 3000); // Увеличиваем время анимации до 3 секунд
+        }, 1000); // Ускоряем анимацию до 1 секунды
       }
     });
   };

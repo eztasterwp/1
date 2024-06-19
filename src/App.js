@@ -31,6 +31,27 @@ function App() {
       tg.expand(); // Разворачивание приложения на полный экран
       setUsername(tg.initDataUnsafe.user ? tg.initDataUnsafe.user.username : 'User');
     }
+
+    const preventSwipe = (e) => {
+      if (e.touches.length === 1) {
+        e.preventDefault();
+      }
+    };
+
+    const allowSwipeOnMenu = (e) => {
+      if (e.target.closest('.buttons-container')) {
+        return; // Разрешаем свайп на меню
+      }
+      e.preventDefault();
+    };
+
+    document.addEventListener('touchstart', allowSwipeOnMenu, { passive: false });
+    document.addEventListener('touchmove', allowSwipeOnMenu, { passive: false });
+
+    return () => {
+      document.removeEventListener('touchstart', allowSwipeOnMenu);
+      document.removeEventListener('touchmove', allowSwipeOnMenu);
+    };
   }, []);
 
   const handleTouchStart = (event) => {

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import Mine from './Mine';
+import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [points, setPoints] = useState(0);
@@ -15,7 +13,6 @@ function App() {
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
   const [levelUpNotification, setLevelUpNotification] = useState('');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const img = new Image();
@@ -50,7 +47,6 @@ function App() {
     event.preventDefault();
 
     const plantElement = document.querySelector('.plant');
-    if (!plantElement) return;
     const rect = plantElement.getBoundingClientRect();
 
     Array.from(event.changedTouches).forEach(touch => {
@@ -91,14 +87,13 @@ function App() {
           setMessages(prevMessages =>
             prevMessages.filter(msg => msg.id !== newMessage.id)
           );
-        }, 3000); // Ускоряем анимацию до 1 секунды
+        }, 1000); // Ускоряем анимацию до 1 секунды
       }
     });
   };
 
   const handleButtonClick = (buttonId) => {
     setActiveButton(buttonId);
-    navigate(`/${buttonId}`);
   };
 
   const formatPoints = (points) => {
@@ -146,10 +141,9 @@ function App() {
           </div>
         </div>
       </div>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/mine" element={<Mine />} />
-      </Routes>
+      <div className="plant-container">
+        <div className="plant"></div>
+      </div>
       <div className="buttons-container">
         <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>
           <FontAwesomeIcon icon={faExchangeAlt} />
@@ -185,17 +179,11 @@ function App() {
       </div>
       {levelUpNotification && (
         <div className="level-up-notification">
-          <FontAwesomeIcon icon={faCheckCircle} /> {levelUpNotification}
+          {levelUpNotification}
         </div>
       )}
     </div>
   );
 }
-
-const HomePage = () => (
-  <div className="plant-container">
-    <div className="plant"></div>
-  </div>
-);
 
 export default App;

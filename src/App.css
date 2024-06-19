@@ -66,7 +66,6 @@ body {
 .header .username {
   font-size: 16px;
   margin-left: 10px;
-  font-weight: bold;
 }
 
 .header .coin-display {
@@ -106,7 +105,6 @@ body {
   margin-top: 5px;
   font-size: 14px;
   color: #fff;
-  font-weight: bold;
 }
 
 .settings-icon {
@@ -216,7 +214,7 @@ body {
   position: absolute;
   color: yellow;
   font-size: 32px;
-  animation: flyUp 3s forwards; /* 3 секунды */
+  animation: flyUp 1s forwards;
 }
 
 @keyframes flyUp {
@@ -226,124 +224,36 @@ body {
   }
   100% {
     opacity: 0;
-    transform: translateY(-200px); /* Увеличиваем расстояние для более плавного подъема */
+    transform: translateY(-100px);
   }
 }
 
 .level-up-notification {
   position: absolute;
-  top: 5%; /* Вверху экрана */
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-size: 16px; /* Уменьшаем шрифт */
-  display: flex;
-  align-items: center;
-  z-index: 50;
-  animation: slideInOut 3s forwards; /* Всплывающее и исчезающее анимации */
-}
-
-.level-up-icon {
-  margin-right: 10px;
-  color: green;
+  padding: 20px;
+  border-radius: 10px;
   font-size: 20px;
+  text-align: center;
+  z-index: 50;
+  animation: fadeInOut 3s forwards;
 }
 
-@keyframes slideInOut {
+@keyframes fadeInOut {
   0% {
     opacity: 0;
-    transform: translate(-50%, -20px);
   }
-  10% {
+  20% {
     opacity: 1;
-    transform: translate(-50%, 0);
   }
-  90% {
+  80% {
     opacity: 1;
-    transform: translate(-50%, 0);
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, -20px);
   }
-}
-
-.mine {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 10px;
-  margin-top: 20px;
-}
-
-.mine-header {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.mine-tabs {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.mine-tab {
-  padding: 10px 20px;
-  background-color: #444;
-  border-radius: 10px;
-  cursor: pointer;
-  margin: 0 5px;
-  transition: background-color 0.3s;
-}
-
-.mine-tab:hover {
-  background-color: #555;
-}
-
-.mine-content {
-  width: 100%;
-}
-
-.quest {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #333;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.quest-title {
-  font-size: 18px;
-}
-
-.quest-progress {
-  font-size: 14px;
-  color: #888;
-}
-
-.quest-reward {
-  font-size: 14px;
-  color: #FFD700;
-}
-
-.quest-button {
-  background-color: #FFD700;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.quest-button:hover {
-  background-color: #FFA500;
 }

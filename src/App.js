@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
-import Quests from './Quests';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Quests from './Quests';
 
 function App() {
   const [points, setPoints] = useState(0);

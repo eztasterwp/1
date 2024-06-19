@@ -21,7 +21,7 @@ body {
 
 .header {
   position: absolute;
-  top: 5px; /* Adjusted to move slightly up */
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 95%;
@@ -66,7 +66,6 @@ body {
 .header .username {
   font-size: 16px;
   margin-left: 10px;
-  font-weight: bold; /* Bold username */
 }
 
 .header .coin-display {
@@ -104,9 +103,9 @@ body {
 
 .header .level-text {
   margin-top: 5px;
-  font-size: 16px; /* Increased font size */
+  font-size: 14px;
   color: #fff;
-  font-weight: bold; /* Bold level text */
+  font-weight: bold;
 }
 
 .settings-icon {
@@ -132,7 +131,7 @@ body {
   width: 250px;
   height: 250px;
   background: url('coin.png') no-repeat center/contain;
-  filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.8)); /* Pлотное свечение */
+  filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.8)); /* Плотное свечение */
   animation: grow 2s infinite alternate, leafEffect 5s infinite;
   user-select: none;
   position: relative;
@@ -216,7 +215,7 @@ body {
   position: absolute;
   color: yellow;
   font-size: 32px;
-  animation: flyUp 3s forwards; /* Updated animation duration */
+  animation: flyUp 3s forwards;
 }
 
 @keyframes flyUp {
@@ -226,13 +225,13 @@ body {
   }
   100% {
     opacity: 0;
-    transform: translateY(-150px); /* Increased translation */
+    transform: translateY(-200px); /* Увеличена высота анимации */
   }
 }
 
 .level-up-notification {
   position: absolute;
-  top: 20px; /* Position at the top */
+  top: 10px; /* Верхняя часть экрана */
   left: 50%;
   transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.8);
@@ -242,29 +241,30 @@ body {
   font-size: 14px;
   text-align: center;
   z-index: 50;
+  animation: fadeInOut 3s forwards;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  animation: fadeInOut 3s forwards;
 }
 
 .level-up-notification .icon {
-  color: green;
-  font-size: 20px;
+  margin-right: 5px;
 }
 
 @keyframes fadeInOut {
   0% {
     opacity: 0;
+    transform: translateY(-20px);
   }
-  20% {
+  10% {
     opacity: 1;
+    transform: translateY(0);
   }
-  80% {
+  90% {
     opacity: 1;
+    transform: translateY(0);
   }
   100% {
     opacity: 0;
+    transform: translateY(-20px);
   }
 }

@@ -5,13 +5,13 @@ import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEl
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import QuestPage from './QuestPage';
 
-function App() {
+function MainPage() {
   const [points, setPoints] = useState(0);
   const [messages, setMessages] = useState([]);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
   const [level, setLevel] = useState(1);
   const [coinsPerTap, setCoinsPerTap] = useState(2);
-  const [coinsToLevelUp, setCoinsToLevelUp] = useState(50);
+  const [coinsToLevelUp, setCoinsToLevelUp] = useState(50); // Уменьшил для тестирования
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
   const [levelUpNotification, setLevelUpNotification] = useState('');
@@ -27,7 +27,7 @@ function App() {
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.ready();
-      tg.expand();
+      tg.expand(); // Разворачивание приложения на полный экран
       setUsername(tg.initDataUnsafe.user ? tg.initDataUnsafe.user.username : 'User');
     }
 
@@ -68,10 +68,10 @@ function App() {
             setLevel(prevLevel => {
               const newLevel = prevLevel + 1;
               setLevelUpNotification(`Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`);
-              setTimeout(() => setLevelUpNotification(''), 3000);
+              setTimeout(() => setLevelUpNotification(''), 3000); // Уведомление исчезает через 3 секунды
               return newLevel;
             });
-            return newPoints - coinsToLevelUp;
+            return newPoints - coinsToLevelUp; // Исправлено
           } else {
             return newPoints;
           }
@@ -90,7 +90,7 @@ function App() {
           setMessages(prevMessages =>
             prevMessages.filter(msg => msg.id !== newMessage.id)
           );
-        }, 1000);
+        }, 1000); // Ускоряем анимацию до 1 секунды
       }
     });
   };
@@ -99,6 +99,8 @@ function App() {
     setActiveButton(buttonId);
     if (buttonId === 'mine') {
       navigate('/mine');
+    } else {
+      navigate('/');
     }
   };
 
@@ -114,6 +116,7 @@ function App() {
   };
 
   const handleTouchEnd = (event) => {
+    // Эта функция остановит длительное нажатие и заставит событие "отпустить" пальцы
     event.preventDefault();
   };
 
@@ -196,7 +199,7 @@ function AppWrapper() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<MainPage />} />
         <Route path="/mine" element={<QuestPage />} />
       </Routes>
     </Router>

@@ -95,6 +95,10 @@ const App = () => {
     return (points / coinsToLevelUp) * 100;
   };
 
+  const handleTouchEnd = (event) => {
+    event.preventDefault();
+  };
+
   const renderContent = () => {
     if (activeButton === 'mine') {
       return (

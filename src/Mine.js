@@ -1,27 +1,33 @@
 import React from 'react';
-import './Mine.css';
+import './Mine.css'; // Создайте и используйте стили для страницы Mine
 
 const Mine = () => {
   return (
     <div className="mine">
       <div className="mine-header">
-        <button className="mine-tab active">Удобрения</button>
-        <button className="mine-tab">Семена</button>
-        <button className="mine-tab">Земля</button>
-        <button className="mine-tab">Вода</button>
-        <button className="mine-tab">Лампы</button>
+        <div className="mine-tabs">
+          <div className="mine-tab">Удобрения</div>
+          <div className="mine-tab">Семена</div>
+          <div className="mine-tab">Земля</div>
+          <div className="mine-tab">Вода</div>
+          <div className="mine-tab">Лампы</div>
+        </div>
       </div>
       <div className="mine-content">
-        {/* Add your quest content here */}
+        {/* Пример квестов */}
         <div className="quest">
-          <img src="fertilizer.png" alt="Удобрения" className="quest-icon" />
-          <div className="quest-details">
-            <h3>Удобрения</h3>
-            <p>Очки за час: +50</p>
-            <button className="quest-action">Улучшить за 10 очков</button>
-          </div>
+          <div className="quest-title">Удобрения</div>
+          <div className="quest-progress">1/10</div>
+          <div className="quest-reward">+50 очков/час</div>
+          <button className="quest-button">Купить за 10 очков</button>
         </div>
-        {/* Add more quests as needed */}
+        <div className="quest">
+          <div className="quest-title">Семена</div>
+          <div className="quest-progress">0/10</div>
+          <div className="quest-reward">+30 очков/час</div>
+          <button className="quest-button">Купить за 5 очков</button>
+        </div>
+        {/* Добавьте остальные квесты аналогично */}
       </div>
     </div>
   );

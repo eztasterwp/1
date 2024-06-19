@@ -27,20 +27,6 @@ const App = () => {
       tg.expand();
       setUsername(tg.initDataUnsafe.user ? tg.initDataUnsafe.user.username : 'User');
     }
-
-    const preventSwipe = (e) => {
-      e.preventDefault();
-    };
-
-    document.addEventListener('touchstart', preventSwipe, { passive: false });
-    document.addEventListener('touchmove', preventSwipe, { passive: false });
-    document.addEventListener('touchend', preventSwipe, { passive: false });
-
-    return () => {
-      document.removeEventListener('touchstart', preventSwipe);
-      document.removeEventListener('touchmove', preventSwipe);
-      document.removeEventListener('touchend', preventSwipe);
-    };
   }, []);
 
   const handleTouchStart = (event) => {
@@ -107,10 +93,6 @@ const App = () => {
 
   const calculateLevelProgress = () => {
     return (points / coinsToLevelUp) * 100;
-  };
-
-  const handleTouchEnd = (event) => {
-    event.preventDefault();
   };
 
   const renderContent = () => {

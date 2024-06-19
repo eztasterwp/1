@@ -66,7 +66,7 @@ body {
 .header .username {
   font-size: 16px;
   margin-left: 10px;
-  font-weight: bold; /* Сделать текст жирным */
+  font-weight: bold;
 }
 
 .header .coin-display {
@@ -104,8 +104,8 @@ body {
 
 .header .level-text {
   margin-top: 5px;
-  font-size: 16px; /* Увеличить размер шрифта на 2 пикселя */
-  font-weight: bold; /* Сделать текст жирным */
+  font-size: 16px;
+  font-weight: bold;
   color: #fff;
 }
 
@@ -132,11 +132,11 @@ body {
   width: 250px;
   height: 250px;
   background: url('coin.png') no-repeat center/contain;
-  filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.8)); /* Плотное свечение */
+  filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.8));
   animation: grow 2s infinite alternate, leafEffect 5s infinite;
   user-select: none;
   position: relative;
-  border-radius: 50%; /* Применим скругление для контура */
+  border-radius: 50%;
 }
 
 @keyframes grow {
@@ -170,7 +170,7 @@ body {
   border-radius: 20px;
   border: 1px solid #555;
   box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.5);
-  height: 50px; /* Уменьшение вертикального размера */
+  height: 50px;
 }
 
 .button {
@@ -179,7 +179,7 @@ body {
   color: #888;
   font-size: 12px;
   cursor: pointer;
-  padding: 5px 0; /* Уменьшение вертикального размера */
+  padding: 5px 0;
   transition: color 0.3s, background-color 0.3s, transform 0.3s;
   display: flex;
   flex-direction: column;
@@ -217,7 +217,7 @@ body {
   position: absolute;
   color: yellow;
   font-size: 32px;
-  animation: flyUp 3s forwards; /* Увеличение времени анимации */
+  animation: flyUp 3s forwards;
 }
 
 @keyframes flyUp {
@@ -227,7 +227,7 @@ body {
   }
   100% {
     opacity: 0;
-    transform: translateY(-300px); /* Увеличение высоты анимации */
+    transform: translateY(-300px);
   }
 }
 

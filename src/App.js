@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
@@ -180,12 +180,14 @@ function App() {
             <FontAwesomeIcon icon={faCheckCircle} /> {levelUpNotification}
           </div>
         )}
-        <Switch>
-          <Route path="/mine" component={Mine} />
-          <Route path="/" exact>
-            {/* Main content here */}
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/mine" element={<Mine />} />
+          <Route path="/" element={
+            <div className="main-content">
+              {/* Main content here */}
+            </div>
+          } />
+        </Routes>
       </div>
     </Router>
   );

@@ -13,7 +13,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url('background.png') no-repeat center center fixed;
+  background: url('background1.jpg') no-repeat center center fixed;
   background-size: cover;
   color: white;
   user-select: none;
@@ -48,6 +48,7 @@ body {
   align-items: center;
   width: 100%;
 }
+
 
 .header .avatar {
   width: 40px;
@@ -119,7 +120,7 @@ body {
 
 .plant-container {
   position: absolute;
-  bottom: 25%; /* Опустили на 4 пикселя */
+  bottom: 25%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -129,22 +130,12 @@ body {
 .plant {
   width: 250px;
   height: 250px;
-  background: url('planter.png') no-repeat center/contain;
-  filter: drop-shadow(0 0 20px rgba(0, 0, 255, 0.6)); /* Синее свечение по контуру */
+  background: url('coin.png') no-repeat center/contain;
+  filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.8)); /* Плотное свечение */
   animation: grow 2s infinite alternate, leafEffect 5s infinite;
   user-select: none;
-}
-
-@media (max-width: 768px) {
-  .plant-container {
-    bottom: 23%;
-  }
-}
-
-@media (max-width: 480px) {
-  .plant-container {
-    bottom: 20%;
-  }
+  position: relative;
+  border-radius: 50%; /* Применим скругление для контура */
 }
 
 @keyframes grow {
@@ -266,4 +257,62 @@ body {
   100% {
     opacity: 0;
   }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #222;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.modal-content p {
+  margin: 0 0 20px;
+  color: #fff;
+}
+
+.modal-content button {
+  background: #555;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.modal-content button:hover {
+  background: #777;
+}
+
+.stats-display {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8); /* Более темный полупрозрачный фон для лучшей читаемости */
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 12px;
+  z-index: 1000; /* Увеличим z-index для отображения поверх других элементов */
+  display: flex;
+  align-items: center;
+}
+
+.stats-display span {
+  margin-left: 10px;
 }

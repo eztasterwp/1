@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import QuestPage from './QuestPage';
 
 function App() {
   const [points, setPoints] = useState(0);
@@ -95,6 +96,7 @@ function App() {
   };
 
   const handleButtonClick = (buttonId) => {
+    console.log(`Button ${buttonId} clicked`); // Добавляем логирование
     setActiveButton(buttonId);
   };
 
@@ -143,9 +145,12 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="plant-container">
-        <div className="plant"></div>
-      </div>
+      {activeButton === 'exchange' && (
+        <div className="plant-container">
+          <div className="plant"></div>
+        </div>
+      )}
+      {activeButton === 'mine' && <QuestPage />}
       <div className="buttons-container">
         <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>
           <FontAwesomeIcon icon={faExchangeAlt} />
@@ -181,6 +186,7 @@ function App() {
       </div>
       {levelUpNotification && (
         <div className="level-up-notification">
+          <FontAwesomeIcon icon={faEllipsisH} className="icon" />
           {levelUpNotification}
         </div>
       )}

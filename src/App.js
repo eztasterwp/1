@@ -33,7 +33,7 @@ const App = () => {
     event.preventDefault();
 
     const plantElement = document.querySelector('.plant');
-    if (!plantElement) return; // Проверка, что элемент существует
+    if (!plantElement) return;
 
     const rect = plantElement.getBoundingClientRect();
 
@@ -82,6 +82,12 @@ const App = () => {
 
   const handleButtonClick = (buttonId) => {
     console.log(`Button ${buttonId} clicked`);
+    setActiveButton(buttonId);
+    console.log(`Active button is now: ${buttonId}`);
+  };
+
+  const handleTouchButtonClick = (buttonId) => {
+    console.log(`Touch button ${buttonId} clicked`);
     setActiveButton(buttonId);
     console.log(`Active button is now: ${buttonId}`);
   };
@@ -206,29 +212,29 @@ const App = () => {
       </div>
       {renderContent()}
       <div className="buttons-container">
-        <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>
+        <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')} onTouchEnd={() => handleTouchButtonClick('exchange')}>
           <FontAwesomeIcon icon={faExchangeAlt} />
           Exchange
         </div>
-        <div className={`button ${activeButton === 'mine' ? 'active' : ''}`} id="mine" onClick={() => handleButtonClick('mine')}>
+        <div className={`button ${activeButton === 'mine' ? 'active' : ''}`} id="mine" onClick={() => handleButtonClick('mine')} onTouchEnd={() => handleTouchButtonClick('mine')}>
           <FontAwesomeIcon icon={faHammer} />
           Mine
         </div>
-        <div className={`button ${activeButton === 'friends' ? 'active' : ''}`} id="friends" onClick={() => handleButtonClick('friends')}>
+        <div className={`button ${activeButton === 'friends' ? 'active' : ''}`} id="friends" onClick={() => handleButtonClick('friends')} onTouchEnd={() => handleTouchButtonClick('friends')}>
           <FontAwesomeIcon icon={faUserFriends} />
           Friends
         </div>
-        <div className={`button ${activeButton === 'earn' ? 'active' : ''}`} id="earn" onClick={() => handleButtonClick('earn')}>
+        <div className={`button ${activeButton === 'earn' ? 'active' : ''}`} id="earn" onClick={() => handleButtonClick('earn')} onTouchEnd={() => handleTouchButtonClick('earn')}>
           <FontAwesomeIcon icon={faHandHoldingUsd} />
           Earn
         </div>
-        <div className={`button ${activeButton === 'airdrop' ? 'active' : ''}`} id="airdrop" onClick={() => handleButtonClick('airdrop')}>
+        <div className={`button ${activeButton === 'airdrop' ? 'active' : ''}`} id="airdrop" onClick={() => handleButtonClick('airdrop')} onTouchEnd={() => handleTouchButtonClick('airdrop')}>
           <FontAwesomeIcon icon={faCoins} />
           Airdrop
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default App;

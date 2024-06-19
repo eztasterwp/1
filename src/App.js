@@ -81,7 +81,9 @@ const App = () => {
   };
 
   const handleButtonClick = (buttonId) => {
+    console.log(`Button ${buttonId} clicked`);
     setActiveButton(buttonId);
+    console.log(`Active button is now: ${buttonId}`);
   };
 
   const formatPoints = (points) => {

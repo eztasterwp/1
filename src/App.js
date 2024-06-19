@@ -199,7 +199,7 @@ function App() {
               <div className="level-bar-container">
                 <div className="level-bar" style={{ width: `${calculateLevelProgress()}%` }}></div>
               </div>
-              <div className="level-text">Grower {level}/100000</div>
+              <div className="level-text">GROWER {level}/100000</div>
             </div>
           </div>
         )}
@@ -207,7 +207,7 @@ function App() {
       <div className="stats-display">
         <span>Level: {level}</span>
         <span>Points: {formatPoints(points)}</span>
-        <span>Total Points: {formatPoints(totalPoints)}</span>
+        <span>Total G'S: {formatPoints(totalPoints)}</span>
       </div>
       {renderContent()}
       <div className="buttons-container">

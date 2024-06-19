@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import QuestPage from './QuestPage';
 
 function App() {
@@ -10,10 +11,11 @@ function App() {
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
   const [level, setLevel] = useState(1);
   const [coinsPerTap, setCoinsPerTap] = useState(2);
-  const [coinsToLevelUp, setCoinsToLevelUp] = useState(50); // Уменьшил для тестирования
+  const [coinsToLevelUp, setCoinsToLevelUp] = useState(50);
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
   const [levelUpNotification, setLevelUpNotification] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const img = new Image();
@@ -25,7 +27,7 @@ function App() {
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.ready();
-      tg.expand(); // Разворачивание приложения на полный экран
+      tg.expand();
       setUsername(tg.initDataUnsafe.user ? tg.initDataUnsafe.user.username : 'User');
     }
 
@@ -48,8 +50,6 @@ function App() {
     event.preventDefault();
 
     const plantElement = document.querySelector('.plant');
-    if (!plantElement) return;
-
     const rect = plantElement.getBoundingClientRect();
 
     Array.from(event.changedTouches).forEach(touch => {
@@ -68,10 +68,10 @@ function App() {
             setLevel(prevLevel => {
               const newLevel = prevLevel + 1;
               setLevelUpNotification(`Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`);
-              setTimeout(() => setLevelUpNotification(''), 3000); // Уведомление исчезает через 3 секунды
+              setTimeout(() => setLevelUpNotification(''), 3000);
               return newLevel;
             });
-            return newPoints - coinsToLevelUp; // Исправлено
+            return newPoints - coinsToLevelUp;
           } else {
             return newPoints;
           }
@@ -90,14 +90,16 @@ function App() {
           setMessages(prevMessages =>
             prevMessages.filter(msg => msg.id !== newMessage.id)
           );
-        }, 1000); // Ускоряем анимацию до 1 секунды
+        }, 1000);
       }
     });
   };
 
   const handleButtonClick = (buttonId) => {
-    console.log(`Button ${buttonId} clicked`); // Добавляем логирование
     setActiveButton(buttonId);
+    if (buttonId === 'mine') {
+      navigate('/mine');
+    }
   };
 
   const formatPoints = (points) => {
@@ -112,7 +114,6 @@ function App() {
   };
 
   const handleTouchEnd = (event) => {
-    // Эта функция остановит длительное нажатие и заставит событие "отпустить" пальцы
     event.preventDefault();
   };
 
@@ -145,12 +146,9 @@ function App() {
           </div>
         </div>
       </div>
-      {activeButton === 'exchange' && (
-        <div className="plant-container">
-          <div className="plant"></div>
-        </div>
-      )}
-      {activeButton === 'mine' && <QuestPage />}
+      <div className="plant-container">
+        <div className="plant"></div>
+      </div>
       <div className="buttons-container">
         <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>
           <FontAwesomeIcon icon={faExchangeAlt} />
@@ -186,7 +184,7 @@ function App() {
       </div>
       {levelUpNotification && (
         <div className="level-up-notification">
-          <FontAwesomeIcon icon={faEllipsisH} className="icon" />
+          <FontAwesomeIcon icon={faCheckCircle} className="notification-icon" />
           {levelUpNotification}
         </div>
       )}
@@ -194,4 +192,15 @@ function App() {
   );
 }
 
-export default App;
+function AppWrapper() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/mine" element={<QuestPage />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default AppWrapper;

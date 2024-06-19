@@ -1,28 +1,27 @@
 import React from 'react';
 import './QuestPage.css';
 
-const QuestPage = () => {
+function QuestPage() {
   return (
     <div className="quest-page">
       <div className="quest-header">
-        <div className="quest-category active">Fertilizers</div>
-        <div className="quest-category">Seeds</div>
-        <div className="quest-category">Soil</div>
-        <div className="quest-category">Water</div>
-        <div className="quest-category">Lamps</div>
+        <div className="quest-category">Удобрения</div>
+        <div className="quest-category">Семена</div>
+        <div className="quest-category">Земля</div>
+        <div className="quest-category">Вода</div>
+        <div className="quest-category">Лампы</div>
       </div>
       <div className="quest-list">
-        {/* Пример квеста */}
         <div className="quest-item">
-          <img src="fertilizer.png" alt="Fertilizer" className="quest-icon" />
+          <img src="fertilizer.png" alt="fertilizer" className="quest-icon" />
           <div className="quest-details">
-            <div className="quest-title">Fertilizer</div>
-            <div className="quest-progress">Profit per hour: +50</div>
-            <div className="quest-level">Level 1/10</div>
+            <div className="quest-title">Уровень 1/10</div>
+            <div className="quest-progress">Получено: 50 очков в час</div>
+            <div className="quest-level">Стоимость: 10 очков</div>
           </div>
-          <button className="quest-action">Buy for 10 coins</button>
+          <button className="quest-action">Купить</button>
         </div>
-        {/* Добавьте другие квесты здесь */}
+        {/* Add more quest items as needed */}
       </div>
     </div>
   );

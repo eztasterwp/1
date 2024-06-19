@@ -6,6 +6,7 @@ import Mine from './Mine';
 import Friends from './Friends';
 import Earn from './Earn';
 import Airdrop from './Airdrop';
+import Notification from './Notification';
 
 function App() {
   const [points, setPoints] = useState(100); // текущие доступные очки
@@ -13,14 +14,15 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
   const [level, setLevel] = useState(1);
-  const [coinsPerTap, setCoinsPerTap] = useState(300);
+  const [coinsPerTap, setCoinsPerTap] = useState(2);
   const [coinsToLevelUp, setCoinsToLevelUp] = useState(calculateCoinsToLevelUp(1));
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
   const [levelUpNotification, setLevelUpNotification] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [currentQuest, setCurrentQuest] = useState({});
-  
+  const [notifications, setNotifications] = useState([]);
+
   useEffect(() => {
     const img = new Image();
     img.src = 'background.png';
@@ -90,6 +92,7 @@ function App() {
               setCoinsToLevelUp(calculateCoinsToLevelUp(newLevel));
               setLevelUpNotification(`Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`);
               setTimeout(() => setLevelUpNotification(''), 3000); // Уведомление исчезает через 3 секунды
+              setNotifications(prevNotifications => [...prevNotifications, `Level up! You are now level ${newLevel}`]);
               return newLevel;
             });
             return newPoints - coinsToLevelUp; // Исправлено
@@ -129,9 +132,14 @@ function App() {
     if (points >= currentQuest.cost) {
       setPoints(points - currentQuest.cost);
       setShowModal(false);
+      setNotifications(prevNotifications => [...prevNotifications, `You have successfully purchased ${currentQuest.title} for ${currentQuest.cost}. Now you earn +${currentQuest.cost * 10} per hour.`]);
     } else {
       alert('Недостаточно очков для выполнения квеста.');
     }
+  };
+
+  const handleNotificationClose = (index) => {
+    setNotifications(prevNotifications => prevNotifications.filter((_, i) => i !== index));
   };
 
   const formatPoints = (points) => {
@@ -252,6 +260,13 @@ function App() {
           </div>
         </div>
       )}
+      {notifications.map((message, index) => (
+        <Notification
+          key={index}
+          message={message}
+          onClose={() => handleNotificationClose(index)}
+        />
+      ))}
     </div>
   );
 }

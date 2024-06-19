@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import Mine from './Mine';
 import Friends from './Friends';
 import Earn from './Earn';
@@ -34,7 +34,9 @@ function App() {
     }
 
     const preventSwipe = (e) => {
-      e.preventDefault();
+      if (e.touches.length === 1) {
+        e.preventDefault();
+      }
     };
 
     document.addEventListener('touchstart', preventSwipe, { passive: false });
@@ -52,6 +54,9 @@ function App() {
     event.preventDefault();
 
     const plantElement = document.querySelector('.plant');
+    if (!plantElement) {
+      return;
+    }
     const rect = plantElement.getBoundingClientRect();
 
     Array.from(event.changedTouches).forEach(touch => {
@@ -98,7 +103,6 @@ function App() {
   };
 
   const handleButtonClick = (buttonId) => {
-    console.log('Button clicked:', buttonId);
     setActiveButton(buttonId);
   };
 
@@ -149,37 +153,40 @@ function App() {
           </div>
         </div>
         <Routes>
-          <Route path="/" element={
-            <div className="plant-container">
-              <div className="plant"></div>
-            </div>
-          } />
+          <Route
+            path="/"
+            element={
+              <div className="plant-container">
+                <div className="plant"></div>
+              </div>
+            }
+          />
           <Route path="/mine" element={<Mine />} />
           <Route path="/friends" element={<Friends />} />
           <Route path="/earn" element={<Earn />} />
           <Route path="/airdrop" element={<Airdrop />} />
         </Routes>
         <div className="buttons-container">
-          <Link to="/" className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>
+          <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>
             <FontAwesomeIcon icon={faExchangeAlt} />
             Exchange
-          </Link>
-          <Link to="/mine" className={`button ${activeButton === 'mine' ? 'active' : ''}`} id="mine" onClick={() => handleButtonClick('mine')}>
+          </div>
+          <div className={`button ${activeButton === 'mine' ? 'active' : ''}`} id="mine" onClick={() => handleButtonClick('mine')}>
             <FontAwesomeIcon icon={faHammer} />
             Mine
-          </Link>
-          <Link to="/friends" className={`button ${activeButton === 'friends' ? 'active' : ''}`} id="friends" onClick={() => handleButtonClick('friends')}>
+          </div>
+          <div className={`button ${activeButton === 'friends' ? 'active' : ''}`} id="friends" onClick={() => handleButtonClick('friends')}>
             <FontAwesomeIcon icon={faUserFriends} />
             Friends
-          </Link>
-          <Link to="/earn" className={`button ${activeButton === 'earn' ? 'active' : ''}`} id="earn" onClick={() => handleButtonClick('earn')}>
+          </div>
+          <div className={`button ${activeButton === 'earn' ? 'active' : ''}`} id="earn" onClick={() => handleButtonClick('earn')}>
             <FontAwesomeIcon icon={faHandHoldingUsd} />
             Earn
-          </Link>
-          <Link to="/airdrop" className={`button ${activeButton === 'airdrop' ? 'active' : ''}`} id="airdrop" onClick={() => handleButtonClick('airdrop')}>
+          </div>
+          <div className={`button ${activeButton === 'airdrop' ? 'active' : ''}`} id="airdrop" onClick={() => handleButtonClick('airdrop')}>
             <FontAwesomeIcon icon={faCoins} />
             Airdrop
-          </Link>
+          </div>
         </div>
         <div className="messages-container">
           {messages.map(message => (
@@ -194,7 +201,7 @@ function App() {
         </div>
         {levelUpNotification && (
           <div className="level-up-notification">
-            {levelUpNotification}
+            <FontAwesomeIcon icon={faCheckCircle} /> {levelUpNotification}
           </div>
         )}
       </div>

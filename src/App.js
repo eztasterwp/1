@@ -30,8 +30,6 @@ function App() {
   }, []);
 
   const handleTouchStart = (event) => {
-    event.preventDefault();
-
     const plantElement = document.querySelector('.plant');
     const rect = plantElement.getBoundingClientRect();
 
@@ -93,17 +91,12 @@ function App() {
     return (points / coinsToLevelUp) * 100;
   };
 
-  const handleTouchEnd = (event) => {
-    // Эта функция остановит длительное нажатие и заставит событие "отпустить" пальцы
-    event.preventDefault();
-  };
-
   if (!backgroundLoaded) {
     return null;
   }
 
   return (
-    <div className="App" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onTouchMove={(e) => e.preventDefault()}>
+    <div className="App" onTouchStart={handleTouchStart}>
       <div className="header">
         <div className="header-top">
           <div className="header-col" style={{ display: 'flex', alignItems: 'center' }}>

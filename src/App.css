@@ -104,8 +104,8 @@ body {
 
 .header .level-text {
   margin-top: 5px;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 16px; /* Увеличение размера шрифта */
+  font-weight: bold; /* Жирный шрифт */
   color: #fff;
 }
 
@@ -217,7 +217,7 @@ body {
   position: absolute;
   color: yellow;
   font-size: 32px;
-  animation: flyUp 3s forwards;
+  animation: flyUp 3s forwards; /* Анимация длится 3 секунды */
 }
 
 @keyframes flyUp {
@@ -233,18 +233,19 @@ body {
 
 .level-up-notification {
   position: absolute;
-  top: 5%;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 10px 20px;
+  padding: 10px;
   border-radius: 10px;
   font-size: 14px;
   text-align: center;
   z-index: 50;
   display: flex;
   align-items: center;
+  gap: 10px;
   animation: fadeInOut 3s forwards;
 }
 

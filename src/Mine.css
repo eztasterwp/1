@@ -1,8 +1,8 @@
 .mine-container {
     padding: 20px;
     color: white;
-    overflow-y: auto; /* Добавим прокрутку */
-    height: calc(100vh - 150px); /* Высота контейнера с учетом верхнего и нижнего отступа */
+    overflow-y: auto; /* Добавим вертикальную прокрутку */
+    height: calc(100vh - 200px); /* Высота контейнера с учетом верхнего и нижнего отступа */
   }
   
   .tabs {
@@ -31,14 +31,14 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: center;
+    justify-content: space-between; /* Делаем равное распределение между элементами */
   }
   
   .quest {
     background: #222;
     border-radius: 10px;
     padding: 10px;
-    width: 45%; /* Две карточки в ряд */
+    width: 48%; /* Две карточки в ряд */
     display: flex;
     flex-direction: column;
     align-items: center;

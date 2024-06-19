@@ -64,7 +64,7 @@ function App() {
           if (newPoints >= coinsToLevelUp) {
             setLevel(prevLevel => {
               const newLevel = prevLevel + 1;
-              setLevelUpNotification(`Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`);
+              setLevelUpNotification(`Congratulations, you have reached level ${newLevel}`);
               setTimeout(() => setLevelUpNotification(''), 3000); // Уведомление исчезает через 3 секунды
               return newLevel;
             });

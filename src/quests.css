@@ -1,0 +1,63 @@
+.quests {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .quest {
+    background-color: #333;
+    border-radius: 10px;
+    padding: 10px;
+    width: 45%;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .quest-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  .quest-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .quest-info h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #FFD700;
+  }
+  
+  .quest-info p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #ccc;
+  }
+  
+  .quest-info button {
+    background-color: #FFD700;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+  
+  .quest-info button:disabled {
+    background-color: #777;
+    cursor: not-allowed;
+  }
+  
+  .quest-info button:hover:not(:disabled) {
+    background-color: #FFA500;
+  }
+  

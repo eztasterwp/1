@@ -45,14 +45,19 @@ function App() {
       e.preventDefault();
     };
 
-    document.addEventListener('touchstart', allowSwipeOnMenu, { passive: false });
-    document.addEventListener('touchmove', allowSwipeOnMenu, { passive: false });
+    if (activeButton === 'exchange') {
+      document.addEventListener('touchstart', allowSwipeOnMenu, { passive: false });
+      document.addEventListener('touchmove', allowSwipeOnMenu, { passive: false });
+    } else {
+      document.removeEventListener('touchstart', allowSwipeOnMenu);
+      document.removeEventListener('touchmove', allowSwipeOnMenu);
+    }
 
     return () => {
       document.removeEventListener('touchstart', allowSwipeOnMenu);
       document.removeEventListener('touchmove', allowSwipeOnMenu);
     };
-  }, []);
+  }, [activeButton]);
 
   const handleTouchStart = (event) => {
     const plantElement = document.querySelector('.plant');

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Mine from './Mine';
 import Friends from './Friends';
 import Earn from './Earn';
@@ -33,29 +34,26 @@ function App() {
     }
 
     const preventSwipe = (e) => {
-      if (e.touches.length === 1) {
-        e.preventDefault();
-      }
-    };
-
-    const allowSwipeOnMenu = (e) => {
-      if (e.target.closest('.buttons-container')) {
-        return; // Разрешаем свайп на меню
-      }
       e.preventDefault();
     };
 
-    document.addEventListener('touchstart', allowSwipeOnMenu, { passive: false });
-    document.addEventListener('touchmove', allowSwipeOnMenu, { passive: false });
+    document.addEventListener('touchstart', preventSwipe, { passive: false });
+    document.addEventListener('touchmove', preventSwipe, { passive: false });
+    document.addEventListener('touchend', preventSwipe, { passive: false });
 
     return () => {
-      document.removeEventListener('touchstart', allowSwipeOnMenu);
-      document.removeEventListener('touchmove', allowSwipeOnMenu);
+      document.removeEventListener('touchstart', preventSwipe);
+      document.removeEventListener('touchmove', preventSwipe);
+      document.removeEventListener('touchend', preventSwipe);
     };
   }, []);
 
   const handleTouchStart = (event) => {
+    event.preventDefault();
+
     const plantElement = document.querySelector('.plant');
+    if (!plantElement) return;
+
     const rect = plantElement.getBoundingClientRect();
 
     Array.from(event.changedTouches).forEach(touch => {
@@ -116,25 +114,9 @@ function App() {
     return (points / coinsToLevelUp) * 100;
   };
 
-  const renderContent = () => {
-    switch (activeButton) {
-      case 'exchange':
-        return (
-          <div className="plant-container">
-            <div className="plant"></div>
-          </div>
-        );
-      case 'mine':
-        return <Mine />;
-      case 'friends':
-        return <Friends />;
-      case 'earn':
-        return <Earn />;
-      case 'airdrop':
-        return <Airdrop />;
-      default:
-        return null;
-    }
+  const handleTouchEnd = (event) => {
+    // Эта функция остановит длительное нажатие и заставит событие "отпустить" пальцы
+    event.preventDefault();
   };
 
   if (!backgroundLoaded) {
@@ -142,70 +124,84 @@ function App() {
   }
 
   return (
-    <div className="App" onTouchStart={handleTouchStart}>
-      <div className="header">
-        <div className="header-top">
-          <div className="header-col" style={{ display: 'flex', alignItems: 'center' }}>
-            <img src="avatar.png" alt="avatar" className="avatar" />
-            <span className="username">{username}</span>
-          </div>
-          <div className="header-col">
-            <FontAwesomeIcon icon={faEllipsisH} className="settings-icon" />
-          </div>
-        </div>
-        <div className="header-bottom">
-          <div className="coin-display">
-            <img src="coin.png" alt="coin" className="coin" />
-            <h1>{formatPoints(points)}</h1>
-          </div>
-          <div className="level-display">
-            <div className="level-bar-container">
-              <div className="level-bar" style={{ width: `${calculateLevelProgress()}%` }}></div>
+    <Router>
+      <div className="App" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onTouchMove={(e) => e.preventDefault()}>
+        <div className="header">
+          <div className="header-top">
+            <div className="header-col" style={{ display: 'flex', alignItems: 'center' }}>
+              <img src="avatar.png" alt="avatar" className="avatar" />
+              <span className="username">{username}</span>
             </div>
-            <div className="level-text">Grower {level}/10</div>
+            <div className="header-col">
+              <FontAwesomeIcon icon={faEllipsisH} className="settings-icon" />
+            </div>
+          </div>
+          {activeButton === 'exchange' && (
+            <div className="header-bottom">
+              <div className="coin-display">
+                <img src="coin.png" alt="coin" className="coin" />
+                <h1>{formatPoints(points)}</h1>
+              </div>
+              <div className="level-display">
+                <div className="level-bar-container">
+                  <div className="level-bar" style={{ width: `${calculateLevelProgress()}%` }}></div>
+                </div>
+                <div className="level-text">Grower {level}/10</div>
+              </div>
+            </div>
+          )}
+        </div>
+        <Switch>
+          <Route path="/mine" component={Mine} />
+          <Route path="/friends" component={Friends} />
+          <Route path="/earn" component={Earn} />
+          <Route path="/airdrop" component={Airdrop} />
+          <Route path="/" exact>
+            <div className="plant-container">
+              <div className="plant"></div>
+            </div>
+          </Route>
+        </Switch>
+        <div className="buttons-container">
+          <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>
+            <FontAwesomeIcon icon={faExchangeAlt} />
+            Exchange
+          </div>
+          <div className={`button ${activeButton === 'mine' ? 'active' : ''}`} id="mine" onClick={() => handleButtonClick('mine')}>
+            <FontAwesomeIcon icon={faHammer} />
+            Mine
+          </div>
+          <div className={`button ${activeButton === 'friends' ? 'active' : ''}`} id="friends" onClick={() => handleButtonClick('friends')}>
+            <FontAwesomeIcon icon={faUserFriends} />
+            Friends
+          </div>
+          <div className={`button ${activeButton === 'earn' ? 'active' : ''}`} id="earn" onClick={() => handleButtonClick('earn')}>
+            <FontAwesomeIcon icon={faHandHoldingUsd} />
+            Earn
+          </div>
+          <div className={`button ${activeButton === 'airdrop' ? 'active' : ''}`} id="airdrop" onClick={() => handleButtonClick('airdrop')}>
+            <FontAwesomeIcon icon={faCoins} />
+            Airdrop
           </div>
         </div>
-      </div>
-      {renderContent()}
-      <div className="buttons-container">
-        <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>
-          <FontAwesomeIcon icon={faExchangeAlt} />
-          Exchange
+        <div className="messages-container">
+          {messages.map(message => (
+            <div
+              key={message.id}
+              className="message"
+              style={{ top: `${message.y}px`, left: `${message.x}px` }}
+            >
+              {message.text}
+            </div>
+          ))}
         </div>
-        <div className={`button ${activeButton === 'mine' ? 'active' : ''}`} id="mine" onClick={() => handleButtonClick('mine')}>
-          <FontAwesomeIcon icon={faHammer} />
-          Mine
-        </div>
-        <div className={`button ${activeButton === 'friends' ? 'active' : ''}`} id="friends" onClick={() => handleButtonClick('friends')}>
-          <FontAwesomeIcon icon={faUserFriends} />
-          Friends
-        </div>
-        <div className={`button ${activeButton === 'earn' ? 'active' : ''}`} id="earn" onClick={() => handleButtonClick('earn')}>
-          <FontAwesomeIcon icon={faHandHoldingUsd} />
-          Earn
-        </div>
-        <div className={`button ${activeButton === 'airdrop' ? 'active' : ''}`} id="airdrop" onClick={() => handleButtonClick('airdrop')}>
-          <FontAwesomeIcon icon={faCoins} />
-          Airdrop
-        </div>
-      </div>
-      <div className="messages-container">
-        {messages.map(message => (
-          <div
-            key={message.id}
-            className="message"
-            style={{ top: `${message.y}px`, left: `${message.x}px` }}
-          >
-            {message.text}
+        {levelUpNotification && (
+          <div className="level-up-notification">
+            {levelUpNotification}
           </div>
-        ))}
+        )}
       </div>
-      {levelUpNotification && (
-        <div className="level-up-notification">
-          {levelUpNotification}
-        </div>
-      )}
-    </div>
+    </Router>
   );
 }
 

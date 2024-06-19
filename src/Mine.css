@@ -1,6 +1,7 @@
 .mine-container {
     padding: 20px;
     color: white;
+    margin-top: 60px; /* Добавлено чтобы отступить сверху */
   }
   
   .tabs {
@@ -40,37 +41,13 @@
     background: #333;
   }
   
-  .quest-header {
+  .quest .quest-info {
+    flex: 1;
+  }
+  
+  .quest .quest-actions {
     display: flex;
     flex-direction: column;
-  }
-  
-  .quest-title {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .quest-profit {
-    font-size: 14px;
-  }
-  
-  .quest-profit span {
-    color: #FFD700;
-  }
-  
-  .quest-level, .quest-cost {
-    font-size: 14px;
-    text-align: center;
-  }
-  
-  .quest-level {
-    flex: 0 0 50px;
-  }
-  
-  .quest-cost {
-    flex: 0 0 80px;
-    background: #333;
-    border-radius: 5px;
-    padding: 5px;
+    align-items: flex-end;
   }
   

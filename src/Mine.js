@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Mine.css';
 
 function Mine() {
-  const [activeTab, setActiveTab] = useState('Markets');
-
   const quests = [
     { name: 'Fan tokens', profit: 950, cost: 10000, level: 0 },
     { name: 'Staking', profit: 600, cost: 7000, level: 0 },
     { name: 'BTC pairs', profit: 40, cost: 250, level: 0 },
     { name: 'ETH pairs', profit: 40, cost: 331, level: 1 },
     { name: 'Top 10 cmc pairs', profit: 80, cost: 1000, level: 0 },
-    { name: 'GameFi tokens', profit: 70, cost: 500, level: 0 },
-    { name: 'Defi2.0 tokens', profit: 40, cost: 250, level: 0 },
+    { name: 'GameFi tokens', profit: 70, cost: 400, level: 0 },
+    { name: 'Defi2.0 tokens', profit: 40, cost: 200, level: 0 },
     { name: 'SocialFi tokens', profit: 50, cost: 800, level: 0 }
   ];
 
@@ -19,11 +17,7 @@ function Mine() {
     <div className="mine-page">
       <div className="tabs">
         {['Markets', 'PR&Team', 'Legal', 'Specials'].map(tab => (
-          <div
-            key={tab}
-            className={`tab ${activeTab === tab ? 'active' : ''}`}
-            onClick={() => setActiveTab(tab)}
-          >
+          <div key={tab} className="tab">
             {tab}
           </div>
         ))}

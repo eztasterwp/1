@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import Mine from './Mine'; // Импортируем компонент Mine
 
 function App() {
   const [points, setPoints] = useState(0);
@@ -112,6 +113,22 @@ function App() {
     event.preventDefault();
   };
 
+  const renderContent = () => {
+    switch (activeButton) {
+      case 'exchange':
+        return (
+          <div className="plant-container">
+            <div className="plant"></div>
+          </div>
+        );
+      case 'mine':
+        return <Mine />;
+      // Добавьте сюда другие случаи для Friends, Earn и Airdrop, если нужно
+      default:
+        return null;
+    }
+  };
+
   if (!backgroundLoaded) {
     return null;
   }
@@ -128,22 +145,22 @@ function App() {
             <FontAwesomeIcon icon={faEllipsisH} className="settings-icon" />
           </div>
         </div>
-        <div className="header-bottom">
-          <div className="coin-display">
-            <img src="coin.png" alt="coin" className="coin" />
-            <h1>{formatPoints(points)}</h1>
-          </div>
-          <div className="level-display">
-            <div className="level-bar-container">
-              <div className="level-bar" style={{ width: `${calculateLevelProgress()}%` }}></div>
+        {activeButton === 'exchange' && (
+          <div className="header-bottom">
+            <div className="coin-display">
+              <img src="coin.png" alt="coin" className="coin" />
+              <h1>{formatPoints(points)}</h1>
             </div>
-            <div className="level-text">Grower {level}/10</div>
+            <div className="level-display">
+              <div className="level-bar-container">
+                <div className="level-bar" style={{ width: `${calculateLevelProgress()}%` }}></div>
+              </div>
+              <div className="level-text">Grower {level}/10</div>
+            </div>
           </div>
-        </div>
+        )}
       </div>
-      <div className="plant-container">
-        <div className="plant"></div>
-      </div>
+      {renderContent()}
       <div className="buttons-container">
         <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>
           <FontAwesomeIcon icon={faExchangeAlt} />

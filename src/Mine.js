@@ -1,33 +1,49 @@
 import React from 'react';
-import './Mine.css'; // Создайте и используйте стили для страницы Mine
+import './Mine.css';
 
 const Mine = () => {
   return (
     <div className="mine">
       <div className="mine-header">
         <div className="mine-tabs">
-          <div className="mine-tab">Удобрения</div>
-          <div className="mine-tab">Семена</div>
-          <div className="mine-tab">Земля</div>
-          <div className="mine-tab">Вода</div>
-          <div className="mine-tab">Лампы</div>
+          <div className="mine-tab">Fertilizers</div>
+          <div className="mine-tab">Seeds</div>
+          <div className="mine-tab">Soil</div>
+          <div className="mine-tab">Water</div>
+          <div className="mine-tab">Lamps</div>
         </div>
       </div>
       <div className="mine-content">
-        {/* Пример квестов */}
         <div className="quest">
-          <div className="quest-title">Удобрения</div>
-          <div className="quest-progress">1/10</div>
-          <div className="quest-reward">+50 очков/час</div>
-          <button className="quest-button">Купить за 10 очков</button>
+          <div className="quest-title">Fertilizers</div>
+          <div className="quest-progress">lvl 1/10</div>
+          <div className="quest-reward">+50/hr</div>
+          <button className="quest-button">Upgrade</button>
         </div>
         <div className="quest">
-          <div className="quest-title">Семена</div>
-          <div className="quest-progress">0/10</div>
-          <div className="quest-reward">+30 очков/час</div>
-          <button className="quest-button">Купить за 5 очков</button>
+          <div className="quest-title">Seeds</div>
+          <div className="quest-progress">lvl 1/10</div>
+          <div className="quest-reward">+50/hr</div>
+          <button className="quest-button">Upgrade</button>
         </div>
-        {/* Добавьте остальные квесты аналогично */}
+        <div className="quest">
+          <div className="quest-title">Soil</div>
+          <div className="quest-progress">lvl 1/10</div>
+          <div className="quest-reward">+50/hr</div>
+          <button className="quest-button">Upgrade</button>
+        </div>
+        <div className="quest">
+          <div className="quest-title">Water</div>
+          <div className="quest-progress">lvl 1/10</div>
+          <div className="quest-reward">+50/hr</div>
+          <button className="quest-button">Upgrade</button>
+        </div>
+        <div className="quest">
+          <div className="quest-title">Lamps</div>
+          <div className="quest-progress">lvl 1/10</div>
+          <div className="quest-reward">+50/hr</div>
+          <button className="quest-button">Upgrade</button>
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import Mine from './Mine';
 
 function App() {
@@ -15,7 +15,6 @@ function App() {
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
   const [levelUpNotification, setLevelUpNotification] = useState('');
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,6 +50,7 @@ function App() {
     event.preventDefault();
 
     const plantElement = document.querySelector('.plant');
+    if (!plantElement) return;
     const rect = plantElement.getBoundingClientRect();
 
     Array.from(event.changedTouches).forEach(touch => {
@@ -91,7 +91,7 @@ function App() {
           setMessages(prevMessages =>
             prevMessages.filter(msg => msg.id !== newMessage.id)
           );
-        }, 1000); // Ускоряем анимацию до 1 секунды
+        }, 3000); // Ускоряем анимацию до 1 секунды
       }
     });
   };
@@ -147,30 +147,7 @@ function App() {
         </div>
       </div>
       <Routes>
-        <Route path="/" element={
-          <div>
-            <div className="plant-container">
-              <div className="plant"></div>
-            </div>
-            <div className="messages-container">
-              {messages.map(message => (
-                <div
-                  key={message.id}
-                  className="message"
-                  style={{ top: `${message.y}px`, left: `${message.x}px` }}
-                >
-                  {message.text}
-                </div>
-              ))}
-            </div>
-            {levelUpNotification && (
-              <div className="level-up-notification">
-                <FontAwesomeIcon icon={faCheckCircle} className="level-up-icon" />
-                {levelUpNotification}
-              </div>
-            )}
-          </div>
-        } />
+        <Route path="/" element={<HomePage />} />
         <Route path="/mine" element={<Mine />} />
       </Routes>
       <div className="buttons-container">
@@ -195,8 +172,30 @@ function App() {
           Airdrop
         </div>
       </div>
+      <div className="messages-container">
+        {messages.map(message => (
+          <div
+            key={message.id}
+            className="message"
+            style={{ top: `${message.y}px`, left: `${message.x}px` }}
+          >
+            {message.text}
+          </div>
+        ))}
+      </div>
+      {levelUpNotification && (
+        <div className="level-up-notification">
+          <FontAwesomeIcon icon={faCheckCircle} /> {levelUpNotification}
+        </div>
+      )}
     </div>
   );
 }
+
+const HomePage = () => (
+  <div className="plant-container">
+    <div className="plant"></div>
+  </div>
+);
 
 export default App;

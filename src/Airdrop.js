@@ -3,8 +3,8 @@ import React from 'react';
 const Airdrop = () => {
   return (
     <div className="airdrop-page">
-      <h1>Airdrop Page</h1>
-      <p>This is the Airdrop page content.</p>
+      <h2>Airdrop</h2>
+      <p>Здесь будет информация о раздачах.</p>
     </div>
   );
 };

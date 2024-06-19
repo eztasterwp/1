@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import Mine from './Mine';
+import Friends from './Friends';
+import Earn from './Earn';
+import Airdrop from './Airdrop';
 
 function App() {
   const [points, setPoints] = useState(0);
@@ -91,6 +95,27 @@ function App() {
     return (points / coinsToLevelUp) * 100;
   };
 
+  const renderContent = () => {
+    switch (activeButton) {
+      case 'exchange':
+        return (
+          <div className="plant-container">
+            <div className="plant"></div>
+          </div>
+        );
+      case 'mine':
+        return <Mine />;
+      case 'friends':
+        return <Friends />;
+      case 'earn':
+        return <Earn />;
+      case 'airdrop':
+        return <Airdrop />;
+      default:
+        return null;
+    }
+  };
+
   if (!backgroundLoaded) {
     return null;
   }
@@ -120,9 +145,7 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="plant-container">
-        <div className="plant"></div>
-      </div>
+      {renderContent()}
       <div className="buttons-container">
         <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>
           <FontAwesomeIcon icon={faExchangeAlt} />

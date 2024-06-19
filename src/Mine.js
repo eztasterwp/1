@@ -3,8 +3,8 @@ import React from 'react';
 const Mine = () => {
   return (
     <div className="mine-page">
-      <h1>Mine Page</h1>
-      <p>This is the Mine page content.</p>
+      <h2>Mine</h2>
+      <p>Здесь будут ваши квесты.</p>
     </div>
   );
 };

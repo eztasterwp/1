@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import Mine from './Mine';
 import Friends from './Friends';
 import Earn from './Earn';
@@ -151,17 +151,17 @@ function App() {
             </div>
           )}
         </div>
-        <Switch>
-          <Route path="/mine" component={Mine} />
-          <Route path="/friends" component={Friends} />
-          <Route path="/earn" component={Earn} />
-          <Route path="/airdrop" component={Airdrop} />
-          <Route path="/" exact>
+        <Routes>
+          <Route path="/mine" element={<Mine />} />
+          <Route path="/friends" element={<Friends />} />
+          <Route path="/earn" element={<Earn />} />
+          <Route path="/airdrop" element={<Airdrop />} />
+          <Route path="/" element={
             <div className="plant-container">
               <div className="plant"></div>
             </div>
-          </Route>
-        </Switch>
+          } />
+        </Routes>
         <div className="buttons-container">
           <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>
             <FontAwesomeIcon icon={faExchangeAlt} />

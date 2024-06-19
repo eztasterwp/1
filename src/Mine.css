@@ -1,12 +1,14 @@
-.mine-container {
+.mine-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
-    color: white;
-    margin-top: 60px; /* Добавлено чтобы отступить сверху */
   }
   
   .tabs {
     display: flex;
     justify-content: space-around;
+    width: 100%;
     margin-bottom: 20px;
   }
   
@@ -14,40 +16,56 @@
     flex: 1;
     text-align: center;
     padding: 10px;
-    background: #333;
-    border-radius: 10px;
-    margin: 0 5px;
     cursor: pointer;
-    transition: background 0.3s, color 0.3s;
+    background-color: #333;
+    color: #fff;
+    margin: 0 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
   }
   
   .tab.active {
-    background: #555;
-    color: #FFD700;
+    background-color: #666;
+  }
+  
+  .quests {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
   
   .quest {
-    background: #222;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    transition: background 0.3s;
+    background-color: #444;
+    color: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
   }
   
-  .quest:hover {
-    background: #333;
-  }
-  
-  .quest .quest-info {
+  .quest-info {
     flex: 1;
   }
   
-  .quest .quest-actions {
+  .quest-actions {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+  }
+  
+  .quest button {
+    background-color: #666;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .quest button:hover {
+    background-color: #888;
   }
   

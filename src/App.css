@@ -21,9 +21,9 @@ body {
 
 .header {
   position: absolute;
-  top: 0;
+  top: -5px; /* Подняли чуть выше */
   left: 50%;
-  transform: translateX(-50%) translateY(-5px); /* Приподнимаем чуть выше */
+  transform: translateX(-50%);
   width: 95%;
   z-index: 30;
   background: rgba(0, 0, 0, 0.7);
@@ -234,37 +234,37 @@ body {
 
 .level-up-notification {
   position: absolute;
-  bottom: 10px;
+  top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-100%); /* Начальная позиция за пределами экрана */
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 10px 20px;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 14px; /* Маленький шрифт */
   font-weight: bold;
   display: flex;
   align-items: center;
   z-index: 50;
-  animation: fadeInUp 3s forwards; /* Анимация уведомления */
+  animation: slideDown 3s forwards; /* Анимация уведомления */
 }
 
-@keyframes fadeInUp {
+@keyframes slideDown {
   0% {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateX(-50%) translateY(-100%);
   }
   20% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
   }
   80% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
   }
   100% {
     opacity: 0;
-    transform: translateY(-50px);
+    transform: translateX(-50%) translateY(-100%);
   }
 }
 

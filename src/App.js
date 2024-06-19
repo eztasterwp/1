@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
@@ -89,7 +89,7 @@ function App() {
           setMessages(prevMessages =>
             prevMessages.filter(msg => msg.id !== newMessage.id)
           );
-        }, 3000); // Ускоряем анимацию до 3 секунд
+        }, 1000); // Ускоряем анимацию до 1 секунды
       }
     });
   };
@@ -109,13 +109,18 @@ function App() {
     return (points / coinsToLevelUp) * 100;
   };
 
+  const handleTouchEnd = (event) => {
+    // Эта функция остановит длительное нажатие и заставит событие "отпустить" пальцы
+    event.preventDefault();
+  };
+
   if (!backgroundLoaded) {
     return null;
   }
 
   return (
     <Router>
-      <div className="App" onTouchStart={handleTouchStart} onTouchMove={(e) => e.preventDefault()}>
+      <div className="App" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onTouchMove={(e) => e.preventDefault()}>
         <div className="header">
           <div className="header-top">
             <div className="header-col" style={{ display: 'flex', alignItems: 'center' }}>
@@ -139,55 +144,55 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="plant-container">
-          <div className="plant"></div>
-        </div>
+        <Routes>
+          <Route path="/" element={
+            <div>
+              <div className="plant-container">
+                <div className="plant"></div>
+              </div>
+              <div className="messages-container">
+                {messages.map(message => (
+                  <div
+                    key={message.id}
+                    className="message"
+                    style={{ top: `${message.y}px`, left: `${message.x}px` }}
+                  >
+                    {message.text}
+                  </div>
+                ))}
+              </div>
+              {levelUpNotification && (
+                <div className="level-up-notification">
+                  <FontAwesomeIcon icon={faCheckCircle} className="level-up-icon" />
+                  {levelUpNotification}
+                </div>
+              )}
+            </div>
+          } />
+          <Route path="/mine" element={<Mine />} />
+        </Routes>
         <div className="buttons-container">
-          <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')} onTouchEnd={() => handleButtonClick('exchange')}>
+          <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>
             <FontAwesomeIcon icon={faExchangeAlt} />
             Exchange
           </div>
-          <div className={`button ${activeButton === 'mine' ? 'active' : ''}`} id="mine" onClick={() => handleButtonClick('mine')} onTouchEnd={() => handleButtonClick('mine')}>
+          <div className={`button ${activeButton === 'mine' ? 'active' : ''}`} id="mine" onClick={() => handleButtonClick('mine')}>
             <FontAwesomeIcon icon={faHammer} />
             Mine
           </div>
-          <div className={`button ${activeButton === 'friends' ? 'active' : ''}`} id="friends" onClick={() => handleButtonClick('friends')} onTouchEnd={() => handleButtonClick('friends')}>
+          <div className={`button ${activeButton === 'friends' ? 'active' : ''}`} id="friends" onClick={() => handleButtonClick('friends')}>
             <FontAwesomeIcon icon={faUserFriends} />
             Friends
           </div>
-          <div className={`button ${activeButton === 'earn' ? 'active' : ''}`} id="earn" onClick={() => handleButtonClick('earn')} onTouchEnd={() => handleButtonClick('earn')}>
+          <div className={`button ${activeButton === 'earn' ? 'active' : ''}`} id="earn" onClick={() => handleButtonClick('earn')}>
             <FontAwesomeIcon icon={faHandHoldingUsd} />
             Earn
           </div>
-          <div className={`button ${activeButton === 'airdrop' ? 'active' : ''}`} id="airdrop" onClick={() => handleButtonClick('airdrop')} onTouchEnd={() => handleButtonClick('airdrop')}>
+          <div className={`button ${activeButton === 'airdrop' ? 'active' : ''}`} id="airdrop" onClick={() => handleButtonClick('airdrop')}>
             <FontAwesomeIcon icon={faCoins} />
             Airdrop
           </div>
         </div>
-        <div className="messages-container">
-          {messages.map(message => (
-            <div
-              key={message.id}
-              className="message"
-              style={{ top: `${message.y}px`, left: `${message.x}px` }}
-            >
-              {message.text}
-            </div>
-          ))}
-        </div>
-        {levelUpNotification && (
-          <div className="level-up-notification">
-            <FontAwesomeIcon icon={faCheckCircle} /> {levelUpNotification}
-          </div>
-        )}
-        <Routes>
-          <Route path="/mine" element={<Mine />} />
-          <Route path="/" element={
-            <div className="main-content">
-              {/* Main content here */}
-            </div>
-          } />
-        </Routes>
       </div>
     </Router>
   );

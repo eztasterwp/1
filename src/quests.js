@@ -24,18 +24,11 @@ function Quests() {
     <div className="quests">
       {quests.map(quest => (
         <div key={quest.id} className="quest">
-          <img src={`quest${quest.id}.png`} alt={quest.name} className="quest-icon" />
-          <div className="quest-info">
-            <h3>{quest.name}</h3>
-            <p>Profit per hour: {quest.profit} 💨</p>
-            <p>lvl {quest.level}/{quest.maxLevel}</p>
-            <button
-              onClick={() => upgradeQuest(quest.id)}
-              disabled={quest.level >= quest.maxLevel}
-            >
-              {quest.level < quest.maxLevel ? `Upgrade for ${quest.cost} 💨` : 'Max level reached'}
-            </button>
-          </div>
+          <h3>{quest.name}</h3>
+          <p>Level: {quest.level}/{quest.maxLevel}</p>
+          <p>Cost: {quest.cost} points</p>
+          <p>Profit: {quest.profit} points/hour</p>
+          <button onClick={() => upgradeQuest(quest.id)}>Upgrade</button>
         </div>
       ))}
     </div>

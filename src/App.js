@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Quests from './Quests'; // Import the Quests component
+import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import Quests from './Quests';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 function App() {
   const [points, setPoints] = useState(0);
@@ -11,7 +11,7 @@ function App() {
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
   const [level, setLevel] = useState(1);
   const [coinsPerTap, setCoinsPerTap] = useState(2);
-  const [coinsToLevelUp, setCoinsToLevelUp] = useState(50); // Уменьшил для тестирования
+  const [coinsToLevelUp, setCoinsToLevelUp] = useState(50); // Adjust for testing
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
   const [levelUpNotification, setLevelUpNotification] = useState('');
@@ -26,7 +26,7 @@ function App() {
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.ready();
-      tg.expand(); // Разворачивание приложения на полный экран
+      tg.expand(); // Expand the app to full screen
       setUsername(tg.initDataUnsafe.user ? tg.initDataUnsafe.user.username : 'User');
     }
 
@@ -49,6 +49,8 @@ function App() {
     event.preventDefault();
 
     const plantElement = document.querySelector('.plant');
+    if (!plantElement) return;
+
     const rect = plantElement.getBoundingClientRect();
 
     Array.from(event.changedTouches).forEach(touch => {
@@ -67,10 +69,10 @@ function App() {
             setLevel(prevLevel => {
               const newLevel = prevLevel + 1;
               setLevelUpNotification(`Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`);
-              setTimeout(() => setLevelUpNotification(''), 3000); // Уведомление исчезает через 3 секунды
+              setTimeout(() => setLevelUpNotification(''), 3000); // Notification disappears after 3 seconds
               return newLevel;
             });
-            return newPoints - coinsToLevelUp; // Исправлено
+            return newPoints - coinsToLevelUp; // Adjusted
           } else {
             return newPoints;
           }
@@ -89,7 +91,7 @@ function App() {
           setMessages(prevMessages =>
             prevMessages.filter(msg => msg.id !== newMessage.id)
           );
-        }, 3000); // Ускоряем анимацию до 1 секунды
+        }, 1000); // Speed up animation to 1 second
       }
     });
   };
@@ -110,7 +112,6 @@ function App() {
   };
 
   const handleTouchEnd = (event) => {
-    // Эта функция остановит длительное нажатие и заставит событие "отпустить" пальцы
     event.preventDefault();
   };
 
@@ -144,34 +145,28 @@ function App() {
             </div>
           </div>
         </div>
-
         <Routes>
-          <Route path="/quests" element={<Quests />} />
-          <Route path="/" element={
-            <div className="plant-container">
-              <div className="plant"></div>
-            </div>
-          } />
+          <Route path="/" element={<div className="plant-container"><div className="plant"></div></div>} />
+          <Route path="/mine" element={<Quests />} />
         </Routes>
-
         <div className="buttons-container">
           <Link to="/" className={`button ${activeButton === 'exchange' ? 'active' : ''}`} onClick={() => handleButtonClick('exchange')}>
             <FontAwesomeIcon icon={faExchangeAlt} />
             Exchange
           </Link>
-          <Link to="/quests" className={`button ${activeButton === 'mine' ? 'active' : ''}`} onClick={() => handleButtonClick('mine')}>
+          <Link to="/mine" className={`button ${activeButton === 'mine' ? 'active' : ''}`} onClick={() => handleButtonClick('mine')}>
             <FontAwesomeIcon icon={faHammer} />
             Mine
           </Link>
-          <div className={`button ${activeButton === 'friends' ? 'active' : ''}`} id="friends" onClick={() => handleButtonClick('friends')}>
+          <div className={`button ${activeButton === 'friends' ? 'active' : ''}`} onClick={() => handleButtonClick('friends')}>
             <FontAwesomeIcon icon={faUserFriends} />
             Friends
           </div>
-          <div className={`button ${activeButton === 'earn' ? 'active' : ''}`} id="earn" onClick={() => handleButtonClick('earn')}>
+          <div className={`button ${activeButton === 'earn' ? 'active' : ''}`} onClick={() => handleButtonClick('earn')}>
             <FontAwesomeIcon icon={faHandHoldingUsd} />
             Earn
           </div>
-          <div className={`button ${activeButton === 'airdrop' ? 'active' : ''}`} id="airdrop" onClick={() => handleButtonClick('airdrop')}>
+          <div className={`button ${activeButton === 'airdrop' ? 'active' : ''}`} onClick={() => handleButtonClick('airdrop')}>
             <FontAwesomeIcon icon={faCoins} />
             Airdrop
           </div>
@@ -189,7 +184,6 @@ function App() {
         </div>
         {levelUpNotification && (
           <div className="level-up-notification">
-            <FontAwesomeIcon icon={faCheckCircle} className="icon" />
             {levelUpNotification}
           </div>
         )}

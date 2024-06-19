@@ -2,11 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import Mine from './Mine';
-import Friends from './Friends';
-import Earn from './Earn';
-import Airdrop from './Airdrop';
 
 function App() {
   const [points, setPoints] = useState(0);
@@ -52,8 +47,6 @@ function App() {
     event.preventDefault();
 
     const plantElement = document.querySelector('.plant');
-    if (!plantElement) return;
-
     const rect = plantElement.getBoundingClientRect();
 
     Array.from(event.changedTouches).forEach(touch => {
@@ -124,84 +117,72 @@ function App() {
   }
 
   return (
-    <Router>
-      <div className="App" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onTouchMove={(e) => e.preventDefault()}>
-        <div className="header">
-          <div className="header-top">
-            <div className="header-col" style={{ display: 'flex', alignItems: 'center' }}>
-              <img src="avatar.png" alt="avatar" className="avatar" />
-              <span className="username">{username}</span>
-            </div>
-            <div className="header-col">
-              <FontAwesomeIcon icon={faEllipsisH} className="settings-icon" />
-            </div>
+    <div className="App" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onTouchMove={(e) => e.preventDefault()}>
+      <div className="header">
+        <div className="header-top">
+          <div className="header-col" style={{ display: 'flex', alignItems: 'center' }}>
+            <img src="avatar.png" alt="avatar" className="avatar" />
+            <span className="username">{username}</span>
           </div>
-          {activeButton === 'exchange' && (
-            <div className="header-bottom">
-              <div className="coin-display">
-                <img src="coin.png" alt="coin" className="coin" />
-                <h1>{formatPoints(points)}</h1>
-              </div>
-              <div className="level-display">
-                <div className="level-bar-container">
-                  <div className="level-bar" style={{ width: `${calculateLevelProgress()}%` }}></div>
-                </div>
-                <div className="level-text">Grower {level}/10</div>
-              </div>
-            </div>
-          )}
-        </div>
-        <Routes>
-          <Route path="/mine" element={<Mine />} />
-          <Route path="/friends" element={<Friends />} />
-          <Route path="/earn" element={<Earn />} />
-          <Route path="/airdrop" element={<Airdrop />} />
-          <Route path="/" element={
-            <div className="plant-container">
-              <div className="plant"></div>
-            </div>
-          } />
-        </Routes>
-        <div className="buttons-container">
-          <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>
-            <FontAwesomeIcon icon={faExchangeAlt} />
-            Exchange
-          </div>
-          <div className={`button ${activeButton === 'mine' ? 'active' : ''}`} id="mine" onClick={() => handleButtonClick('mine')}>
-            <FontAwesomeIcon icon={faHammer} />
-            Mine
-          </div>
-          <div className={`button ${activeButton === 'friends' ? 'active' : ''}`} id="friends" onClick={() => handleButtonClick('friends')}>
-            <FontAwesomeIcon icon={faUserFriends} />
-            Friends
-          </div>
-          <div className={`button ${activeButton === 'earn' ? 'active' : ''}`} id="earn" onClick={() => handleButtonClick('earn')}>
-            <FontAwesomeIcon icon={faHandHoldingUsd} />
-            Earn
-          </div>
-          <div className={`button ${activeButton === 'airdrop' ? 'active' : ''}`} id="airdrop" onClick={() => handleButtonClick('airdrop')}>
-            <FontAwesomeIcon icon={faCoins} />
-            Airdrop
+          <div className="header-col">
+            <FontAwesomeIcon icon={faEllipsisH} className="settings-icon" />
           </div>
         </div>
-        <div className="messages-container">
-          {messages.map(message => (
-            <div
-              key={message.id}
-              className="message"
-              style={{ top: `${message.y}px`, left: `${message.x}px` }}
-            >
-              {message.text}
-            </div>
-          ))}
-        </div>
-        {levelUpNotification && (
-          <div className="level-up-notification">
-            {levelUpNotification}
+        <div className="header-bottom">
+          <div className="coin-display">
+            <img src="coin.png" alt="coin" className="coin" />
+            <h1>{formatPoints(points)}</h1>
           </div>
-        )}
+          <div className="level-display">
+            <div className="level-bar-container">
+              <div className="level-bar" style={{ width: `${calculateLevelProgress()}%` }}></div>
+            </div>
+            <div className="level-text">Grower {level}/10</div>
+          </div>
+        </div>
       </div>
-    </Router>
+      <div className="plant-container">
+        <div className="plant"></div>
+      </div>
+      <div className="buttons-container">
+        <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>
+          <FontAwesomeIcon icon={faExchangeAlt} />
+          Exchange
+        </div>
+        <div className={`button ${activeButton === 'mine' ? 'active' : ''}`} id="mine" onClick={() => handleButtonClick('mine')}>
+          <FontAwesomeIcon icon={faHammer} />
+          Mine
+        </div>
+        <div className={`button ${activeButton === 'friends' ? 'active' : ''}`} id="friends" onClick={() => handleButtonClick('friends')}>
+          <FontAwesomeIcon icon={faUserFriends} />
+          Friends
+        </div>
+        <div className={`button ${activeButton === 'earn' ? 'active' : ''}`} id="earn" onClick={() => handleButtonClick('earn')}>
+          <FontAwesomeIcon icon={faHandHoldingUsd} />
+          Earn
+        </div>
+        <div className={`button ${activeButton === 'airdrop' ? 'active' : ''}`} id="airdrop" onClick={() => handleButtonClick('airdrop')}>
+          <FontAwesomeIcon icon={faCoins} />
+          Airdrop
+        </div>
+      </div>
+      <div className="messages-container">
+        {messages.map(message => (
+          <div
+            key={message.id}
+            className="message"
+            style={{ top: `${message.y}px`, left: `${message.x}px` }}
+          >
+            {message.text}
+          </div>
+        ))}
+      </div>
+      {levelUpNotification && (
+        <div className="level-up-notification">
+          {levelUpNotification}
+        </div>
+      )}
+    </div>
   );
 }
 

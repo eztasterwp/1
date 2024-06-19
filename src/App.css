@@ -300,19 +300,19 @@ body {
 
 .stats-display {
   position: absolute;
-  top: 10px; /* Позиционируем ближе к верхнему краю */
+  top: 10px;
   left: 50%;
-  transform: translateX(-50%); /* Выравниваем по центру */
-  background: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
-  padding: 5px 10px; /* Отступы внутри блока */
-  border-radius: 5px; /* Скругленные углы */
-  color: white; /* Цвет текста */
-  font-size: 12px; /* Размер шрифта */
-  z-index: 20; /* Убедимся, что элемент находится поверх других */
-  display: flex; /* Используем флексбокс для выравнивания элементов */
-  align-items: center; /* Выравниваем элементы по центру */
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8); /* Более темный полупрозрачный фон для лучшей читаемости */
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 12px;
+  z-index: 1000; /* Увеличим z-index для отображения поверх других элементов */
+  display: flex;
+  align-items: center;
 }
 
 .stats-display span {
-  margin-left: 10px; /* Добавим немного пространства между элементами */
+  margin-left: 10px;
 }

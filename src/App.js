@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Quests from './Quests'; // Import the Quests component
 
 function App() {
@@ -145,16 +145,14 @@ function App() {
           </div>
         </div>
 
-        <Switch>
-          <Route path="/quests">
-            <Quests />
-          </Route>
-          <Route path="/">
+        <Routes>
+          <Route path="/quests" element={<Quests />} />
+          <Route path="/" element={
             <div className="plant-container">
               <div className="plant"></div>
             </div>
-          </Route>
-        </Switch>
+          } />
+        </Routes>
 
         <div className="buttons-container">
           <Link to="/" className={`button ${activeButton === 'exchange' ? 'active' : ''}`} onClick={() => handleButtonClick('exchange')}>

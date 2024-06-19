@@ -66,7 +66,7 @@ body {
 .header .username {
   font-size: 16px;
   margin-left: 10px;
-  font-weight: bold;
+  font-weight: bold; /* Сделать текст жирным */
 }
 
 .header .coin-display {
@@ -104,8 +104,8 @@ body {
 
 .header .level-text {
   margin-top: 5px;
-  font-size: 16px; /* Увеличен шрифт */
-  font-weight: bold; /* Жирный шрифт */
+  font-size: 16px; /* Увеличить размер шрифта на 2 пикселя */
+  font-weight: bold; /* Сделать текст жирным */
   color: #fff;
 }
 
@@ -170,6 +170,7 @@ body {
   border-radius: 20px;
   border: 1px solid #555;
   box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.5);
+  height: 50px; /* Уменьшение вертикального размера */
 }
 
 .button {
@@ -178,7 +179,7 @@ body {
   color: #888;
   font-size: 12px;
   cursor: pointer;
-  padding: 10px 0;
+  padding: 5px 0; /* Уменьшение вертикального размера */
   transition: color 0.3s, background-color 0.3s, transform 0.3s;
   display: flex;
   flex-direction: column;
@@ -216,7 +217,7 @@ body {
   position: absolute;
   color: yellow;
   font-size: 32px;
-  animation: flyUp 3s forwards;
+  animation: flyUp 3s forwards; /* Увеличение времени анимации */
 }
 
 @keyframes flyUp {
@@ -226,62 +227,60 @@ body {
   }
   100% {
     opacity: 0;
-    transform: translateY(-100px);
+    transform: translateY(-300px); /* Увеличение высоты анимации */
   }
 }
 
 .level-up-notification {
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: 5%;
   left: 50%;
   transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 10px 20px;
   border-radius: 10px;
-  font-size: 12px; /* Размер шрифта как на скриншоте */
+  font-size: 14px;
   text-align: center;
   z-index: 50;
   display: flex;
   align-items: center;
-  animation: slideDown 3s forwards;
+  animation: fadeInOut 3s forwards;
 }
 
-@keyframes slideDown {
+@keyframes fadeInOut {
   0% {
-    transform: translateY(-100%);
     opacity: 0;
   }
   20% {
-    transform: translateY(0);
     opacity: 1;
   }
   80% {
-    transform: translateY(0);
     opacity: 1;
   }
   100% {
-    transform: translateY(-100%);
     opacity: 0;
   }
 }
 
 .mine-page {
-  padding: 20px;
-  color: black;
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   height: 100%;
-  overflow-y: auto;
 }
 
 .quest {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: #f5f5f5;
+  justify-content: space-between;
+  width: 90%;
   padding: 10px;
+  margin: 10px 0;
+  background-color: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
-  margin-bottom: 10px;
 }
 
 .quest-icon {
@@ -294,5 +293,6 @@ body {
 }
 
 .quest-level {
+  font-size: 18px;
   font-weight: bold;
 }

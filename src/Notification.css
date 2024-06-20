@@ -1,5 +1,9 @@
 /* Notification.css */
 .notification {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 10px;

@@ -215,9 +215,9 @@ body {
 .message {
   position: absolute;
   color: white;
-  font-size: 20px;
+  font-size: 30px; /* Увеличен размер текста */
   pointer-events: none;
-  animation: flyUp 3s forwards; /* Увеличение скорости полета */
+  animation: flyUp 2s forwards; /* Увеличение скорости полета */
 }
 
 @keyframes flyUp {

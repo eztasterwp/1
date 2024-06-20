@@ -1,7 +1,7 @@
 .mine-container {
   padding: 20px;
   color: white;
-  max-width: 800px;
+  max-width: 100%;
   margin: 0 auto;
   background-color: transparent; /* Прозрачный фон для контейнера */
   border-radius: 10px;
@@ -12,14 +12,14 @@
 
 .quests {
   display: grid;
-  grid-template-columns: 1fr; /* Однообразное отображение в один столбец по умолчанию */
-  gap: 20px; /* Расстояние между квестами */
+  grid-template-columns: 1fr 1fr; /* Два столбца */
+  gap: 10px; /* Расстояние между квестами */
 }
 
 .quest {
-  background: rgba(34, 34, 34, 0.9);
+  background: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
-  padding: 20px;
+  padding: 15px;
   width: 100%; /* Квесты занимают всю ширину */
   box-sizing: border-box;
   display: flex;
@@ -93,15 +93,9 @@
   margin-left: 5px;
 }
 
-/* Стили для различных разрешений экранов */
-@media (min-width: 600px) {
+/* Обеспечиваем поддержку для мобильных экранов */
+@media (max-width: 300px) {
   .quests {
-    grid-template-columns: 1fr 1fr; /* Два столбца на экранах шире 600px */
-  }
-}
-
-@media (min-width: 1000px) {
-  .quests {
-    grid-template-columns: 1fr 1fr 1fr; /* Три столбца на экранах шире 1000px */
+    grid-template-columns: 1fr; /* Один столбец на экранах меньше 300px */
   }
 }

@@ -1,23 +1,25 @@
 .mine-container {
   padding: 20px;
   color: white;
-  max-width: 800px; /* Уменьшена максимальная ширина */
+  max-width: 800px;
   margin: 0 auto;
-  background-color: #1f1f1f; /* Темный фон для контейнера */
+  background-color: transparent; /* Прозрачный фон для контейнера */
   border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  box-shadow: none; /* Убираем тень контейнера */
+  overflow-y: auto; /* Возможность вертикальной прокрутки */
+  max-height: calc(100vh - 80px); /* Ограничена максимальная высота контейнера */
 }
 
 .quests {
-  display: flex;
-  flex-direction: column;
-  gap: 10px; /* Уменьшено расстояние между квестами */
+  display: grid;
+  grid-template-columns: 1fr; /* Однообразное отображение в один столбец по умолчанию */
+  gap: 20px; /* Расстояние между квестами */
 }
 
 .quest {
-  background: rgba(34, 34, 34, 0.8);
+  background: rgba(34, 34, 34, 0.9);
   border-radius: 10px;
-  padding: 15px; /* Уменьшены внутренние отступы */
+  padding: 20px;
   width: 100%; /* Квесты занимают всю ширину */
   box-sizing: border-box;
   display: flex;
@@ -30,7 +32,7 @@
 }
 
 .quest:hover {
-  background: rgba(51, 51, 51, 0.8);
+  background: rgba(51, 51, 51, 0.9);
   transform: translateY(-5px); /* Плавное перемещение вверх при наведении */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Тень при наведении */
   border: 1px solid #FFD700; /* Подсветка обводки при наведении */
@@ -39,7 +41,7 @@
 .quest-header {
   display: flex;
   align-items: center;
-  margin-bottom: 5px; /* Уменьшен отступ снизу */
+  margin-bottom: 10px; /* Уменьшен отступ снизу */
   width: 100%;
 }
 
@@ -89,4 +91,17 @@
 
 .quest-cost span {
   margin-left: 5px;
+}
+
+/* Стили для различных разрешений экранов */
+@media (min-width: 600px) {
+  .quests {
+    grid-template-columns: 1fr 1fr; /* Два столбца на экранах шире 600px */
+  }
+}
+
+@media (min-width: 1000px) {
+  .quests {
+    grid-template-columns: 1fr 1fr 1fr; /* Три столбца на экранах шире 1000px */
+  }
 }

@@ -1,49 +1,69 @@
 .mine-container {
-  padding: 20px;
+  padding: 10px;
   color: white;
   max-width: 100%;
   margin: 0 auto;
-  background-color: transparent; /* Прозрачный фон для контейнера */
+  background-color: transparent;
   border-radius: 10px;
-  box-shadow: none; /* Убираем тень контейнера */
-  overflow-y: auto; /* Возможность вертикальной прокрутки */
-  max-height: calc(100vh - 80px); /* Ограничена максимальная высота контейнера */
+  box-shadow: none;
+  overflow-y: auto;
+  max-height: calc(100vh - 80px);
 }
 
 .quests {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Два столбца по умолчанию */
-  gap: 15px; /* Увеличиваем расстояние между квестами */
-  padding: 0 15px; /* Добавляем отступы с боков */
-  box-sizing: border-box; /* Включаем отступы в ширину */
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
 .quest {
-  background: rgba(0, 0, 0, 0.8);
+  background-size: cover;
+  background-position: center;
   border-radius: 10px;
   padding: 15px;
-  width: 100%; /* Квесты занимают всю ширину */
+  width: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
   border: 1px solid transparent;
-  align-items: flex-start; /* Выровнено по левому краю */
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.quest::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+.quest-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
 }
 
 .quest:hover {
-  background: rgba(51, 51, 51, 0.9);
-  transform: translateY(-5px); /* Плавное перемещение вверх при наведении */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Тень при наведении */
-  border: 1px solid #FFD700; /* Подсветка обводки при наведении */
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  border: 1px solid #FFD700;
 }
 
 .quest-header {
   display: flex;
   align-items: center;
-  margin-bottom: 10px; /* Уменьшен отступ снизу */
+  justify-content: center;
+  margin-bottom: 5px;
   width: 100%;
 }
 
@@ -52,53 +72,60 @@
   font-weight: bold;
   display: flex;
   align-items: center;
-  flex-grow: 1;
+  justify-content: center;
 }
 
 .quest-icon {
+  font-size: 24px;
   margin-right: 8px;
-  color: #FFD700; /* Золотой цвет для иконок */
+  color: #FFD700;
 }
 
 .quest-profit {
   font-size: 14px;
   color: #FFD700;
-  margin-top: 5px; /* Уменьшен отступ сверху */
+  margin-top: 5px;
+  text-align: center;
 }
 
 .quest-details {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 14px;
+  font-size: 12px;
   width: 100%;
-  margin-top: 5px; /* Уменьшен отступ сверху */
+  margin-top: 10px;
 }
 
 .quest-level {
   background: #FFD700;
   color: #1f1f1f;
-  padding: 2px 8px;
+  padding: 2px 6px;
   border-radius: 5px;
   font-weight: bold;
-  font-size: 12px; /* Уменьшен размер шрифта */
+  font-size: 12px;
 }
 
 .quest-cost {
   display: flex;
   align-items: center;
+  justify-content: center;
   font-weight: bold;
-  color: #FFD700; /* Золотой цвет для стоимости */
+  color: #1f1f1f;
+  background: #FFD700;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
 }
 
 .quest-cost span {
   margin-left: 5px;
 }
 
-/* Обеспечиваем поддержку для небольших экранов */
+/* Поддержка для экранов менее 350px */
 @media (max-width: 350px) {
   .quests {
-    grid-template-columns: 1fr; /* Один столбец на экранах меньше 350px */
-    padding: 0 10px; /* Уменьшаем отступы для меньших экранов */
+    grid-template-columns: 1fr;
+    padding: 0 5px;
   }
 }

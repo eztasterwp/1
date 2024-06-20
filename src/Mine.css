@@ -1,11 +1,14 @@
 .mine-container {
   padding: 20px;
   color: white;
-  max-width: 800px; /* Увеличена максимальная ширина */
+  max-width: 800px;
   margin: 0 auto;
   background-color: #1f1f1f; /* Темный фон для контейнера */
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 60px); /* Высота контейнера */
 }
 
 .tabs {
@@ -34,6 +37,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px; /* Увеличено расстояние между квестами */
+  flex-grow: 1; /* Позволяет квестам занимать оставшееся пространство */
+  overflow-y: auto; /* Добавляет прокрутку по вертикали, если квесты не помещаются */
 }
 
 .quest {

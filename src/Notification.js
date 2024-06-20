@@ -7,8 +7,18 @@ function Notification({ message, onClose }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
-    }, 3000); // Устанавливаем время на 3 секунды
-    return () => clearTimeout(timer);
+    }, 2500); // Устанавливаем время на 2.5 секунды
+
+    const handleClick = () => {
+      onClose();
+    };
+
+    document.addEventListener('click', handleClick);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('click', handleClick);
+    };
   }, [onClose]);
 
   return (

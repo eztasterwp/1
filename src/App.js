@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
@@ -43,10 +43,36 @@ function App() {
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.ready();
-      tg.expand(); // Разворачивание приложения на полный экран
+      tg.expand();
       setUsername(tg.initDataUnsafe.user ? tg.initDataUnsafe.user.username : 'User');
     }
-  }, []);
+
+    const preventSwipe = (e) => {
+      if (e.touches.length === 1) {
+        e.preventDefault();
+      }
+    };
+
+    const allowSwipeOnMenu = (e) => {
+      if (e.target.closest('.buttons-container')) {
+        return; // Allow swipe on menu
+      }
+      e.preventDefault();
+    };
+
+    if (activeButton === 'exchange') {
+      document.addEventListener('touchstart', preventSwipe, { passive: false });
+      document.addEventListener('touchmove', preventSwipe, { passive: false });
+    } else {
+      document.removeEventListener('touchstart', preventSwipe);
+      document.removeEventListener('touchmove', preventSwipe);
+    }
+
+    return () => {
+      document.removeEventListener('touchstart', preventSwipe);
+      document.removeEventListener('touchmove', preventSwipe);
+    };
+  }, [activeButton]);
 
   function calculateCoinsToLevelUp(currentLevel) {
     return 500 + 2000 * (currentLevel - 1);

@@ -141,13 +141,11 @@ function App() {
   };
 
   const formatPoints = (points) => {
-    if (points >= 1000000) {
-      return (points / 1000000).toFixed(3) + 'm';
+    if (points < 1000000) {
+      return points;
     }
-    if (points >= 1000) {
-      return (points / 1000).toFixed(1) + 'k';
-    }
-    return points.toFixed(0);
+    const thousands = Math.floor(points / 1000);
+    return `${(thousands / 1000).toFixed(3)}k`;
   };
 
   const calculateLevelProgress = () => {
@@ -233,9 +231,18 @@ function App() {
         )}
       </div>
       <div className="stats-display">
-        <span>Level: {level}</span>
-        <span>Points: {formatPoints(points)}</span>
-        <span>Total Points: {formatPoints(totalPoints)}</span>
+        <div className="stat-item">
+          <span className="stat-label">Level:</span>
+          <span>{level}</span>
+        </div>
+        <div className="stat-item">
+          <span className="stat-label">Points:</span>
+          <span>{formatPoints(points)}</span>
+        </div>
+        <div className="stat-item">
+          <span className="stat-label">Total Points:</span>
+          <span>{formatPoints(totalPoints)}</span>
+        </div>
       </div>
       {renderContent()}
       <div className="buttons-container">

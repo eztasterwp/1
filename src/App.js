@@ -6,21 +6,17 @@ import Mine from './Mine';
 import Friends from './Friends';
 import Earn from './Earn';
 import Airdrop from './Airdrop';
-import Notification from './Notification';
 
 function App() {
-  const [points, setPoints] = useState(100); // текущие доступные очки
-  const [totalPoints, setTotalPoints] = useState(100); // общее количество заработанных очков
+  const [points, setPoints] = useState(0);
   const [messages, setMessages] = useState([]);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
   const [level, setLevel] = useState(1);
   const [coinsPerTap, setCoinsPerTap] = useState(2);
-  const [coinsToLevelUp, setCoinsToLevelUp] = useState(calculateCoinsToLevelUp(1));
+  const [coinsToLevelUp, setCoinsToLevelUp] = useState(50); // Уменьшил для тестирования
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
-  const [showModal, setShowModal] = useState(false);
-  const [currentQuest, setCurrentQuest] = useState({});
-  const [notifications, setNotifications] = useState([]);
+  const [levelUpNotification, setLevelUpNotification] = useState('');
 
   useEffect(() => {
     const img = new Image();
@@ -49,23 +45,14 @@ function App() {
       e.preventDefault();
     };
 
-    if (activeButton === 'exchange') {
-      document.addEventListener('touchstart', allowSwipeOnMenu, { passive: false });
-      document.addEventListener('touchmove', allowSwipeOnMenu, { passive: false });
-    } else {
-      document.removeEventListener('touchstart', allowSwipeOnMenu);
-      document.removeEventListener('touchmove', allowSwipeOnMenu);
-    }
+    document.addEventListener('touchstart', allowSwipeOnMenu, { passive: false });
+    document.addEventListener('touchmove', allowSwipeOnMenu, { passive: false });
 
     return () => {
       document.removeEventListener('touchstart', allowSwipeOnMenu);
       document.removeEventListener('touchmove', allowSwipeOnMenu);
     };
-  }, [activeButton]);
-
-  function calculateCoinsToLevelUp(currentLevel) {
-    return 500 + 2000 * (currentLevel - 1);
-  }
+  }, []);
 
   const handleTouchStart = (event) => {
     const plantElement = document.querySelector('.plant');
@@ -83,13 +70,11 @@ function App() {
       ) {
         setPoints(prevPoints => {
           const newPoints = prevPoints + coinsPerTap;
-          setTotalPoints(prevTotalPoints => prevTotalPoints + coinsPerTap);
-
           if (newPoints >= coinsToLevelUp) {
             setLevel(prevLevel => {
               const newLevel = prevLevel + 1;
-              setCoinsToLevelUp(calculateCoinsToLevelUp(newLevel));
-              setNotifications(prevNotifications => [...prevNotifications, `Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`]);
+              setLevelUpNotification(`Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`);
+              setTimeout(() => setLevelUpNotification(''), 3000); // Уведомление исчезает через 3 секунды
               return newLevel;
             });
             return newPoints - coinsToLevelUp; // Исправлено
@@ -120,30 +105,9 @@ function App() {
     setActiveButton(buttonId);
   };
 
-  const handleQuestClick = (questTitle, questCost) => {
-    setCurrentQuest({ title: questTitle, cost: questCost });
-    setShowModal(true);
-  };
-
-  const handleConfirmPurchase = () => {
-    if (points >= currentQuest.cost) {
-      setPoints(points - currentQuest.cost);
-      setShowModal(false);
-      setNotifications(prevNotifications => [...prevNotifications, `You have successfully purchased ${currentQuest.title} for ${currentQuest.cost}. Now you earn +${currentQuest.cost * 10} per hour.`]);
-    } else {
-      alert('Недостаточно очков для выполнения квеста.');
-    }
-  };
-
-  const handleNotificationClose = (index) => {
-    setNotifications(prevNotifications => prevNotifications.filter((_, i) => i !== index));
-  };
-
   const formatPoints = (points) => {
     if (points >= 1000000) {
-      return (points / 1000000).toFixed(2) + 'M';
-    } else if (points >= 10000) {
-      return (points / 1000).toFixed(2) + 'k';
+      return (points / 1000000).toFixed(1) + 'M';
     }
     return points.toString();
   };
@@ -161,7 +125,7 @@ function App() {
           </div>
         );
       case 'mine':
-        return <Mine onQuestClick={handleQuestClick} />;
+        return <Mine />;
       case 'friends':
         return <Friends />;
       case 'earn':
@@ -189,25 +153,18 @@ function App() {
             <FontAwesomeIcon icon={faEllipsisH} className="settings-icon" />
           </div>
         </div>
-        {activeButton === 'exchange' && (
-          <div className="header-bottom">
-            <div className="coin-display">
-              <img src="coin.png" alt="coin" className="coin" />
-              <h1>{formatPoints(points)}</h1>
-            </div>
-            <div className="level-display">
-              <div className="level-bar-container">
-                <div className="level-bar" style={{ width: `${calculateLevelProgress()}%` }}></div>
-              </div>
-              <div className="level-text">Grower {level}/100000</div>
-            </div>
+        <div className="header-bottom">
+          <div className="coin-display">
+            <img src="coin.png" alt="coin" className="coin" />
+            <h1>{formatPoints(points)}</h1>
           </div>
-        )}
-      </div>
-      <div className="stats-display">
-        <span>Level: {level}</span>
-        <span>Points: {formatPoints(points)}</span>
-        <span>Total Points: {formatPoints(totalPoints)}</span>
+          <div className="level-display">
+            <div className="level-bar-container">
+              <div className="level-bar" style={{ width: `${calculateLevelProgress()}%` }}></div>
+            </div>
+            <div className="level-text">Grower {level}/10</div>
+          </div>
+        </div>
       </div>
       {renderContent()}
       <div className="buttons-container">
@@ -243,22 +200,11 @@ function App() {
           </div>
         ))}
       </div>
-      {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <p>Купить {currentQuest.title} за {currentQuest.cost} очков?</p>
-            <button onClick={handleConfirmPurchase}>Да</button>
-            <button onClick={() => setShowModal(false)}>Нет</button>
-          </div>
+      {levelUpNotification && (
+        <div className="level-up-notification">
+          {levelUpNotification}
         </div>
       )}
-      {notifications.map((message, index) => (
-        <Notification
-          key={index}
-          message={message}
-          onClose={() => handleNotificationClose(index)}
-        />
-      ))}
     </div>
   );
 }

@@ -120,9 +120,19 @@ function App() {
     setActiveButton(buttonId);
   };
 
-  const handleQuestClick = (questTitle, questCost) => {
-    setCurrentQuest({ title: questTitle, cost: questCost });
-    setShowModal(true);
+  const handleQuestClick = (questId) => {
+    setQuests(prevQuests =>
+      prevQuests.map(quest =>
+        quest.id === questId
+          ? {
+              ...quest,
+              level: quest.level + 1,
+              cost: Math.floor(quest.cost * 1.5),
+              profit: Math.floor(quest.profit * 1.5),
+            }
+          : quest
+      )
+    );
   };
 
   const handleConfirmPurchase = () => {

@@ -1,85 +1,84 @@
 .mine-container {
-    padding: 20px;
-    color: white;
-    overflow-y: auto; /* Добавим вертикальную прокрутку */
-    height: calc(100vh - 200px); /* Высота контейнера с учетом верхнего и нижнего отступа */
-  }
-  
-  .tabs {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-  }
-  
-  .tab {
-    flex: 1;
-    text-align: center;
-    padding: 10px;
-    background: #333;
-    border-radius: 10px;
-    margin: 0 5px;
-    cursor: pointer;
-    transition: background 0.3s, color 0.3s;
-  }
-  
-  .tab.active {
-    background: #555;
-    color: #FFD700;
-  }
-  
-  .quests {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Две колонки */
-    gap: 10px;
-    justify-content: space-between; /* Делаем равное распределение между элементами */
-  }
-  
-  .quest {
-    background: #222;
-    border-radius: 10px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: background 0.3s;
-  }
-  
-  .quest:hover {
-    background: #333;
-  }
-  
-  .quest-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .quest-title {
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-  }
-  
-  .quest-profit {
-    font-size: 14px;
-  }
-  
-  .quest-profit span {
-    color: #FFD700;
-  }
-  
-  .quest-level, .quest-cost {
-    font-size: 14px;
-    text-align: center;
-    margin-top: 5px;
-    background: #333;
-    border-radius: 5px;
-    padding: 5px;
-    width: 80%;
-  }
-  
-  .quest-level {
-    margin-bottom: 5px;
-  }
-  
+  padding: 20px;
+  color: white;
+  background: url('mine-background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  background: #333;
+  border-radius: 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.tab.active {
+  background: #555;
+  color: #FFD700;
+}
+
+.quests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.quest {
+  background: rgba(34, 34, 34, 0.8);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+  flex: 1 1 calc(50% - 10px);
+}
+
+.quest:hover {
+  background: #444;
+  transform: scale(1.05);
+}
+
+.quest-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quest-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.quest-profit {
+  font-size: 14px;
+}
+
+.quest-profit span {
+  color: #FFD700;
+}
+
+.quest-level, .quest-cost {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.quest-cost {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

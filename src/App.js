@@ -76,11 +76,11 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       setPoints(prevPoints => {
-        const newPoints = prevPoints + hourlyIncome / 60;
-        setTotalPoints(prevTotalPoints => prevTotalPoints + hourlyIncome / 60);
+        const newPoints = prevPoints + hourlyIncome;
+        setTotalPoints(prevTotalPoints => prevTotalPoints + hourlyIncome);
         return newPoints;
       });
-    }, 60000); // Обновление очков каждую минуту
+    }, 3600000); // Обновление очков каждый час
 
     return () => clearInterval(interval);
   }, [hourlyIncome]);
@@ -278,13 +278,15 @@ function App() {
           </div>
         ))}
       </div>
-      {notifications.map((message, index) => (
-        <Notification
-          key={index}
-          message={message}
-          onClose={() => handleNotificationClose(index)}
-        />
-      ))}
+      <div className="notification-container">
+        {notifications.map((message, index) => (
+          <Notification
+            key={index}
+            message={message}
+            onClose={() => handleNotificationClose(index)}
+          />
+        ))}
+      </div>
     </div>
   );
 }

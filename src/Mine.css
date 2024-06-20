@@ -1,7 +1,7 @@
 .mine-container {
   padding: 20px;
   color: white;
-  max-width: 600px;
+  max-width: 800px; /* Увеличена максимальная ширина */
   margin: 0 auto;
   background-color: #1f1f1f; /* Темный фон для контейнера */
   border-radius: 10px;
@@ -33,25 +33,28 @@
 .quests {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px; /* Увеличено расстояние между квестами */
 }
 
 .quest {
   background: rgba(34, 34, 34, 0.8);
   border-radius: 10px;
-  padding: 10px;
-  width: calc(50% - 10px);
+  padding: 15px; /* Увеличены внутренние отступы */
+  width: calc(33% - 20px); /* Изменена ширина для трех квестов в строке */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: background 0.3s, transform 0.3s;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
+  border: 1px solid transparent; /* Добавлена обводка */
 }
 
 .quest:hover {
   background: rgba(51, 51, 51, 0.8);
   transform: translateY(-5px); /* Плавное перемещение вверх при наведении */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Тень при наведении */
+  border: 1px solid #FFD700; /* Подсветка обводки при наведении */
 }
 
 .quest-header {

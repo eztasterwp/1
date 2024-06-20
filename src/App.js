@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH, faTint, faSeedling, faTruck, faFileInvoiceDollar, faLeaf } from '@fortawesome/free-solid-svg-icons';
+import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH, faTint, faSeedling, faTruck, faFileInvoiceDollar, faLeaf, faHome, faBoxOpen } from '@fortawesome/free-solid-svg-icons';
 import Mine from './Mine';
 import Friends from './Friends';
 import Earn from './Earn';
@@ -247,8 +247,8 @@ function App() {
       {renderContent()}
       <div className="buttons-container">
         <div className={`button ${activeButton === 'exchange' ? 'active' : ''}`} id="exchange" onClick={() => handleButtonClick('exchange')}>
-          <FontAwesomeIcon icon={faExchangeAlt} />
-          Exchange
+          <FontAwesomeIcon icon={faHome} />
+          Main
         </div>
         <div className={`button ${activeButton === 'mine' ? 'active' : ''}`} id="mine" onClick={() => handleButtonClick('mine')}>
           <FontAwesomeIcon icon={faHammer} />
@@ -256,11 +256,11 @@ function App() {
         </div>
         <div className={`button ${activeButton === 'friends' ? 'active' : ''}`} id="friends" onClick={() => handleButtonClick('friends')}>
           <FontAwesomeIcon icon={faUserFriends} />
-          Friends
+          Community
         </div>
         <div className={`button ${activeButton === 'earn' ? 'active' : ''}`} id="earn" onClick={() => handleButtonClick('earn')}>
-          <FontAwesomeIcon icon={faHandHoldingUsd} />
-          Earn
+          <FontAwesomeIcon icon={faBoxOpen} />
+          Case
         </div>
         <div className={`button ${activeButton === 'airdrop' ? 'active' : ''}`} id="airdrop" onClick={() => handleButtonClick('airdrop')}>
           <FontAwesomeIcon icon={faCoins} />

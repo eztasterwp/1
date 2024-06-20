@@ -286,16 +286,49 @@ body {
   color: #cccccc;
 }
 
-.level-up-notification {
+.notification-container {
   position: fixed;
   top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.8);
+  right: 10px;
+  z-index: 1000;
+  width: auto;
+  max-width: 300px;
+}
+
+.notification {
+  background: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 10px;
-  border-radius: 10px;
-  font-size: 16px;
-  z-index: 1000;
-  animation: fadeInOut 3s forwards;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.notification .close {
+  margin-left: 10px;
+  cursor: pointer;
+  color: #FFD700;
+  font-weight: bold;
+}
+
+.notification .message {
+  flex-grow: 1;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

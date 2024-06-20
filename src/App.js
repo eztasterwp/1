@@ -132,25 +132,28 @@ function App() {
   };
 
   const handleQuestClick = (questId) => {
-    setQuests(prevQuests =>
-      prevQuests.map(quest =>
-        quest.id === questId
-          ? {
-              ...quest,
-              level: quest.level + 1,
-              cost: Math.floor(quest.cost * 1.5),
-              profit: Math.floor(quest.profit * 1.5),
-            }
-          : quest
-      )
-    );
+    const quest = quests.find(q => q.id === questId);
+    setCurrentQuest(quest);
+    setShowModal(true);
   };
 
   const handleConfirmPurchase = () => {
     if (points >= currentQuest.cost) {
       setPoints(points - currentQuest.cost);
       setShowModal(false);
-      setNotifications(prevNotifications => [...prevNotifications, `You have successfully purchased ${currentQuest.title} for ${currentQuest.cost}. Now you earn +${currentQuest.cost * 10} per hour.`]);
+      setQuests(prevQuests =>
+        prevQuests.map(quest =>
+          quest.id === currentQuest.id
+            ? {
+                ...quest,
+                level: quest.level + 1,
+                cost: Math.floor(quest.cost * 1.5),
+                profit: Math.floor(quest.profit * 1.5),
+              }
+            : quest
+        )
+      );
+      setNotifications(prevNotifications => [...prevNotifications, `You have successfully purchased ${currentQuest.title} for ${currentQuest.cost}. Now you earn +${currentQuest.profit} per hour.`]);
     } else {
       alert('Недостаточно очков для выполнения квеста.');
     }

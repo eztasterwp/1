@@ -10,16 +10,18 @@ import Notification from './Notification';
 
 function App() {
   const [points, setPoints] = useState(0);
+  const [totalPoints, setTotalPoints] = useState(0);
   const [messages, setMessages] = useState([]);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
   const [level, setLevel] = useState(1);
   const [coinsPerTap, setCoinsPerTap] = useState(2);
-  const [coinsToLevelUp, setCoinsToLevelUp] = useState(50); // Уменьшил для тестирования
+  const [coinsToLevelUp, setCoinsToLevelUp] = useState(500); // Начальное количество очков для повышения уровня
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
   const [levelUpNotification, setLevelUpNotification] = useState('');
   const [notifications, setNotifications] = useState([]);
   const [hourlyIncome, setHourlyIncome] = useState(0); // Доход в час
+  const [quests, setQuests] = useState([]);
 
   useEffect(() => {
     const img = new Image();
@@ -70,6 +72,19 @@ function App() {
     return () => clearInterval(interval);
   }, [hourlyIncome]);
 
+  useEffect(() => {
+    // Инициализируем квесты
+    const initialQuests = [
+      { id: 1, title: 'Купить удобрения', cost: 10, income: 5, level: 0 },
+      { id: 2, title: 'Купить грунт', cost: 20, income: 10, level: 0 },
+      { id: 3, title: 'Купить семена', cost: 30, income: 15, level: 0 },
+      { id: 4, title: 'Заплатить налоги', cost: 40, income: 20, level: 0 },
+      { id: 5, title: 'Отправить товар в CoffeeShop', cost: 50, income: 25, level: 0 },
+      { id: 6, title: 'Купить лицензию', cost: 60, income: 30, level: 0 }
+    ];
+    setQuests(initialQuests);
+  }, []);
+
   const handleTouchStart = (event) => {
     const plantElement = document.querySelector('.plant');
     const rect = plantElement.getBoundingClientRect();
@@ -86,9 +101,11 @@ function App() {
       ) {
         setPoints(prevPoints => {
           const newPoints = prevPoints + coinsPerTap;
+          setTotalPoints(prevTotalPoints => prevTotalPoints + coinsPerTap);
           if (newPoints >= coinsToLevelUp) {
             setLevel(prevLevel => {
               const newLevel = prevLevel + 1;
+              setCoinsToLevelUp(500 + newLevel * 2000);
               setLevelUpNotification(`Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`);
               setTimeout(() => setLevelUpNotification(''), 3000); // Уведомление исчезает через 3 секунды
               return newLevel;
@@ -132,13 +149,21 @@ function App() {
     return (points / coinsToLevelUp) * 100;
   };
 
-  const handleQuestClick = (questTitle, questCost, questIncome) => {
-    if (points >= questCost) {
-      setPoints(points - questCost);
-      setHourlyIncome(prevIncome => prevIncome + questIncome);
+  const handleQuestPurchase = (questId) => {
+    const quest = quests.find(q => q.id === questId);
+    if (points >= quest.cost) {
+      setPoints(points - quest.cost);
+      setHourlyIncome(prevIncome => prevIncome + quest.income);
+      const updatedQuests = quests.map(q => {
+        if (q.id === questId) {
+          return { ...q, cost: q.cost * 2, income: q.income * 2, level: q.level + 1 };
+        }
+        return q;
+      });
+      setQuests(updatedQuests);
       setNotifications(prevNotifications => [
         ...prevNotifications,
-        `You have successfully purchased ${questTitle} for ${questCost} coins. Now you earn +${questIncome} per hour.`
+        `You have successfully purchased ${quest.title} for ${quest.cost} coins. Now you earn +${quest.income} per hour.`
       ]);
     } else {
       alert('Недостаточно очков для выполнения квеста.');
@@ -158,7 +183,7 @@ function App() {
           </div>
         );
       case 'mine':
-        return <Mine onQuestClick={handleQuestClick} />;
+        return <Mine onQuestPurchase={handleQuestPurchase} quests={quests} />;
       case 'friends':
         return <Friends />;
       case 'earn':
@@ -196,10 +221,15 @@ function App() {
               <div className="level-bar-container">
                 <div className="level-bar" style={{ width: `${calculateLevelProgress()}%` }}></div>
               </div>
-              <div className="level-text">Grower {level}/10</div>
+              <div className="level-text">Grower {level}/1000000</div>
             </div>
           </div>
         )}
+      </div>
+      <div className="stats-display">
+        <span>Level: {level}</span>
+        <span>Points: {formatPoints(points)}</span>
+        <span>Total Points: {formatPoints(totalPoints)}</span>
       </div>
       {renderContent()}
       <div className="buttons-container">

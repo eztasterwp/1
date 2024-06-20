@@ -18,7 +18,6 @@ function App() {
   const [coinsToLevelUp, setCoinsToLevelUp] = useState(500); // Начальное количество очков для повышения уровня
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
-  const [levelUpNotification, setLevelUpNotification] = useState('');
   const [notifications, setNotifications] = useState([]);
   const [hourlyIncome, setHourlyIncome] = useState(0); // Доход в час
 
@@ -76,7 +75,11 @@ function App() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setPoints(prevPoints => prevPoints + hourlyIncome / 60);
+      setPoints(prevPoints => {
+        const newPoints = prevPoints + hourlyIncome / 60;
+        setTotalPoints(prevTotalPoints => prevTotalPoints + hourlyIncome / 60);
+        return newPoints;
+      });
     }, 60000); // Обновление очков каждую минуту
 
     return () => clearInterval(interval);
@@ -103,8 +106,10 @@ function App() {
             setLevel(prevLevel => {
               const newLevel = prevLevel + 1;
               setCoinsToLevelUp(500 + newLevel * 2000);
-              setLevelUpNotification(`Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`);
-              setTimeout(() => setLevelUpNotification(''), 3000); // Уведомление исчезает через 3 секунды
+              setNotifications(prevNotifications => [
+                ...prevNotifications,
+                `Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`
+              ]);
               return newLevel;
             });
             return newPoints - coinsToLevelUp; // Исправлено
@@ -137,9 +142,12 @@ function App() {
 
   const formatPoints = (points) => {
     if (points >= 1000000) {
-      return (points / 1000000).toFixed(1) + 'M';
+      return (points / 1000000).toFixed(3) + 'm';
     }
-    return points.toString();
+    if (points >= 1000) {
+      return (points / 1000).toFixed(1) + 'k';
+    }
+    return points.toFixed(0);
   };
 
   const calculateLevelProgress = () => {
@@ -150,6 +158,7 @@ function App() {
     const quest = quests.find(q => q.id === questId);
     if (points >= quest.cost) {
       setPoints(points - quest.cost);
+      setTotalPoints(prevTotalPoints => prevTotalPoints + quest.cost);
       setHourlyIncome(prevIncome => prevIncome + quest.income);
       const updatedQuests = quests.map(q => {
         if (q.id === questId) {
@@ -160,7 +169,7 @@ function App() {
       setQuests(updatedQuests);
       setNotifications(prevNotifications => [
         ...prevNotifications,
-        `Upgrade is yours! ${quest.title} ${quest.level + 1} lvl`
+        `You have successfully purchased ${quest.title} for ${quest.cost} coins. Now you earn +${quest.income} per hour.`
       ]);
     } else {
       alert('Недостаточно очков для выполнения квеста.');
@@ -262,11 +271,6 @@ function App() {
           </div>
         ))}
       </div>
-      {levelUpNotification && (
-        <div className="level-up-notification">
-          {levelUpNotification}
-        </div>
-      )}
       {notifications.map((message, index) => (
         <Notification
           key={index}

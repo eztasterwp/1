@@ -214,10 +214,10 @@ body {
 
 .message {
   position: absolute;
-  color: white;
+  color: goldenrod;
   font-size: 30px; /* Увеличен размер текста */
   pointer-events: none;
-  animation: flyUp 2s forwards; /* Увеличение скорости полета */
+  animation: flyUp 3s forwards; /* Увеличение скорости полета */
 }
 
 @keyframes flyUp {

@@ -1,3 +1,17 @@
+.mine-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('background1.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px);
+  opacity: 0.7;
+  z-index: -1;
+}
+
 .mine-container {
   padding: 10px;
   color: white;
@@ -131,19 +145,4 @@
     grid-template-columns: 1fr;
     padding: 0 5px;
   }
-}
-
-/* Полупрозрачный и размытый фон для страницы mine */
-.mine-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('background1.jpg');
-  background-size: cover;
-  background-position: center;
-  filter: blur(8px);
-  opacity: 0.7;
-  z-index: -1;
 }

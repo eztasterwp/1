@@ -217,7 +217,7 @@ body {
   color: white;
   font-size: 20px;
   pointer-events: none;
-  animation: flyUp 3s forwards; /* Анимация полета вверх и увеличение продолжительности до 3 секунд */
+  animation: flyUp 3s forwards; /* Увеличение скорости полета */
 }
 
 @keyframes flyUp {
@@ -227,9 +227,10 @@ body {
   }
   100% {
     opacity: 0;
-    transform: translateY(-50px);
+    transform: translateY(-100px); /* Увеличение расстояния полета */
   }
 }
+
 
 .level-up-notification {
   position: absolute;

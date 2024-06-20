@@ -1,7 +1,7 @@
 import React from 'react';
 import './Mine.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTint, faSeedling, faHandHoldingUsd, faTruck, faFileInvoiceDollar, faLeaf } from '@fortawesome/free-solid-svg-icons';
+import { faTint, faSeedling, faHandHoldingUsd, faTruck, faFileInvoiceDollar, faLeaf, faCoins } from '@fortawesome/free-solid-svg-icons';
 
 function Mine({ onQuestClick }) {
   const quests = [

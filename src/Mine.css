@@ -32,15 +32,15 @@
 
 .quests {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 20px;
 }
 
 .quest {
   background: rgba(34, 34, 34, 0.8);
   border-radius: 10px;
-  padding: 20px; /* Увеличены внутренние отступы */
-  width: calc(33.333% - 20px); /* Изменена ширина для трех квестов в строке */
+  padding: 20px;
+  width: 100%; /* Квесты занимают всю ширину */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

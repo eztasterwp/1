@@ -1,30 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Mine.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTint, faSeedling, faHandHoldingUsd, faTruck, faFileInvoiceDollar, faLeaf, faCoins } from '@fortawesome/free-solid-svg-icons';
+import { faCoins } from '@fortawesome/free-solid-svg-icons';
 
-function Mine({ onQuestPurchase, points }) {
-  const initialQuests = [
-    { id: 1, title: 'Купить удобрения', cost: 10, income: 5, level: 0, icon: faLeaf },
-    { id: 2, title: 'Купить грунт', cost: 20, income: 10, level: 0, icon: faTint },
-    { id: 3, title: 'Купить семена', cost: 30, income: 15, level: 0, icon: faSeedling },
-    { id: 4, title: 'Заплатить налоги', cost: 40, income: 20, level: 0, icon: faFileInvoiceDollar },
-    { id: 5, title: 'Отправить товар в CoffeeShop', cost: 50, income: 25, level: 0, icon: faTruck },
-    { id: 6, title: 'Купить лицензию', cost: 60, income: 30, level: 0, icon: faHandHoldingUsd }
-  ];
-
-  const [quests, setQuests] = useState(initialQuests);
-
+function Mine({ onQuestPurchase, points, quests }) {
   const handleQuestPurchase = (quest) => {
     if (points >= quest.cost) {
-      const updatedQuests = quests.map(q => {
-        if (q.id === quest.id) {
-          return { ...q, level: q.level + 1, cost: q.cost * 2, income: q.income * 2 };
-        }
-        return q;
-      });
-      setQuests(updatedQuests);
-      onQuestPurchase(quest);
+      onQuestPurchase(quest.id);
     } else {
       alert('Недостаточно очков для выполнения квеста.');
     }

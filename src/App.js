@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH, faTint, faSeedling, faTruck, faFileInvoiceDollar, faLeaf } from '@fortawesome/free-solid-svg-icons';
 import Mine from './Mine';
 import Friends from './Friends';
 import Earn from './Earn';
@@ -21,7 +21,17 @@ function App() {
   const [levelUpNotification, setLevelUpNotification] = useState('');
   const [notifications, setNotifications] = useState([]);
   const [hourlyIncome, setHourlyIncome] = useState(0); // Доход в час
-  const [quests, setQuests] = useState([]);
+
+  const initialQuests = [
+    { id: 1, title: 'Купить удобрения', cost: 10, income: 5, level: 0, icon: faLeaf },
+    { id: 2, title: 'Купить грунт', cost: 20, income: 10, level: 0, icon: faTint },
+    { id: 3, title: 'Купить семена', cost: 30, income: 15, level: 0, icon: faSeedling },
+    { id: 4, title: 'Заплатить налоги', cost: 40, income: 20, level: 0, icon: faFileInvoiceDollar },
+    { id: 5, title: 'Отправить товар в CoffeeShop', cost: 50, income: 25, level: 0, icon: faTruck },
+    { id: 6, title: 'Купить лицензию', cost: 60, income: 30, level: 0, icon: faHandHoldingUsd }
+  ];
+
+  const [quests, setQuests] = useState(initialQuests);
 
   useEffect(() => {
     const img = new Image();
@@ -71,19 +81,6 @@ function App() {
 
     return () => clearInterval(interval);
   }, [hourlyIncome]);
-
-  useEffect(() => {
-    // Инициализируем квесты
-    const initialQuests = [
-      { id: 1, title: 'Купить удобрения', cost: 10, income: 5, level: 0 },
-      { id: 2, title: 'Купить грунт', cost: 20, income: 10, level: 0 },
-      { id: 3, title: 'Купить семена', cost: 30, income: 15, level: 0 },
-      { id: 4, title: 'Заплатить налоги', cost: 40, income: 20, level: 0 },
-      { id: 5, title: 'Отправить товар в CoffeeShop', cost: 50, income: 25, level: 0 },
-      { id: 6, title: 'Купить лицензию', cost: 60, income: 30, level: 0 }
-    ];
-    setQuests(initialQuests);
-  }, []);
 
   const handleTouchStart = (event) => {
     const plantElement = document.querySelector('.plant');
@@ -183,7 +180,7 @@ function App() {
           </div>
         );
       case 'mine':
-        return <Mine onQuestPurchase={handleQuestPurchase} points={points} />;
+        return <Mine onQuestPurchase={handleQuestPurchase} points={points} quests={quests} />;
       case 'friends':
         return <Friends />;
       case 'earn':

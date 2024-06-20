@@ -25,13 +25,15 @@ function Mine({ onQuestPurchase, points, quests }) {
           <div className="quest" key={quest.id} onClick={() => handleQuestPurchase(quest)}>
             <div className="quest-header">
               <div className="quest-title">
-                <FontAwesomeIcon icon={quest.icon} /> {quest.title}
+                <FontAwesomeIcon icon={quest.icon} className="quest-icon" /> {quest.title}
               </div>
-              <div className="quest-profit">Profit per hour <span>+{quest.income}</span></div>
+              <div className="quest-profit">Profit per hour: <span>+{quest.income}</span></div>
             </div>
-            <div className="quest-level">lvl {quest.level}</div>
-            <div className="quest-cost">
-              <span>{quest.cost} <FontAwesomeIcon icon={faCoins} /></span>
+            <div className="quest-details">
+              <div className="quest-level">Level: {quest.level}</div>
+              <div className="quest-cost">
+                <span>{quest.cost} <FontAwesomeIcon icon={faCoins} /></span>
+              </div>
             </div>
           </div>
         ))}

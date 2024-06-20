@@ -3,6 +3,9 @@
   color: white;
   max-width: 600px;
   margin: 0 auto;
+  background-color: #1f1f1f; /* Темный фон для контейнера */
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
 .tabs {
@@ -42,21 +45,31 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
 }
 
 .quest:hover {
   background: rgba(51, 51, 51, 0.8);
+  transform: translateY(-5px); /* Плавное перемещение вверх при наведении */
 }
 
 .quest-header {
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
 }
 
 .quest-title {
   font-size: 16px;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.quest-icon {
+  margin-right: 8px;
+  color: #FFD700; /* Золотой цвет для иконок */
 }
 
 .quest-profit {
@@ -67,14 +80,13 @@
   color: #FFD700;
 }
 
-.quest-level, .quest-cost {
+.quest-details {
+  display: flex;
+  justify-content: space-between;
   font-size: 14px;
-  text-align: center;
-  margin-top: 10px;
 }
 
+.quest-level,
 .quest-cost {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
 }

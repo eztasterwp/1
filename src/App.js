@@ -9,8 +9,8 @@ import Airdrop from './Airdrop';
 import Notification from './Notification';
 
 function App() {
-  const [points, setPoints] = useState(100);
-  const [totalPoints, setTotalPoints] = useState(100);
+  const [points, setPoints] = useState(100); // текущие доступные очки
+  const [totalPoints, setTotalPoints] = useState(100); // общее количество заработанных очков
   const [messages, setMessages] = useState([]);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
   const [level, setLevel] = useState(1);
@@ -22,17 +22,6 @@ function App() {
   const [currentQuest, setCurrentQuest] = useState({});
   const [notifications, setNotifications] = useState([]);
 
-  const initialQuests = [
-    { id: 1, title: 'Купить воду', profit: 100, cost: 10, level: 0, icon: '💧' },
-    { id: 2, title: 'Купить удобрения', profit: 200, cost: 20, level: 0, icon: '🧪' },
-    { id: 3, title: 'Купить семена', profit: 300, cost: 30, level: 0, icon: '🌱' },
-    { id: 4, title: 'Купить землю', profit: 400, cost: 40, level: 0, icon: '🌍' },
-    { id: 5, title: 'Заплатить налоги', profit: 500, cost: 50, level: 0, icon: '💸' },
-    { id: 6, title: 'Отправить товар в CoffeShop', profit: 600, cost: 60, level: 0, icon: '☕' },
-  ];
-
-  const [quests, setQuests] = useState(initialQuests);
-
   useEffect(() => {
     const img = new Image();
     img.src = 'background.png';
@@ -43,7 +32,7 @@ function App() {
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.ready();
-      tg.expand();
+      tg.expand(); // Разворачивание приложения на полный экран
       setUsername(tg.initDataUnsafe.user ? tg.initDataUnsafe.user.username : 'User');
     }
 
@@ -55,22 +44,22 @@ function App() {
 
     const allowSwipeOnMenu = (e) => {
       if (e.target.closest('.buttons-container')) {
-        return; // Allow swipe on menu
+        return; // Разрешаем свайп на меню
       }
       e.preventDefault();
     };
 
     if (activeButton === 'exchange') {
-      document.addEventListener('touchstart', preventSwipe, { passive: false });
-      document.addEventListener('touchmove', preventSwipe, { passive: false });
+      document.addEventListener('touchstart', allowSwipeOnMenu, { passive: false });
+      document.addEventListener('touchmove', allowSwipeOnMenu, { passive: false });
     } else {
-      document.removeEventListener('touchstart', preventSwipe);
-      document.removeEventListener('touchmove', preventSwipe);
+      document.removeEventListener('touchstart', allowSwipeOnMenu);
+      document.removeEventListener('touchmove', allowSwipeOnMenu);
     }
 
     return () => {
-      document.removeEventListener('touchstart', preventSwipe);
-      document.removeEventListener('touchmove', preventSwipe);
+      document.removeEventListener('touchstart', allowSwipeOnMenu);
+      document.removeEventListener('touchmove', allowSwipeOnMenu);
     };
   }, [activeButton]);
 
@@ -100,10 +89,10 @@ function App() {
             setLevel(prevLevel => {
               const newLevel = prevLevel + 1;
               setCoinsToLevelUp(calculateCoinsToLevelUp(newLevel));
-              setNotifications(prevNotifications => [...prevNotifications, `Поздравляем, вы достигли уровня ${newLevel}, продолжайте в том же духе - airdrop скоро!`]);
+              setNotifications(prevNotifications => [...prevNotifications, `Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`]);
               return newLevel;
             });
-            return newPoints - coinsToLevelUp;
+            return newPoints - coinsToLevelUp; // Исправлено
           } else {
             return newPoints;
           }
@@ -122,7 +111,7 @@ function App() {
           setMessages(prevMessages =>
             prevMessages.filter(msg => msg.id !== newMessage.id)
           );
-        }, 2000);
+        }, 1000); // Ускоряем анимацию до 1 секунды
       }
     });
   };
@@ -131,9 +120,8 @@ function App() {
     setActiveButton(buttonId);
   };
 
-  const handleQuestClick = (questId) => {
-    const quest = quests.find(q => q.id === questId);
-    setCurrentQuest(quest);
+  const handleQuestClick = (questTitle, questCost) => {
+    setCurrentQuest({ title: questTitle, cost: questCost });
     setShowModal(true);
   };
 
@@ -141,19 +129,7 @@ function App() {
     if (points >= currentQuest.cost) {
       setPoints(points - currentQuest.cost);
       setShowModal(false);
-      setQuests(prevQuests =>
-        prevQuests.map(quest =>
-          quest.id === currentQuest.id
-            ? {
-                ...quest,
-                level: quest.level + 1,
-                cost: Math.floor(quest.cost * 1.5),
-                profit: Math.floor(quest.profit * 1.5),
-              }
-            : quest
-        )
-      );
-      setNotifications(prevNotifications => [...prevNotifications, `Вы успешно приобрели ${currentQuest.title} за ${currentQuest.cost}. Теперь вы зарабатываете +${currentQuest.profit} в час.`]);
+      setNotifications(prevNotifications => [...prevNotifications, `You have successfully purchased ${currentQuest.title} for ${currentQuest.cost}. Now you earn +${currentQuest.cost * 10} per hour.`]);
     } else {
       alert('Недостаточно очков для выполнения квеста.');
     }
@@ -185,7 +161,7 @@ function App() {
           </div>
         );
       case 'mine':
-        return <Mine onQuestClick={handleQuestClick} quests={quests} />;
+        return <Mine onQuestClick={handleQuestClick} />;
       case 'friends':
         return <Friends />;
       case 'earn':

@@ -215,7 +215,7 @@ body {
   position: absolute;
   color: yellow;
   font-size: 32px;
-  animation: flyUp 1s forwards;
+  animation: flyUp 2s forwards; /* Увеличиваем длительность анимации до 2 секунд */
 }
 
 @keyframes flyUp {
@@ -223,9 +223,13 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+  90% {
+    opacity: 1;
+    transform: translateY(-150px); /* Дым поднимается выше */
+  }
   100% {
     opacity: 0;
-    transform: translateY(-100px);
+    transform: translateY(-200px); /* Дым исчезает выше */
   }
 }
 

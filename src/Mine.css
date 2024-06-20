@@ -3,8 +3,9 @@
   color: white;
   background: url('mine-background.jpg') no-repeat center center fixed;
   background-size: cover;
-  height: 100%;
+  height: calc(100vh - 80px); /* Уменьшаем высоту, чтобы учесть верхний и нижний бар */
   overflow-y: auto; /* Добавляем прокрутку */
+  margin-top: 80px; /* Отступ сверху, чтобы элементы не накладывались */
 }
 
 .tabs {
@@ -36,7 +37,7 @@
 }
 
 .quest {
-  background: rgba(34, 34, 34, 0.8);
+  background: linear-gradient(135deg, #FFA500 0%, #FF4500 100%);
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 10px;
@@ -49,7 +50,7 @@
 }
 
 .quest:hover {
-  background: #444;
+  background: linear-gradient(135deg, #FF4500 0%, #FFA500 100%);
   transform: scale(1.05);
 }
 

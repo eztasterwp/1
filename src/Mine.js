@@ -16,7 +16,7 @@ function Mine({ onQuestClick, quests }) {
         {quests.map((quest) => (
           <div className="quest" key={quest.id} onClick={() => onQuestClick(quest.id)}>
             <div className="quest-header">
-              <div className="quest-title">{quest.title}</div>
+              <div className="quest-title">{quest.icon} {quest.title}</div>
               <div className="quest-profit">Profit per hour <span>+{quest.profit}</span></div>
             </div>
             <div className="quest-level">lvl {quest.level}</div>

@@ -214,27 +214,20 @@ body {
 
 .message {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 12px;
+  font-size: 20px;
   pointer-events: none;
-  animation: fadeInOut 3s forwards; /* Продолжительность увеличена до 3 секунд */
+  animation: flyUp 3s forwards; /* Анимация полета вверх и увеличение продолжительности до 3 секунд */
 }
 
-@keyframes fadeInOut {
+@keyframes flyUp {
   0% {
-    opacity: 0;
-  }
-  10% {
     opacity: 1;
-  }
-  90% {
-    opacity: 1;
+    transform: translateY(0);
   }
   100% {
     opacity: 0;
+    transform: translateY(-50px);
   }
 }
 

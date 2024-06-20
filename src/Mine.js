@@ -29,6 +29,7 @@ function Mine({ onQuestPurchase, points, quests }) {
 
   return (
     <div className="mine-container">
+      <div className="mine-background"></div> {/* Полупрозрачный и размытый фон */}
       <div className="quests">
         {quests.map((quest) => (
           <div

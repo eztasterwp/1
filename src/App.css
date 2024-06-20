@@ -214,21 +214,30 @@ body {
 
 .message {
   position: absolute;
-  color: yellow;
-  font-size: 32px;
-  animation: flyUp 1s forwards;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  pointer-events: none;
+  animation: fadeInOut 2s forwards;
 }
 
-@keyframes flyUp {
+@keyframes fadeInOut {
   0% {
+    opacity: 0;
+  }
+  10% {
     opacity: 1;
-    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
   }
   100% {
     opacity: 0;
-    transform: translateY(-100px);
   }
 }
+
 
 .level-up-notification {
   position: absolute;

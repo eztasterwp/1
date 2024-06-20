@@ -9,8 +9,6 @@ import taxImage from './images/tax.png';
 import deliveryImage from './images/delivery.png';
 import licenseImage from './images/license.png';
 
-// Добавьте другие изображения квестов аналогично
-
 const questBackgrounds = {
   'Купить семена': seedsImage,
   'Купить грунт': soilImage,
@@ -18,7 +16,6 @@ const questBackgrounds = {
   'Заплатить налоги': taxImage,
   'Отправить товар в CoffeeShop': deliveryImage,
   'Купить лицензию': licenseImage,
-  // Добавьте остальные квесты и соответствующие им изображения
 };
 
 function Mine({ onQuestPurchase, points, quests }) {

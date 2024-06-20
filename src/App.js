@@ -6,6 +6,7 @@ import Mine from './Mine';
 import Friends from './Friends';
 import Earn from './Earn';
 import Airdrop from './Airdrop';
+import Notification from './Notification';
 
 function App() {
   const [points, setPoints] = useState(0);
@@ -17,6 +18,8 @@ function App() {
   const [activeButton, setActiveButton] = useState('exchange');
   const [username, setUsername] = useState('User');
   const [levelUpNotification, setLevelUpNotification] = useState('');
+  const [notifications, setNotifications] = useState([]);
+  const [hourlyIncome, setHourlyIncome] = useState(0); // Доход в час
 
   useEffect(() => {
     const img = new Image();
@@ -45,14 +48,27 @@ function App() {
       e.preventDefault();
     };
 
-    document.addEventListener('touchstart', allowSwipeOnMenu, { passive: false });
-    document.addEventListener('touchmove', allowSwipeOnMenu, { passive: false });
+    if (activeButton === 'exchange') {
+      document.addEventListener('touchstart', allowSwipeOnMenu, { passive: false });
+      document.addEventListener('touchmove', allowSwipeOnMenu, { passive: false });
+    } else {
+      document.removeEventListener('touchstart', allowSwipeOnMenu);
+      document.removeEventListener('touchmove', allowSwipeOnMenu);
+    }
 
     return () => {
       document.removeEventListener('touchstart', allowSwipeOnMenu);
       document.removeEventListener('touchmove', allowSwipeOnMenu);
     };
-  }, []);
+  }, [activeButton]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPoints(prevPoints => prevPoints + hourlyIncome / 60);
+    }, 60000); // Обновление очков каждый час
+
+    return () => clearInterval(interval);
+  }, [hourlyIncome]);
 
   const handleTouchStart = (event) => {
     const plantElement = document.querySelector('.plant');
@@ -116,6 +132,23 @@ function App() {
     return (points / coinsToLevelUp) * 100;
   };
 
+  const handleQuestClick = (questTitle, questCost, questIncome) => {
+    if (points >= questCost) {
+      setPoints(points - questCost);
+      setHourlyIncome(prevIncome => prevIncome + questIncome);
+      setNotifications(prevNotifications => [
+        ...prevNotifications,
+        `You have successfully purchased ${questTitle} for ${questCost} coins. Now you earn +${questIncome} per hour.`
+      ]);
+    } else {
+      alert('Недостаточно очков для выполнения квеста.');
+    }
+  };
+
+  const handleNotificationClose = (index) => {
+    setNotifications(prevNotifications => prevNotifications.filter((_, i) => i !== index));
+  };
+
   const renderContent = () => {
     switch (activeButton) {
       case 'exchange':
@@ -125,7 +158,7 @@ function App() {
           </div>
         );
       case 'mine':
-        return <Mine />;
+        return <Mine onQuestClick={handleQuestClick} />;
       case 'friends':
         return <Friends />;
       case 'earn':
@@ -207,6 +240,13 @@ function App() {
           {levelUpNotification}
         </div>
       )}
+      {notifications.map((message, index) => (
+        <Notification
+          key={index}
+          message={message}
+          onClose={() => handleNotificationClose(index)}
+        />
+      ))}
     </div>
   );
 }

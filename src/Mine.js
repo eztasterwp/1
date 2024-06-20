@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Mine.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTint, faSeedling, faHandHoldingUsd, faTruck, faFileInvoiceDollar, faLeaf, faCoins } from '@fortawesome/free-solid-svg-icons';
 
-function Mine({ onQuestClick, points, setPoints, setHourlyIncome }) {
+function Mine({ onQuestPurchase, points }) {
   const initialQuests = [
     { id: 1, title: 'Купить удобрения', cost: 10, income: 5, level: 0, icon: faLeaf },
     { id: 2, title: 'Купить грунт', cost: 20, income: 10, level: 0, icon: faTint },
@@ -15,23 +15,16 @@ function Mine({ onQuestClick, points, setPoints, setHourlyIncome }) {
 
   const [quests, setQuests] = useState(initialQuests);
 
-  const handleQuestPurchase = (questId) => {
-    const quest = quests.find(q => q.id === questId);
+  const handleQuestPurchase = (quest) => {
     if (points >= quest.cost) {
-      setPoints(points - quest.cost);
-      setHourlyIncome(prevIncome => prevIncome + quest.income);
       const updatedQuests = quests.map(q => {
-        if (q.id === questId) {
-          return {
-            ...q,
-            cost: q.cost * 2,
-            income: q.income * 2,
-            level: q.level + 1
-          };
+        if (q.id === quest.id) {
+          return { ...q, level: q.level + 1, cost: q.cost * 2, income: q.income * 2 };
         }
         return q;
       });
       setQuests(updatedQuests);
+      onQuestPurchase(quest);
     } else {
       alert('Недостаточно очков для выполнения квеста.');
     }
@@ -47,7 +40,7 @@ function Mine({ onQuestClick, points, setPoints, setHourlyIncome }) {
       </div>
       <div className="quests">
         {quests.map((quest) => (
-          <div className="quest" key={quest.id} onClick={() => handleQuestPurchase(quest.id)}>
+          <div className="quest" key={quest.id} onClick={() => handleQuestPurchase(quest)}>
             <div className="quest-header">
               <div className="quest-title">
                 <FontAwesomeIcon icon={quest.icon} /> {quest.title}

@@ -67,7 +67,7 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       setPoints(prevPoints => prevPoints + hourlyIncome / 60);
-    }, 60000); // Обновление очков каждый час
+    }, 60000); // Обновление очков каждую минуту
 
     return () => clearInterval(interval);
   }, [hourlyIncome]);
@@ -183,7 +183,7 @@ function App() {
           </div>
         );
       case 'mine':
-        return <Mine onQuestPurchase={handleQuestPurchase} quests={quests} />;
+        return <Mine onQuestPurchase={handleQuestPurchase} points={points} />;
       case 'friends':
         return <Friends />;
       case 'earn':

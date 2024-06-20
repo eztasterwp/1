@@ -153,18 +153,20 @@ function App() {
             <FontAwesomeIcon icon={faEllipsisH} className="settings-icon" />
           </div>
         </div>
-        <div className="header-bottom">
-          <div className="coin-display">
-            <img src="coin.png" alt="coin" className="coin" />
-            <h1>{formatPoints(points)}</h1>
-          </div>
-          <div className="level-display">
-            <div className="level-bar-container">
-              <div className="level-bar" style={{ width: `${calculateLevelProgress()}%` }}></div>
+        {activeButton === 'exchange' && (
+          <div className="header-bottom">
+            <div className="coin-display">
+              <img src="coin.png" alt="coin" className="coin" />
+              <h1>{formatPoints(points)}</h1>
             </div>
-            <div className="level-text">Grower {level}/10</div>
+            <div className="level-display">
+              <div className="level-bar-container">
+                <div className="level-bar" style={{ width: `${calculateLevelProgress()}%` }}></div>
+              </div>
+              <div className="level-text">Grower {level}/10</div>
+            </div>
           </div>
-        </div>
+        )}
       </div>
       {renderContent()}
       <div className="buttons-container">

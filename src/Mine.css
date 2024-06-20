@@ -12,8 +12,10 @@
 
 .quests {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Два столбца */
+  grid-template-columns: 1fr 1fr; /* Два столбца по умолчанию */
   gap: 10px; /* Расстояние между квестами */
+  padding: 0 10px; /* Добавим отступы с боков */
+  box-sizing: border-box; /* Включаем отступы в ширину */
 }
 
 .quest {
@@ -93,9 +95,10 @@
   margin-left: 5px;
 }
 
-/* Обеспечиваем поддержку для мобильных экранов */
-@media (max-width: 300px) {
+/* Обеспечиваем поддержку для небольших экранов */
+@media (max-width: 350px) {
   .quests {
-    grid-template-columns: 1fr; /* Один столбец на экранах меньше 300px */
+    grid-template-columns: 1fr; /* Один столбец на экранах меньше 350px */
+    padding: 0 5px; /* Уменьшаем отступы для меньших экранов */
   }
 }

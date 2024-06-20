@@ -220,7 +220,7 @@ body {
   border-radius: 5px;
   font-size: 12px;
   pointer-events: none;
-  animation: fadeInOut 2s forwards;
+  animation: fadeInOut 3s forwards; /* Продолжительность увеличена до 3 секунд */
 }
 
 @keyframes fadeInOut {
@@ -237,7 +237,6 @@ body {
     opacity: 0;
   }
 }
-
 
 .level-up-notification {
   position: absolute;

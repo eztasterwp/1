@@ -160,7 +160,7 @@ function App() {
       setQuests(updatedQuests);
       setNotifications(prevNotifications => [
         ...prevNotifications,
-        `You have successfully purchased ${quest.title} for ${quest.cost} coins. Now you earn +${quest.income} per hour.`
+        `Upgrade is yours! ${quest.title} ${quest.level + 1} lvl`
       ]);
     } else {
       alert('Недостаточно очков для выполнения квеста.');

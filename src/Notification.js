@@ -7,24 +7,15 @@ function Notification({ message, onClose }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
-    }, 2500); // Устанавливаем время на 2.5 секунды
+    }, 2000); // Устанавливаем время на 2 секунды
 
-    const handleClick = () => {
-      onClose();
-    };
-
-    document.addEventListener('click', handleClick);
-
-    return () => {
-      clearTimeout(timer);
-      document.removeEventListener('click', handleClick);
-    };
+    return () => clearTimeout(timer);
   }, [onClose]);
 
   return (
     <div className="notification">
       <div className="notification-content">
-        <FontAwesomeIcon icon={faCheckCircle} className="notification-icon" />
+        <FontAwesomeIcon icon={faCheckCircle} className="notification-icon success" />
         <span className="notification-text">{message}</span>
         <FontAwesomeIcon icon={faTimes} className="notification-close" onClick={onClose} />
       </div>

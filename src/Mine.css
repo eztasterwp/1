@@ -1,14 +1,11 @@
 .mine-container {
   padding: 20px;
   color: white;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   background-color: #1f1f1f; /* Темный фон для контейнера */
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 60px); /* Высота контейнера */
 }
 
 .tabs {
@@ -36,23 +33,21 @@
 .quests {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; /* Увеличено расстояние между квестами */
-  flex-grow: 1; /* Позволяет квестам занимать оставшееся пространство */
-  overflow-y: auto; /* Добавляет прокрутку по вертикали, если квесты не помещаются */
+  gap: 20px;
 }
 
 .quest {
   background: rgba(34, 34, 34, 0.8);
   border-radius: 10px;
-  padding: 15px; /* Увеличены внутренние отступы */
-  width: calc(33% - 20px); /* Изменена ширина для трех квестов в строке */
+  padding: 15px;
+  width: calc(33.333% - 20px); /* Изменена ширина для трех квестов в строке */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
-  border: 1px solid transparent; /* Добавлена обводка */
+  border: 1px solid transparent;
 }
 
 .quest:hover {
@@ -64,7 +59,7 @@
 
 .quest-header {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   margin-bottom: 10px;
 }
 
@@ -73,6 +68,7 @@
   font-weight: bold;
   display: flex;
   align-items: center;
+  flex-grow: 1;
 }
 
 .quest-icon {
@@ -82,19 +78,32 @@
 
 .quest-profit {
   font-size: 14px;
-}
-
-.quest-profit span {
   color: #FFD700;
 }
 
 .quest-details {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 14px;
+  margin-top: 10px;
 }
 
-.quest-level,
+.quest-level {
+  background: #FFD700;
+  color: #1f1f1f;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
 .quest-cost {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.quest-cost span {
+  margin-left: 5px;
+  color: #FFD700;
 }

@@ -131,7 +131,7 @@ function App() {
           setMessages(prevMessages =>
             prevMessages.filter(msg => msg.id !== newMessage.id)
           );
-        }, 1000); // Ускоряем анимацию до 1 секунды
+        }, 2000); // Увеличиваем время на 2 секунды
       }
     });
   };

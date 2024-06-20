@@ -14,12 +14,6 @@ function Mine({ onQuestPurchase, points, quests }) {
 
   return (
     <div className="mine-container">
-      <div className="tabs">
-        <div className="tab active">Markets</div>
-        <div className="tab">PR&Team</div>
-        <div className="tab">Legal</div>
-        <div className="tab">Specials</div>
-      </div>
       <div className="quests">
         {quests.map((quest) => (
           <div className="quest" key={quest.id} onClick={() => handleQuestPurchase(quest)}>

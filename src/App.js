@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt, faHammer, faUserFriends, faHandHoldingUsd, faCoins, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
@@ -9,8 +9,8 @@ import Airdrop from './Airdrop';
 import Notification from './Notification';
 
 function App() {
-  const [points, setPoints] = useState(100); // текущие доступные очки
-  const [totalPoints, setTotalPoints] = useState(100); // общее количество заработанных очков
+  const [points, setPoints] = useState(100);
+  const [totalPoints, setTotalPoints] = useState(100);
   const [messages, setMessages] = useState([]);
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
   const [level, setLevel] = useState(1);
@@ -46,33 +46,7 @@ function App() {
       tg.expand(); // Разворачивание приложения на полный экран
       setUsername(tg.initDataUnsafe.user ? tg.initDataUnsafe.user.username : 'User');
     }
-
-    const preventSwipe = (e) => {
-      if (e.touches.length === 1) {
-        e.preventDefault();
-      }
-    };
-
-    const allowSwipeOnMenu = (e) => {
-      if (e.target.closest('.buttons-container')) {
-        return; // Разрешаем свайп на меню
-      }
-      e.preventDefault();
-    };
-
-    if (activeButton === 'exchange') {
-      document.addEventListener('touchstart', allowSwipeOnMenu, { passive: false });
-      document.addEventListener('touchmove', allowSwipeOnMenu, { passive: false });
-    } else {
-      document.removeEventListener('touchstart', allowSwipeOnMenu);
-      document.removeEventListener('touchmove', allowSwipeOnMenu);
-    }
-
-    return () => {
-      document.removeEventListener('touchstart', allowSwipeOnMenu);
-      document.removeEventListener('touchmove', allowSwipeOnMenu);
-    };
-  }, [activeButton]);
+  }, []);
 
   function calculateCoinsToLevelUp(currentLevel) {
     return 500 + 2000 * (currentLevel - 1);
@@ -100,10 +74,10 @@ function App() {
             setLevel(prevLevel => {
               const newLevel = prevLevel + 1;
               setCoinsToLevelUp(calculateCoinsToLevelUp(newLevel));
-              setNotifications(prevNotifications => [...prevNotifications, `Congratulations, you have reached level ${newLevel}, keep going - airdrop soon`]);
+              setNotifications(prevNotifications => [...prevNotifications, `Поздравляем, вы достигли уровня ${newLevel}, продолжайте в том же духе - airdrop скоро!`]);
               return newLevel;
             });
-            return newPoints - coinsToLevelUp; // Исправлено
+            return newPoints - coinsToLevelUp;
           } else {
             return newPoints;
           }
@@ -122,7 +96,7 @@ function App() {
           setMessages(prevMessages =>
             prevMessages.filter(msg => msg.id !== newMessage.id)
           );
-        }, 2000); // Увеличиваем анимацию до 2 секунд
+        }, 2000);
       }
     });
   };
@@ -153,7 +127,7 @@ function App() {
             : quest
         )
       );
-      setNotifications(prevNotifications => [...prevNotifications, `You have successfully purchased ${currentQuest.title} for ${currentQuest.cost}. Now you earn +${currentQuest.profit} per hour.`]);
+      setNotifications(prevNotifications => [...prevNotifications, `Вы успешно приобрели ${currentQuest.title} за ${currentQuest.cost}. Теперь вы зарабатываете +${currentQuest.profit} в час.`]);
     } else {
       alert('Недостаточно очков для выполнения квеста.');
     }

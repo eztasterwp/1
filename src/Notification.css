@@ -1,18 +1,14 @@
 .notification {
   position: fixed;
   top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #333;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 5px 10px;
+  padding: 10px 20px;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 1000;
-  font-size: 12px; /* Установим меньший размер шрифта */
-  animation: slideIn 0.5s ease-in-out;
+  cursor: pointer;
 }
 
 .notification-content {
@@ -21,26 +17,10 @@
 }
 
 .notification-icon {
-  color: #4caf50;
-  margin-right: 5px;
-}
-
-.notification-text {
   margin-right: 10px;
 }
 
 .notification-close {
-  color: white;
+  margin-left: auto;
   cursor: pointer;
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateX(-50%) translateY(-100px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-  }
 }

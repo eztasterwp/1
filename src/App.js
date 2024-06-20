@@ -22,6 +22,17 @@ function App() {
   const [currentQuest, setCurrentQuest] = useState({});
   const [notifications, setNotifications] = useState([]);
 
+  const initialQuests = [
+    { id: 1, title: 'Купить воду', profit: 100, cost: 10, level: 0 },
+    { id: 2, title: 'Купить удобрения', profit: 200, cost: 20, level: 0 },
+    { id: 3, title: 'Купить семена', profit: 300, cost: 30, level: 0 },
+    { id: 4, title: 'Купить землю', profit: 400, cost: 40, level: 0 },
+    { id: 5, title: 'Заплатить налоги', profit: 500, cost: 50, level: 0 },
+    { id: 6, title: 'Отправить товар в CoffeShop', profit: 600, cost: 60, level: 0 },
+  ];
+
+  const [quests, setQuests] = useState(initialQuests);
+
   useEffect(() => {
     const img = new Image();
     img.src = 'background.png';
@@ -171,7 +182,7 @@ function App() {
           </div>
         );
       case 'mine':
-        return <Mine onQuestClick={handleQuestClick} />;
+        return <Mine onQuestClick={handleQuestClick} quests={quests} />;
       case 'friends':
         return <Friends />;
       case 'earn':

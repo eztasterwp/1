@@ -1,90 +1,148 @@
-.mine-page {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
 .mine-background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('your-new-background-image.jpg'); /* Замените на URL вашего нового изображения */
+  background-image: url('background1.jpg');
   background-size: cover;
   background-position: center;
-  filter: blur(5px);
-  opacity: 0.8;
+  filter: blur(8px);
+  opacity: 0.7;
   z-index: -1;
 }
 
 .mine-container {
-  padding: 20px;
+  padding: 10px;
   color: white;
-  max-width: 1000px; /* Ограничим ширину контейнера */
+  max-width: 100%;
   margin: 0 auto;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
   border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  box-shadow: none;
   overflow-y: auto;
-  max-height: calc(100vh - 100px);
-  margin-top: 80px;
+  max-height: calc(100vh - 80px);
 }
 
 .quests {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Сетка квестов */
-  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
   padding: 0 10px;
+  box-sizing: border-box;
 }
 
 .quest {
   background-size: cover;
   background-position: center;
   border-radius: 10px;
-  padding: 20px;
-  height: 150px;
+  padding: 15px;
+  width: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
+  border: 1px solid transparent;
+  align-items: center;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
-  background: rgba(0, 0, 0, 0.7);
-  color: #FFD700;
+  transform: scale(1.05); /* Основной стиль как hover */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); /* Основной стиль как hover */
+  border: 1px solid #FFD700; /* Основной стиль как hover */
+}
+
+.quest::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
 }
 
 .quest-content {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.quest-icon {
-  font-size: 24px;
-  color: #FFD700;
-}
-
-.quest-title {
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  margin: 10px 0;
-}
-
-.quest-cost, .quest-level, .quest-profit {
-  font-size: 14px;
-  font-weight: bold;
-  color: #FFD700;
-  text-align: center;
+  width: 100%;
+  text-align: center; /* Центрирование текста */
 }
 
 .quest:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  border: 1px solid #FFD700;
+}
+
+.quest-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.quest-title {
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quest-icon {
+  font-size: 24px;
+  margin-right: 8px;
+  color: #FFD700;
+}
+
+.quest-profit {
+  font-size: 14px;
+  color: #FFD700;
+  margin-top: 5px;
+}
+
+.quest-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.quest-level, .quest-cost {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: #1f1f1f;
+  background: #FFD700;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.quest-level {
+  justify-content: flex-start;
+}
+
+.quest-cost {
+  justify-content: flex-end;
+}
+
+.quest-details {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Поддержка для экранов менее 350px */
+@media (max-width: 350px) {
+  .quests {
+    grid-template-columns: 1fr;
+    padding: 0 5px;
+  }
 }

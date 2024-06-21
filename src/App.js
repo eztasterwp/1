@@ -47,25 +47,13 @@ function App() {
     }
 
     const preventSwipe = (e) => {
-      if (e.touches.length === 1) {
+      if (e.touches.length >= 1 && activeButton === 'exchange' && !e.target.closest('.buttons-container')) {
         e.preventDefault();
       }
     };
 
-    const allowSwipeOnMenu = (e) => {
-      if (e.target.closest('.buttons-container')) {
-        return; // Разрешаем свайп на меню
-      }
-      e.preventDefault();
-    };
-
-    if (activeButton === 'exchange') {
-      document.addEventListener('touchstart', preventSwipe, { passive: false });
-      document.addEventListener('touchmove', preventSwipe, { passive: false });
-    } else {
-      document.removeEventListener('touchstart', preventSwipe);
-      document.removeEventListener('touchmove', preventSwipe);
-    }
+    document.addEventListener('touchstart', preventSwipe, { passive: false });
+    document.addEventListener('touchmove', preventSwipe, { passive: false });
 
     return () => {
       document.removeEventListener('touchstart', preventSwipe);

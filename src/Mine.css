@@ -1,91 +1,96 @@
-.mine-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('background1.jpg');
-  background-size: cover;
-  background-position: center;
-  filter: blur(8px);
-  opacity: 0.7;
-  z-index: -1;
-}
-
+/* Стили для основного контейнера */
 .mine-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8);
   padding: 20px;
-  color: white;
-  max-width: 100%;
-  margin: 0 auto;
-  background: rgba(0, 0, 0, 0.8); /* Полупрозрачный фон с увеличенной непрозрачностью */
-  border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  overflow-y: auto;
-  max-height: calc(100vh - 100px);
+  border-radius: 15px;
+  margin: 20px;
+  color: #FFF;
 }
 
+/* Стили для блока пользователя */
+.user-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.user-info > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+  border: 2px solid #FFD700;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Стили для ежедневных бонусов */
+.daily-boosters {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.booster {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  border: 2px solid #FFD700;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Стили для списка квестов */
 .quests {
+  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
 }
 
 .quest {
-  background: linear-gradient(to right, #444, #555); /* Градиентный фон */
-  color: #FFF;
-  border-radius: 15px;
-  padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  cursor: pointer;
-  position: relative;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.quest:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
-}
-
-.quest-icon {
-  font-size: 32px;
-  margin-bottom: 10px;
-  color: #FFD700;
+  border: 2px solid #FFD700;
+  padding: 10px;
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #444, #555);
 }
 
 .quest-title {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
-  text-align: center;
+  margin-bottom: 5px;
 }
 
-.quest-details {
-  font-size: 16px;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 10px;
+.quest-level {
+  font-size: 12px;
 }
 
-.quest-level, .quest-cost {
-  padding: 5px 10px;
-  background: #FFD700;
-  border-radius: 10px;
-  font-weight: bold;
+.quest-icon {
+  font-size: 24px;
+  color: #FFD700;
+  margin-bottom: 5px;
 }
 
-@media (max-width: 350px) {
+/* Адаптивный дизайн для мобильных устройств */
+@media (max-width: 600px) {
   .quests {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    padding: 10px;
+    grid-template-columns: 1fr 1fr;
   }
 
-  .quest {
-    padding: 15px;
+  .daily-boosters, .user-info {
+    flex-direction: column;
+  }
+
+  .booster, .user-info > div {
+    width: 100%;
+    margin-bottom: 10px;
   }
 }

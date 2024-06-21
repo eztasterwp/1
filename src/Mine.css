@@ -1,26 +1,56 @@
-/* Mine.css */
 .mine-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh; /* Высота контейнера равна высоте видимой области экрана */
-  width: 100vw; /* Ширина контейнера равна ширине видимой области экрана */
-  background: url('workspace.jpg') no-repeat center center fixed; /* Путь к изображению */
-  background-size: cover; /* Обеспечивает полное покрытие фона, сохраняя пропорции изображения */
-  color: #fff; /* Цвет текста */
-  text-align: center;
   padding: 20px;
+  height: 100vh;
+  width: 100vw;
+  background: url('workspace.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
   box-sizing: border-box;
 }
 
-.mine-page h1 {
+.points-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
   margin-bottom: 20px;
-  color: #ffffff; /* Цвет заголовка */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Тень для текста, чтобы он лучше читался на ярком или контрастном фоне */
 }
 
-.mine-page p {
-  font-size: 18px;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Также добавляем тень для обычного текста */
+.points-info {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.points-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.points-text {
+  font-size: 40px;
+  font-weight: bold;
+  margin-left: 10px;
+  color: #FFD700;
+}
+
+.quests-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.quest-block {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }

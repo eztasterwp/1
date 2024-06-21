@@ -188,7 +188,7 @@ function App() {
           </div>
         );
       case 'mine':
-        return <Mine onQuestPurchase={handleQuestPurchase} points={points} quests={quests} />;
+        return <Mine points={points} quests={quests} />;
       case 'friends':
         return <Friends />;
       case 'earn':

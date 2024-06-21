@@ -46,6 +46,7 @@
   border-radius: 15px; /* Сделаем скругленные углы побольше */
   padding: 15px;
   width: 100%;
+  height: 100px; /* Уменьшим высоту */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -55,6 +56,8 @@
   position: relative;
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s; /* Добавим плавные переходы */
+  background: rgba(0, 0, 0, 0.6); /* Добавим полупрозрачный фон */
+  color: #FFD700; /* Установим основной цвет текста */
 }
 
 .quest::before {
@@ -79,7 +82,7 @@
 }
 
 .quest-icon {
-  font-size: 24px;
+  font-size: 18px; /* Уменьшим размер иконки */
   color: #FFD700;
 }
 
@@ -95,15 +98,15 @@
   display: flex;
   align-items: center;
   font-weight: bold;
-  background: #FFD700;
+  background: rgba(255, 215, 0, 0.3); /* Сделаем фон полупрозрачным */
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 14px;
-  color: #1f1f1f;
+  color: #FFD700;
 }
 
 .quest-title {
-  font-size: 16px;
+  font-size: 14px; /* Уменьшим размер шрифта */
   font-weight: bold;
   text-align: center;
   flex-grow: 1;
@@ -111,7 +114,7 @@
 }
 
 .quest-profit {
-  font-size: 14px;
+  font-size: 12px; /* Уменьшим размер шрифта */
   color: #FFD700;
   text-align: center;
   margin-top: 5px;

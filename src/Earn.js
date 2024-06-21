@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './Earn.css';
 
 const items = [
@@ -9,33 +9,52 @@ const items = [
   { id: 5, name: 'Item 5', image: 'image5.png' },
 ];
 
+const shuffleArray = (array) => {
+  return array.sort(() => Math.random() - 0.5);
+};
+
 const Earn = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isRolling, setIsRolling] = useState(false);
+  const caseRef = useRef(null);
 
   const startRolling = () => {
     setIsRolling(true);
     setSelectedItem(null);
+    const shuffledItems = shuffleArray([...items, ...items, ...items, ...items]);
+
+    caseRef.current.innerHTML = '';
+    shuffledItems.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'case-item';
+      div.innerHTML = `<img src="${process.env.PUBLIC_URL + '/' + item.image}" alt="${item.name}" /><p>${item.name}</p>`;
+      caseRef.current.appendChild(div);
+    });
+
+    const totalItems = items.length;
+    const randomIndex = Math.floor(Math.random() * totalItems);
+
+    caseRef.current.style.transition = 'none';
+    caseRef.current.style.transform = 'translateX(0)';
 
     setTimeout(() => {
-      const randomIndex = Math.floor(Math.random() * items.length);
-      setSelectedItem(items[randomIndex]);
-      setIsRolling(false);
-    }, 3000); // Длительность анимации
+      caseRef.current.style.transition = 'transform 3s ease-out';
+      caseRef.current.style.transform = `translateX(-${100 + randomIndex * 100}px)`;
+
+      setTimeout(() => {
+        setSelectedItem(items[randomIndex]);
+        setIsRolling(false);
+        caseRef.current.style.transition = 'none';
+        caseRef.current.style.transform = 'translateX(0)';
+      }, 3000);
+    }, 50);
   };
 
   return (
     <div className="earn-page">
       <h2>Open Your Case</h2>
       <div className="case-container">
-        <div className={`case-items ${isRolling ? 'rolling' : ''}`}>
-          {items.map(item => (
-            <div key={item.id} className="case-item">
-              <img src={process.env.PUBLIC_URL + '/' + item.image} alt={item.name} />
-              <p>{item.name}</p>
-            </div>
-          ))}
-        </div>
+        <div className="case-items" ref={caseRef}></div>
       </div>
       <button onClick={startRolling} disabled={isRolling}>Open Case</button>
       {selectedItem && (

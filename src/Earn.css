@@ -27,10 +27,6 @@
     transition: transform 3s ease-out;
   }
   
-  .rolling {
-    transform: translateX(-1000px); /* Задайте значение, чтобы анимация прокрутилась */
-  }
-  
   .case-item {
     min-width: 100px;
     margin: 0 10px;

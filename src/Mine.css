@@ -1,21 +1,96 @@
-/* Mine.css */
-.mine-page {
+/* Стили для основного контейнера */
+.mine-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #f0f0f0; /* Легкий фон для контраста текста */
-  color: #333; /* Темный цвет текста для читаемости */
-  text-align: center;
+  background: rgba(0, 0, 0, 0.8);
   padding: 20px;
+  border-radius: 15px;
+  margin: 20px;
+  color: #FFF;
 }
 
-.mine-page h1 {
+/* Стили для блока пользователя */
+.user-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 20px;
-  color: #4CAF50; /* Зеленый цвет заголовка */
 }
 
-.mine-page p {
-  font-size: 18px; /* Увеличение размера текста для лучшей читаемости */
+.user-info > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+  border: 2px solid #FFD700;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Стили для ежедневных бонусов */
+.daily-boosters {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.booster {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  border: 2px solid #FFD700;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Стили для списка квестов */
+.quests {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.quest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #FFD700;
+  padding: 10px;
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #444, #555);
+}
+
+.quest-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.quest-level {
+  font-size: 12px;
+}
+
+.quest-icon {
+  font-size: 24px;
+  color: #FFD700;
+  margin-bottom: 5px;
+}
+
+/* Адаптивный дизайн для мобильных устройств */
+@media (max-width: 600px) {
+  .quests {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .daily-boosters, .user-info {
+    flex-direction: column;
+  }
+
+  .booster, .user-info > div {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }

@@ -38,8 +38,8 @@ const Earn = () => {
     caseRef.current.style.transform = 'translateX(0)';
 
     setTimeout(() => {
-      caseRef.current.style.transition = 'transform 3s ease-out';
-      caseRef.current.style.transform = `translateX(-${100 + randomIndex * 100}px)`;
+      caseRef.current.style.transition = 'transform 1s cubic-bezier(0.4, 0, 0.2, 1) 0s, transform 2s ease-out 1s';
+      caseRef.current.style.transform = `translateX(-${(shuffledItems.length - totalItems + randomIndex) * 100}px)`;
 
       setTimeout(() => {
         setSelectedItem(items[randomIndex]);

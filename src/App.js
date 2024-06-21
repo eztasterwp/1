@@ -192,7 +192,7 @@ function App() {
   }
 
   return (
-    <div className={`App ${activeButton !== 'exchange' ? 'no-background' : ''} ${activeButton === 'mine' ? 'mine-scroll' : ''}`} onTouchStart={handleTouchStart}>
+    <div className={`App ${activeButton !== 'exchange' && activeButton !== 'earn' ? 'no-background' : ''} ${activeButton === 'mine' ? 'mine-scroll' : ''}`} onTouchStart={handleTouchStart}>
       <div className="header">
         <div className="header-top">
           <div className="header-col" style={{ display: 'flex', alignItems: 'center' }}>

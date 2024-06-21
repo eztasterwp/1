@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/1/static/css/main.2d959bff.css",
+    "main.css": "/1/static/css/main.a64d9f33.css",
     "main.js": "/1/static/js/main.20eead45.js",
     "static/media/coin.png": "/1/static/media/coin.33a0fa9eb163ca25d967.png",
     "static/media/fertilizer.png": "/1/static/media/fertilizer.5fa4eaa82aa850e52b85.png",
@@ -8,15 +8,14 @@
     "static/media/soil.png": "/1/static/media/soil.5b2c92aea7fea796f287.png",
     "static/media/seeds.png": "/1/static/media/seeds.6fc291d2a8a536f5f9b6.png",
     "static/media/background1.jpg": "/1/static/media/background1.eef8cae3a44980b72072.jpg",
-    "static/media/your-new-background-image.jpg": "/1/static/media/your-new-background-image.b5b01d804c43e1d8183a.jpg",
     "static/media/tax.png": "/1/static/media/tax.4cc60a584b9cc7c054cc.png",
     "static/media/license.png": "/1/static/media/license.239fb9e14e2c16e42c46.png",
     "index.html": "/1/index.html",
-    "main.2d959bff.css.map": "/1/static/css/main.2d959bff.css.map",
+    "main.a64d9f33.css.map": "/1/static/css/main.a64d9f33.css.map",
     "main.20eead45.js.map": "/1/static/js/main.20eead45.js.map"
   },
   "entrypoints": [
-    "static/css/main.2d959bff.css",
+    "static/css/main.a64d9f33.css",
     "static/js/main.20eead45.js"
   ]
 }

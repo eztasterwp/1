@@ -3,7 +3,7 @@
 body {
   margin: 0;
   overflow: hidden;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Roboto', Arial, sans-serif; /* Робото будет использоваться в первую очередь, с фоллбэком на Arial и sans-serif */
 }
 
 .App {

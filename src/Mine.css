@@ -28,6 +28,7 @@
   box-shadow: none;
   overflow-y: auto;
   max-height: calc(100vh - 80px);
+  margin-top: 60px; /* Добавим отступ сверху */
 }
 
 .quests {

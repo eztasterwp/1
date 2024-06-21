@@ -28,32 +28,32 @@ function Mine({ onQuestPurchase, points, quests }) {
   };
 
   return (
-    <div className="mine-container">
+    <div className="mine-page">
       <div className="mine-background"></div> {/* Полупрозрачный и размытый фон */}
-      <div className="quests">
-        {quests.map((quest) => (
-          <div
-            className="quest"
-            key={quest.id}
-            onClick={() => handleQuestPurchase(quest)}
-            style={{ backgroundImage: `url(${questBackgrounds[quest.title]})` }}
-          >
-            <div className="quest-content">
-              <div className="quest-header">
-                <FontAwesomeIcon icon={quest.icon} className="quest-icon" />
+      <div className="mine-container">
+        <div className="quests">
+          {quests.map((quest) => (
+            <div
+              className="quest"
+              key={quest.id}
+              onClick={() => handleQuestPurchase(quest)}
+              style={{ backgroundImage: `url(${questBackgrounds[quest.title]})` }}
+            >
+              <div className="quest-content">
+                <div className="quest-level">
+                  <FontAwesomeIcon icon={quest.icon} className="quest-icon" />
+                  lvl {quest.level}
+                </div>
                 <div className="quest-title">{quest.title}</div>
-              </div>
-              <div className="quest-profit">Profit per hour: +{quest.income}</div>
-              <div className="quest-details">
-                <div className="quest-level">lvl {quest.level}</div>
                 <div className="quest-cost">
                   {quest.cost}
                   <FontAwesomeIcon icon={faCoins} />
                 </div>
               </div>
+              <div className="quest-profit">Profit per hour: +{quest.income}</div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

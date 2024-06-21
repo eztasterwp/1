@@ -3,8 +3,9 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  height: 100vh;
+  height: calc(100vh - 60px); /* Уменьшили высоту чтобы не пересекалось с верхним меню */
   width: 100vw;
+  margin-top: 60px; /* Добавили отступ сверху */
   background: url('workspace.jpg') no-repeat center center fixed;
   background-size: cover;
   color: #fff;
@@ -14,10 +15,9 @@
 
 .points-display {
   display: flex;
-  flex-direction: column;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.7);
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   margin-bottom: 20px;
 }
@@ -42,19 +42,20 @@
 
 .quests-container {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
   width: 100%;
 }
 
 .quest-block {
   background-color: rgba(0, 0, 0, 0.7);
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
   text-align: center;
   color: #fff;
   transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer; /* Добавили курсор указатель при наведении */
 }
 
 .quest-block:hover {
@@ -63,12 +64,12 @@
 }
 
 .quest-title {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
 .quest-details {
-  font-size: 16px;
+  font-size: 14px;
   margin-top: 10px;
 }

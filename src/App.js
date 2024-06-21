@@ -175,10 +175,6 @@ function App() {
     }
   };
 
-  const handleNotificationClose = (index) => {
-    setNotifications(prevNotifications => prevNotifications.filter((_, i) => i !== index));
-  };
-
   const renderContent = () => {
     switch (activeButton) {
       case 'exchange':
@@ -188,7 +184,7 @@ function App() {
           </div>
         );
       case 'mine':
-        return <Mine points={points} quests={quests} />;
+        return <Mine points={points} quests={quests} onQuestPurchase={handleQuestPurchase} />;
       case 'friends':
         return <Friends />;
       case 'earn':
@@ -213,7 +209,7 @@ function App() {
             <span className="username">{username}</span>
           </div>
           <div className="header-col">
-          <FontAwesomeIcon icon={faEllipsisH} className="settings-icon" />
+            <FontAwesomeIcon icon={faEllipsisH} className="settings-icon" />
           </div>
         </div>
         {activeButton === 'exchange' && (

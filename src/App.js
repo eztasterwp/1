@@ -22,9 +22,9 @@ function App() {
   const [hourlyIncome, setHourlyIncome] = useState(0); // Доход в час
 
   const initialQuests = [
-    { id: 1, title: 'Удобрения', cost: 10, income: 5, level: 0, icon: faLeaf },
-    { id: 2, title: 'Грунт', cost: 20, income: 10, level: 0, icon: faTint },
-    { id: 3, title: 'Семена', cost: 30, income: 15, level: 0, icon: faSeedling },
+    { id: 1, title: 'Купить удобрения', cost: 10, income: 5, level: 0, icon: faLeaf },
+    { id: 2, title: 'Купить грунт', cost: 20, income: 10, level: 0, icon: faTint },
+    { id: 3, title: 'Купить семена', cost: 30, income: 15, level: 0, icon: faSeedling },
     { id: 4, title: 'Заплатить налоги', cost: 40, income: 20, level: 0, icon: faFileInvoiceDollar },
     { id: 5, title: 'Отправить товар в CoffeeShop', cost: 50, income: 25, level: 0, icon: faTruck },
     { id: 6, title: 'Купить лицензию', cost: 60, income: 30, level: 0, icon: faHandHoldingUsd }
@@ -87,11 +87,6 @@ function App() {
         touchY >= rect.top &&
         touchY <= rect.bottom
       ) {
-        // Добавляем вибрацию
-        if (navigator.vibrate) {
-          navigator.vibrate(50); // 50 мс вибрация
-        }
-
         setPoints(prevPoints => {
           const newPoints = prevPoints + coinsPerTap;
           setTotalPoints(prevTotalPoints => prevTotalPoints + coinsPerTap);
@@ -105,7 +100,7 @@ function App() {
               ]);
               return newLevel;
             });
-            return newPoints - coinsToLevelUp; // Исправлено
+            return newPoints - coinsToLevelUp;
           } else {
             return newPoints;
           }
@@ -124,11 +119,10 @@ function App() {
           setMessages(prevMessages =>
             prevMessages.filter(msg => msg.id !== newMessage.id)
           );
-        }, 2000); // Увеличиваем время на 2 секунды
+        }, 2000);
       }
     });
-};
-
+  };
 
   const handleButtonClick = (buttonId) => {
     setActiveButton(buttonId);

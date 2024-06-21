@@ -72,4 +72,11 @@
 .quest-details {
   font-size: 14px;
   margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.quest-icon {
+  margin-right: 5px;
+  color: #FFD700; /* Цвет иконки */
 }

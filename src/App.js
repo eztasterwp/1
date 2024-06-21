@@ -81,7 +81,7 @@ function App() {
         setTotalPoints(prevTotalPoints => prevTotalPoints + hourlyIncome);
         return newPoints;
       });
-    }, 3600000); // Обновление очков каждый час
+    }, 10000); // Обновление очков каждые 10 секунд для тестирования
 
     return () => clearInterval(interval);
   }, [hourlyIncome]);
@@ -173,6 +173,10 @@ function App() {
     } else {
       alert('Недостаточно очков для выполнения квеста.');
     }
+  };
+
+  const handleNotificationClose = (index) => {
+    setNotifications(prevNotifications => prevNotifications.filter((_, i) => i !== index));
   };
 
   const renderContent = () => {

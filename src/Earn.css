@@ -1,73 +1,14 @@
 .earn-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100vw;
-    background: url('background1.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #333;
-    text-align: center;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .case-container {
-    width: 300px;
-    height: 150px;
-    overflow: hidden;
-    border: 2px solid #333;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    position: relative;
-    background-color: #fff;
-  }
-  
-  .case-items {
-    display: flex;
-    transition: transform 3s ease-out;
-  }
-  
-  .case-item {
-    min-width: 100px;
-    margin: 0 10px;
-    text-align: center;
-  }
-  
-  .case-item img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-  }
-  
-  button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-  }
-  
-  button:disabled {
-    background-color: #888;
-    cursor: not-allowed;
-  }
-  
-  button:hover:not(:disabled) {
-    background-color: #45a049;
-  }
-  
-  .selected-item {
-    margin-top: 20px;
-  }
-  
-  .selected-item img {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background: url('dragon.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}

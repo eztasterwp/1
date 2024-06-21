@@ -4,19 +4,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background: url('workspace.jpg') no-repeat center center fixed; /* Установка фонового изображения */
-  background-size: cover; /* Растягиваем фон на весь доступный контент */
-  color: #fff; /* Белый цвет текста для лучшей видимости на темном фоне */
+  height: 100vh; /* Высота контейнера равна высоте видимой области экрана */
+  width: 100vw; /* Ширина контейнера равна ширине видимой области экрана */
+  background: url('background1.jpg') no-repeat center center fixed; /* Путь к изображению */
+  background-size: cover; /* Обеспечивает полное покрытие фона, сохраняя пропорции изображения */
+  color: #fff; /* Цвет текста */
   text-align: center;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 .mine-page h1 {
   margin-bottom: 20px;
-  color: #ffffff; /* Белый цвет заголовка */
+  color: #ffffff; /* Цвет заголовка */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Тень для текста, чтобы он лучше читался на ярком или контрастном фоне */
 }
 
 .mine-page p {
-  font-size: 18px; /* Увеличение размера текста для лучшей читаемости */
+  font-size: 18px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Также добавляем тень для обычного текста */
 }

@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Mine.css'; // Убедитесь, что CSS файл подключен правильно
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoins, faClock, faLevelUpAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCoins, faClock, faLevelUpAlt, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
-const Mine = ({ points, quests, onQuestPurchase }) => {
+const Mine = ({ points, quests, onQuestPurchase, hourlyIncome }) => {
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  const handleTooltipToggle = () => {
+    setShowTooltip(!showTooltip);
+  };
+
   return (
     <div className="mine-page">
       <div className="points-display">
         <div className="points-info">
           <img src="coin.png" alt="points icon" className="points-icon" />
           <span className="points-text">{points}</span>
+        </div>
+        <div className="hourly-income">
+          <FontAwesomeIcon icon={faExclamationCircle} className="info-icon" onClick={handleTooltipToggle} />
+          {showTooltip && (
+            <div className="info-tooltip">
+              Current hourly income: {hourlyIncome}
+            </div>
+          )}
         </div>
       </div>
       <div className="quests-container">

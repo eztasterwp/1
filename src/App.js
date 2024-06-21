@@ -1,4 +1,3 @@
-// App.js
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -57,7 +56,7 @@ function App() {
       if (e.target.closest('.buttons-container')) {
         return; // Разрешаем свайп на меню
       }
-      e.preventDefault();
+      e.prevent.preventDefault();
     };
 
     if (activeButton === 'exchange') {
@@ -188,7 +187,7 @@ function App() {
           </div>
         );
       case 'mine':
-        return <Mine points={points} quests={quests} onQuestPurchase={handleQuestPurchase} />;
+        return <Mine points={points} quests={quests} onQuestPurchase={handleQuestPurchase} hourlyIncome={hourlyIncome} />;
       case 'friends':
         return <Friends />;
       case 'earn':

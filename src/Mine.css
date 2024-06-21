@@ -20,6 +20,7 @@
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .points-info {
@@ -38,18 +39,48 @@
   font-weight: bold;
   margin-left: 10px;
   color: #FFD700;
+  position: relative;
+}
+
+.hourly-income {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.info-icon {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.info-tooltip {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  display: none;
+  z-index: 10;
+}
+
+.info-icon:hover + .info-tooltip,
+.info-tooltip:hover {
+  display: block;
 }
 
 .quests-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 10px;
   width: 100%;
 }
 
 .quest-block {
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.9); /* Темнее фон для лучшей читаемости */
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
   text-align: center;
@@ -64,16 +95,17 @@
 }
 
 .quest-title {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
 .quest-details {
-  font-size: 14px;
+  font-size: 16px;
   margin-top: 10px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .quest-icon {

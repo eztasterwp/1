@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 .mine-background {
@@ -10,128 +11,80 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('background1.jpg');
+  background-image: url('your-new-background-image.jpg'); /* Замените на URL вашего нового изображения */
   background-size: cover;
   background-position: center;
-  filter: blur(8px);
-  opacity: 0.7;
+  filter: blur(5px);
+  opacity: 0.8;
   z-index: -1;
 }
 
 .mine-container {
-  padding: 10px;
+  padding: 20px;
   color: white;
-  max-width: 100%;
+  max-width: 1000px; /* Ограничим ширину контейнера */
   margin: 0 auto;
-  background: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
+  background: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
-  box-shadow: none;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
   overflow-y: auto;
-  max-height: calc(100vh - 80px);
-  margin-top: 60px; /* Добавим отступ сверху */
-  overflow-y: scroll; /* Добавим вертикальный скролл */
+  max-height: calc(100vh - 100px);
+  margin-top: 80px;
 }
 
 .quests {
-  display: flex;
-  flex-direction: column;
-  gap: 20px; /* Увеличим расстояние между квестами */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Сетка квестов */
+  gap: 20px;
   padding: 0 10px;
-  box-sizing: border-box;
 }
 
 .quest {
   background-size: cover;
   background-position: center;
-  border-radius: 15px; /* Сделаем скругленные углы побольше */
-  padding: 15px;
-  width: 100%;
-  height: 100px; /* Уменьшим высоту */
+  border-radius: 10px;
+  padding: 20px;
+  height: 150px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  border: 1px solid transparent;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s; /* Добавим плавные переходы */
-  background: rgba(0, 0, 0, 0.6); /* Добавим полупрозрачный фон */
-  color: #FFD700; /* Установим основной цвет текста */
-}
-
-.quest::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 0;
-  transition: background 0.3s; /* Добавим плавный переход для фона */
+  transition: transform 0.3s, box-shadow 0.3s;
+  background: rgba(0, 0, 0, 0.7);
+  color: #FFD700;
 }
 
 .quest-content {
   position: relative;
   z-index: 1;
-  width: 100%;
   display: flex;
-  justify-content: space-between; /* Распределение элементов по краям */
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .quest-icon {
-  font-size: 18px; /* Уменьшим размер иконки */
-  color: #FFD700;
-}
-
-.quest-info {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.quest-level,
-.quest-cost {
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  background: rgba(255, 215, 0, 0.3); /* Сделаем фон полупрозрачным */
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 14px;
+  font-size: 24px;
   color: #FFD700;
 }
 
 .quest-title {
-  font-size: 14px; /* Уменьшим размер шрифта */
+  font-size: 18px;
   font-weight: bold;
   text-align: center;
-  flex-grow: 1;
-  margin: 0 10px;
+  margin: 10px 0;
 }
 
-.quest-profit {
-  font-size: 12px; /* Уменьшим размер шрифта */
+.quest-cost, .quest-level, .quest-profit {
+  font-size: 14px;
+  font-weight: bold;
   color: #FFD700;
   text-align: center;
-  margin-top: 5px;
 }
 
 .quest:hover {
-  transform: scale(1.05); /* Увеличим масштаб при наведении */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Добавим тень при наведении */
-}
-
-.quest:hover::before {
-  background: rgba(0, 0, 0, 0.7); /* Сделаем фон темнее при наведении */
-}
-
-/* Поддержка для экранов менее 350px */
-@media (max-width: 350px) {
-  .quests {
-    padding: 0 5px;
-  }
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
 }

@@ -29,7 +29,7 @@ function Mine({ onQuestPurchase, points, quests }) {
 
   return (
     <div className="mine-page">
-      <div className="mine-background"></div> {/* Полупрозрачный и размытый фон */}
+      <div className="mine-background"></div>
       <div className="mine-container">
         <div className="quests">
           {quests.map((quest) => (
@@ -49,8 +49,8 @@ function Mine({ onQuestPurchase, points, quests }) {
                   {quest.cost}
                   <FontAwesomeIcon icon={faCoins} />
                 </div>
+                <div className="quest-profit">Profit per hour: +{quest.income}</div>
               </div>
-              <div className="quest-profit">Profit per hour: +{quest.income}</div>
             </div>
           ))}
         </div>

@@ -1,96 +1,85 @@
-/* Стили для основного контейнера */
-.mine-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  border-radius: 15px;
-  margin: 20px;
-  color: #FFF;
-}
-
-/* Стили для блока пользователя */
-.user-info {
+/* Фон для страницы */
+.mine-background {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  height: 100%;
+  background-image: url('background1.jpg'); /* Укажите корректный путь до изображения */
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px);
+  opacity: 0.7;
+  z-index: -1;
 }
 
-.user-info > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 16px;
-  border: 2px solid #FFD700;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-/* Стили для ежедневных бонусов */
-.daily-boosters {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
-}
-
-.booster {
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  border: 2px solid #FFD700;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-/* Стили для списка квестов */
-.quests {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 10px;
-}
-
+/* Стили для квестов с изображениями */
 .quest {
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  height: 150px; /* Установка фиксированной высоты для каждого квеста */
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #FFD700;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  border: 2px solid #FFD700;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8); /* Текстовая тень для улучшения читаемости на ярких фонах */
+}
+
+.quest::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Полупрозрачное черное наложение для лучшего контраста текста */
+  z-index: 0;
+}
+
+.quest-content {
+  position: relative;
+  z-index: 1;
   padding: 10px;
-  border-radius: 10px;
-  background: linear-gradient(to bottom, #444, #555);
+}
+
+.quest:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
 }
 
 .quest-title {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-.quest-level {
-  font-size: 12px;
+.quest-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .quest-icon {
   font-size: 24px;
   color: #FFD700;
-  margin-bottom: 5px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }
 
-/* Адаптивный дизайн для мобильных устройств */
-@media (max-width: 600px) {
-  .quests {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .daily-boosters, .user-info {
-    flex-direction: column;
-  }
-
-  .booster, .user-info > div {
-    width: 100%;
-    margin-bottom: 10px;
+/* Прочие улучшения */
+@media (max-width: 360px) {
+  .quest {
+    height: 100px;
   }
 }

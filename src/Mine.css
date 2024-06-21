@@ -29,12 +29,13 @@
   overflow-y: auto;
   max-height: calc(100vh - 80px);
   margin-top: 60px; /* Добавим отступ сверху */
+  overflow-y: scroll; /* Добавим вертикальный скролл */
 }
 
 .quests {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px; /* Увеличим расстояние между квестами */
   padding: 0 10px;
   box-sizing: border-box;
 }
@@ -42,7 +43,7 @@
 .quest {
   background-size: cover;
   background-position: center;
-  border-radius: 10px;
+  border-radius: 15px; /* Сделаем скругленные углы побольше */
   padding: 15px;
   width: 100%;
   box-sizing: border-box;
@@ -53,9 +54,7 @@
   border: 1px solid transparent;
   position: relative;
   overflow: hidden;
-  transform: scale(1.05); /* Основной стиль как hover */
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); /* Основной стиль как hover */
-  border: 1px solid #FFD700; /* Основной стиль как hover */
+  transition: transform 0.3s, box-shadow 0.3s; /* Добавим плавные переходы */
 }
 
 .quest::before {
@@ -67,6 +66,7 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 0;
+  transition: background 0.3s; /* Добавим плавный переход для фона */
 }
 
 .quest-content {
@@ -115,6 +115,15 @@
   color: #FFD700;
   text-align: center;
   margin-top: 5px;
+}
+
+.quest:hover {
+  transform: scale(1.05); /* Увеличим масштаб при наведении */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Добавим тень при наведении */
+}
+
+.quest:hover::before {
+  background: rgba(0, 0, 0, 0.7); /* Сделаем фон темнее при наведении */
 }
 
 /* Поддержка для экранов менее 350px */

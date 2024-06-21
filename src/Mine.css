@@ -1,85 +1,21 @@
-/* Фон для страницы */
-.mine-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('background1.jpg'); /* Укажите корректный путь до изображения */
-  background-size: cover;
-  background-position: center;
-  filter: blur(8px);
-  opacity: 0.7;
-  z-index: -1;
-}
-
-/* Стили для квестов с изображениями */
-.quest {
-  background-size: cover;
-  background-position: center;
-  border-radius: 10px;
-  padding: 10px;
-  width: 100%;
-  height: 150px; /* Установка фиксированной высоты для каждого квеста */
-  position: relative;
-  overflow: hidden;
-  border: 2px solid #FFD700;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
+/* Mine.css */
+.mine-page {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  color: white;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8); /* Текстовая тень для улучшения читаемости на ярких фонах */
+  justify-content: center;
+  height: 100vh;
+  background-color: #f0f0f0; /* Легкий фон для контраста текста */
+  color: #333; /* Темный цвет текста для читаемости */
+  text-align: center;
+  padding: 20px;
 }
 
-.quest::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Полупрозрачное черное наложение для лучшего контраста текста */
-  z-index: 0;
+.mine-page h1 {
+  margin-bottom: 20px;
+  color: #4CAF50; /* Зеленый цвет заголовка */
 }
 
-.quest-content {
-  position: relative;
-  z-index: 1;
-  padding: 10px;
-}
-
-.quest:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
-}
-
-.quest-title {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.quest-details {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.quest-icon {
-  font-size: 24px;
-  color: #FFD700;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-}
-
-/* Прочие улучшения */
-@media (max-width: 360px) {
-  .quest {
-    height: 100px;
-  }
+.mine-page p {
+  font-size: 18px; /* Увеличение размера текста для лучшей читаемости */
 }

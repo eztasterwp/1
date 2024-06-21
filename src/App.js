@@ -35,7 +35,7 @@ function App() {
 
   useEffect(() => {
     const img = new Image();
-    img.src = 'background.png';
+    img.src = 'background1.jpg';
     img.onload = () => {
       setBackgroundLoaded(true);
     };

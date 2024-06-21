@@ -5,15 +5,16 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f0f0f0; /* Легкий фон для контраста текста */
-  color: #333; /* Темный цвет текста для читаемости */
+  background: url('workspace.jpg') no-repeat center center fixed; /* Установка фонового изображения */
+  background-size: cover; /* Растягиваем фон на весь доступный контент */
+  color: #fff; /* Белый цвет текста для лучшей видимости на темном фоне */
   text-align: center;
   padding: 20px;
 }
 
 .mine-page h1 {
   margin-bottom: 20px;
-  color: #4CAF50; /* Зеленый цвет заголовка */
+  color: #ffffff; /* Белый цвет заголовка */
 }
 
 .mine-page p {

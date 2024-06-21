@@ -56,20 +56,20 @@ function App() {
       if (e.target.closest('.buttons-container')) {
         return; // Разрешаем свайп на меню
       }
-      e.prevent.preventDefault();
+      e.preventDefault();
     };
 
     if (activeButton === 'exchange') {
-      document.addEventListener('touchstart', allowSwipeOnMenu, { passive: false });
-      document.addEventListener('touchmove', allowSwipeOnMenu, { passive: false });
+      document.addEventListener('touchstart', preventSwipe, { passive: false });
+      document.addEventListener('touchmove', preventSwipe, { passive: false });
     } else {
-      document.removeEventListener('touchstart', allowSwipeOnMenu);
-      document.removeEventListener('touchmove', allowSwipeOnMenu);
+      document.removeEventListener('touchstart', preventSwipe);
+      document.removeEventListener('touchmove', preventSwipe);
     }
 
     return () => {
-      document.removeEventListener('touchstart', allowSwipeOnMenu);
-      document.removeEventListener('touchmove', allowSwipeOnMenu);
+      document.removeEventListener('touchstart', preventSwipe);
+      document.removeEventListener('touchmove', preventSwipe);
     };
   }, [activeButton]);
 
@@ -204,7 +204,7 @@ function App() {
   }
 
   return (
-    <div className={`App ${activeButton !== 'exchange' ? 'no-background' : ''}`} onTouchStart={handleTouchStart}>
+    <div className={`App ${activeButton !== 'exchange' ? 'no-background' : ''} ${activeButton === 'mine' ? 'mine-scroll' : ''}`} onTouchStart={handleTouchStart}>
       <div className="header">
         <div className="header-top">
           <div className="header-col" style={{ display: 'flex', alignItems: 'center' }}>

@@ -11,6 +11,7 @@
   color: #fff;
   text-align: center;
   box-sizing: border-box;
+  overflow-y: auto; /* Добавили возможность вертикальной прокрутки */
 }
 
 .points-display {
@@ -73,7 +74,7 @@
 
 .quests-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(2, 1fr); /* Два элемента в ряд */
   gap: 10px;
   width: 100%;
 }
@@ -101,7 +102,7 @@
 }
 
 .quest-details {
-  font-size: 16px;
+  font-size: 10px;
   margin-top: 10px;
   display: flex;
   align-items: center;

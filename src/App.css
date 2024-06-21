@@ -21,6 +21,12 @@ body {
   user-select: none;
 }
 
+/* App.css */
+.no-background {
+  background: none;
+}
+
+
 .header {
   position: absolute;
   top: 0;

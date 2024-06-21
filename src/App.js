@@ -1,3 +1,4 @@
+// App.js
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -204,7 +205,7 @@ function App() {
   }
 
   return (
-    <div className="App" onTouchStart={handleTouchStart}>
+    <div className={`App ${activeButton !== 'exchange' ? 'no-background' : ''}`} onTouchStart={handleTouchStart}>
       <div className="header">
         <div className="header-top">
           <div className="header-col" style={{ display: 'flex', alignItems: 'center' }}>
@@ -212,7 +213,7 @@ function App() {
             <span className="username">{username}</span>
           </div>
           <div className="header-col">
-            <FontAwesomeIcon icon={faEllipsisH} className="settings-icon" />
+          <FontAwesomeIcon icon={faEllipsisH} className="settings-icon" />
           </div>
         </div>
         {activeButton === 'exchange' && (

@@ -6,7 +6,7 @@
   justify-content: center;
   height: 100vh; /* Высота контейнера равна высоте видимой области экрана */
   width: 100vw; /* Ширина контейнера равна ширине видимой области экрана */
-  background: url('background1.jpg') no-repeat center center fixed; /* Путь к изображению */
+  background: url('workspace.jpg') no-repeat center center fixed; /* Путь к изображению */
   background-size: cover; /* Обеспечивает полное покрытие фона, сохраняя пропорции изображения */
   color: #fff; /* Цвет текста */
   text-align: center;

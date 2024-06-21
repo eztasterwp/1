@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import './Earn.css';
 
 const items = [
-  { id: 1, name: 'Item 1', image: 'item1.png' },
-  { id: 2, name: 'Item 2', image: 'item2.png' },
-  { id: 3, name: 'Item 3', image: 'item3.png' },
-  { id: 4, name: 'Item 4', image: 'item4.png' },
-  { id: 5, name: 'Item 5', image: 'item5.png' },
+  { id: 1, name: 'Item 1', image: 'image1.png' },
+  { id: 2, name: 'Item 2', image: 'image2.png' },
+  { id: 3, name: 'Item 3', image: 'image3.png' },
+  { id: 4, name: 'Item 4', image: 'image4.png' },
+  { id: 5, name: 'Item 5', image: 'image5.png' },
 ];
 
 const Earn = () => {
